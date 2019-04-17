@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="1042.0" styleClass="fondo" stylesheets="@estilo1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda.musica.pantallaLoginController">
+   <children>
+      <ImageView fitHeight="676.0" fitWidth="1211.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagenes/fondoLogin.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="30.0" layoutY="58.0" prefHeight="61.0" prefWidth="362.0" text="Bienvenido a la aplicación" textFill="#c39c1d">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="663.0" layoutY="119.0" prefHeight="439.0" prefWidth="389.0" styleClass="fondologin" stylesheets="@estilo1.css">
+         <children>
+            <Label layoutX="92.0" layoutY="39.0" text="INICIO SESIÓN" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="36.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_usuario" layoutX="30.0" layoutY="116.0" prefHeight="38.0" prefWidth="265.0" promptText="NOMBRE DE USUARIO">
+               <font>
+                  <Font name="Calibri Light" size="12.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="tf_contrasenya" layoutX="30.0" layoutY="212.0" prefHeight="38.0" prefWidth="265.0" promptText="CONTRASEÑA">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="but_inicioSesion" layoutX="92.0" layoutY="353.0" mnemonicParsing="false" onMouseClicked="#iniciarSesion" prefHeight="27.0" prefWidth="206.0" text="INICIO SESIÓN" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -13,6 +13,18 @@ and open the template in the editor.
   -fx-background-color: rgb(166, 115, 115);
 }
 
-.fondo{
+.botones{
+    -fx-background-color: rgb(166, 115, 115);
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+    -fx-padding: 0px;
+}
 
+.enviarDatos:hover
+{
+  -fx-background-color: rgb(162, 56, 56);
+}
+
+.enviarDatos{
+    -fx-background-color: rgb(164, 86, 86);
 }

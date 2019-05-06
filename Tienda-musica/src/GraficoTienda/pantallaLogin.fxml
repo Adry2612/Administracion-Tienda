@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="676.0" fitWidth="1211.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@imagenes/fondoLogin.jpg" />
+            <Image url="@../tienda/musica/imagenes/fondoLogin.jpg" />
          </image>
       </ImageView>
       <Label layoutX="30.0" layoutY="58.0" prefHeight="61.0" prefWidth="362.0" text="Bienvenido a la aplicación" textFill="#c39c1d">

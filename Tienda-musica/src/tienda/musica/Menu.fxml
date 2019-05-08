@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="943.0" stylesheets="@../../GraficoTienda/menu.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="498.0" fitWidth="958.0" opacity="0.63" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imagenes/fondoMenu.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="330.0" layoutY="45.0" opacity="0.6" text="MENÚ PRINCIPAL" textFill="#b9b939">
+         <font>
+            <Font name="Calibri Bold" size="39.0" />
+         </font>
+      </Label>
+      <Button fx:id="b_clientes" layoutX="160.0" layoutY="142.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Button fx:id="b_empleado" layoutX="394.0" layoutY="142.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Label layoutX="198.0" layoutY="265.0" text="CLIENTES" textFill="#b9b9b9">
+         <font>
+            <Font name="Calibri" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="419.0" layoutY="265.0" text="EMPLEADOS" textFill="#b9b9b9">
+         <font>
+            <Font name="Calibri" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="b_alquileres" layoutX="160.0" layoutY="317.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Button fx:id="b_ventas" layoutX="394.0" layoutY="317.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Button fx:id="b_distribuidores" layoutX="627.0" layoutY="317.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Label layoutX="186.0" layoutY="445.0" text="ALQUILERES" textFill="#b9b9b9">
+         <font>
+            <Font name="Calibri" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="438.0" layoutY="445.0" text="VENTAS" textFill="#b9b9b9">
+         <font>
+            <Font name="Calibri" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="633.0" layoutY="445.0" text="DISTRIBUIDORES" textFill="#b9b9b9">
+         <font>
+            <Font name="Calibri" size="21.0" />
+         </font>
+      </Label>
+      <Button fx:id="b_instrumentos" layoutX="627.0" layoutY="139.0" mnemonicParsing="false" opacity="0.95" prefHeight="166.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Label layoutX="635.0" layoutY="265.0" text="INSTRUMENTOS" textFill="#b9b9b9">
+         <font>
+            <Font name="Calibri" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

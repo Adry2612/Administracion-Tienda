@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="1111.0" stylesheets="@estiloClientes.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuClientesController">
+   <children>
+      <ImageView fitHeight="622.0" fitWidth="1122.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="32.0" layoutY="76.0" prefHeight="469.0" prefWidth="430.0" styleClass="fondo">
+         <children>
+            <Label layoutX="137.0" layoutY="27.0" text="Clientes" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="48.0" />
+               </font>
+            </Label>
+            <TextField fx:id="text_id" layoutX="223.0" layoutY="118.0" />
+            <Label layoutX="82.0" layoutY="124.0" prefHeight="25.0" prefWidth="110.0" text="ID" />
+            <TextField fx:id="text_nombre" layoutX="223.0" layoutY="157.0" />
+            <TextField fx:id="text_apellido1" layoutX="223.0" layoutY="197.0" />
+            <TextField fx:id="text_apellido2" layoutX="223.0" layoutY="235.0" />
+            <Label layoutX="55.0" layoutY="157.0" prefHeight="25.0" prefWidth="110.0" text="NOMBRE" />
+            <Label layoutX="44.0" layoutY="197.0" prefHeight="25.0" prefWidth="110.0" text="APELLIDO 1" />
+            <Label layoutX="44.0" layoutY="235.0" prefHeight="25.0" prefWidth="110.0" text="APELLIDO 2" />
+            <Button layoutX="41.0" layoutY="356.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="83.0" styleClass="botones" text="BUSCAR" />
+            <Button layoutX="185.0" layoutY="390.0" mnemonicParsing="false" text="AÑADIR" />
+            <Button layoutX="310.0" layoutY="390.0" mnemonicParsing="false" text="BORRAR" />
+         </children>
+      </AnchorPane>
+      <TableView layoutX="512.0" layoutY="79.0" prefHeight="469.0" prefWidth="591.0" styleClass="fondo">
+        <columns>
+          <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
+            <TableColumn fx:id="col_apellido1" prefWidth="75.0" text="APELLIDO 1" />
+            <TableColumn fx:id="col_apellido2" prefWidth="75.0" text="APELLIDO 2" />
+            <TableColumn fx:id="col_valoracion" prefWidth="116.0" text="VALORACIÓN" />
+            <TableColumn fx:id="col_descrip" prefWidth="174.0" text="DESCRIPCIÓN" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

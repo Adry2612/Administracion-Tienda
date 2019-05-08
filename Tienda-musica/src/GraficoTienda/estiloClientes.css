@@ -1,0 +1,11 @@
+.fondo{
+  -fx-background-color: rgb(166, 115, 115);
+  -fx-background-radius: 15 15 15 15;
+}
+
+.botones{
+    -fx-background-color: rgb(164, 86, 86);
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+    -fx-padding: 0px;
+}

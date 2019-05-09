@@ -15,24 +15,36 @@
             <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="32.0" layoutY="76.0" prefHeight="469.0" prefWidth="430.0" styleClass="fondo">
+      <AnchorPane layoutX="39.0" layoutY="85.0" prefHeight="469.0" prefWidth="430.0" styleClass="fondo">
          <children>
-            <Label layoutX="137.0" layoutY="27.0" text="Clientes" textFill="WHITE">
+            <Label layoutX="137.0" layoutY="27.0" text="Clientes" textFill="#ffd780">
                <font>
                   <Font name="Calibri" size="48.0" />
                </font>
             </Label>
             <TextField fx:id="text_id" layoutX="223.0" layoutY="118.0" />
-            <Label layoutX="82.0" layoutY="124.0" prefHeight="25.0" prefWidth="110.0" text="ID" />
-            <TextField fx:id="text_nombre" layoutX="223.0" layoutY="157.0" />
-            <TextField fx:id="text_apellido1" layoutX="223.0" layoutY="197.0" />
-            <TextField fx:id="text_apellido2" layoutX="223.0" layoutY="235.0" />
-            <Label layoutX="55.0" layoutY="157.0" prefHeight="25.0" prefWidth="110.0" text="NOMBRE" />
-            <Label layoutX="44.0" layoutY="197.0" prefHeight="25.0" prefWidth="110.0" text="APELLIDO 1" />
-            <Label layoutX="44.0" layoutY="235.0" prefHeight="25.0" prefWidth="110.0" text="APELLIDO 2" />
-            <Button layoutX="41.0" layoutY="356.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="83.0" styleClass="botones" text="BUSCAR" />
-            <Button layoutX="185.0" layoutY="390.0" mnemonicParsing="false" text="AÑADIR" />
-            <Button layoutX="310.0" layoutY="390.0" mnemonicParsing="false" text="BORRAR" />
+            <Label layoutX="62.0" layoutY="130.0" prefHeight="26.0" prefWidth="49.0" text="ID" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font></Label>
+            <TextField fx:id="text_nombre" layoutX="223.0" layoutY="171.0" />
+            <TextField fx:id="text_apellido1" layoutX="224.0" layoutY="222.0" />
+            <TextField fx:id="text_apellido2" layoutX="223.0" layoutY="268.0" />
+            <Label layoutX="62.0" layoutY="171.0" prefHeight="25.0" prefWidth="110.0" text="NOMBRE" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font></Label>
+            <Label layoutX="62.0" layoutY="222.0" prefHeight="25.0" prefWidth="110.0" text="APELLIDO 1" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="21.0" />
+               </font></Label>
+            <Label layoutX="62.0" layoutY="268.0" prefHeight="25.0" prefWidth="110.0" text="APELLIDO 2" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font></Label>
+            <Button layoutX="24.0" layoutY="356.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="117.0" styleClass="botones" text="MODIFICAR" />
+            <Button layoutX="165.0" layoutY="356.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="117.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
+            <Button layoutX="298.0" layoutY="356.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="117.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
          </children>
       </AnchorPane>
       <TableView layoutX="512.0" layoutY="79.0" prefHeight="469.0" prefWidth="591.0" styleClass="fondo">

@@ -33,9 +33,9 @@ public class Viento extends Instrumento {
         this.modoExcitacion = modoExcitacion;
     }
     
-    public Viento (int id, String nombre, String marca, Fecha fechaFabricacion, String tipoTubo, String modoExcitacion)
+    public Viento (int id, String nombre, String marca, Fecha fechaFabricacion, double precio, String tipoTubo, String modoExcitacion)
     {
-        super (id, nombre, marca, fechaFabricacion);
+        super (id, nombre, marca, fechaFabricacion, precio);
         this.tipoTubo = tipoTubo;
         this.modoExcitacion = modoExcitacion;
     }

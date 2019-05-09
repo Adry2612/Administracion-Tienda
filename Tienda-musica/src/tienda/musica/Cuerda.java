@@ -51,9 +51,9 @@ public class Cuerda extends Instrumento{
         this.tipoPuente = tipoPuente;
     }
     
-    public Cuerda (int id, String nombre, String marca, Fecha fechaFabricacion, int calibreCuerda, String material, String tipoPastillas, String tipoPuente)
+    public Cuerda (int id, String nombre, String marca, Fecha fechaFabricacion, double precio, int calibreCuerda, String material, String tipoPastillas, String tipoPuente)
     {
-        super (id, nombre, marca, fechaFabricacion);
+        super (id, nombre, marca, fechaFabricacion, precio);
         this.calibreCuerda = calibreCuerda;
         this.material = material;
         this.tipoPastillas = tipoPastillas;

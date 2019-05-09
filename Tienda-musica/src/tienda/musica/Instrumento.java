@@ -19,6 +19,7 @@ public class Instrumento {
     protected String marca;
     protected boolean disponible;
     protected Fecha fechaFabricacion;
+    protected double precio;
 
     public int getId() {
         return id;
@@ -59,13 +60,22 @@ public class Instrumento {
     public void setFechaFabricacion(Fecha fechaFabricacion) {
         this.fechaFabricacion = fechaFabricacion;
     }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
     
-    public Instrumento (int id, String nombre, String marca, Fecha fechaFabricacion)
+    public Instrumento (int id, String nombre, String marca, Fecha fechaFabricacion, double precio)
     {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
         this.fechaFabricacion = fechaFabricacion;
+        this.precio = precio;
     }
     
     public String info()
@@ -73,7 +83,8 @@ public class Instrumento {
         String info = "ID: " +this.id+ "\n"
                 + "Nombre: " +this.nombre+ "\n"
                 + "Marca: " +this.marca+ "\n"
-                + "Fecha de fabricación: " +this.fechaFabricacion+ "\n";
+                + "Fecha de fabricación: " +this.fechaFabricacion+ "\n"
+                + "Precio: " +this.precio + "\n";
         
         return info;
     }

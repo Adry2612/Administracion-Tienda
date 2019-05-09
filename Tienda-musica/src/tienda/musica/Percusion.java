@@ -42,9 +42,9 @@ public class Percusion extends Instrumento{
         this.altura = altura;
     }
     
-    public Percusion (int id, String nombre, String marca, Fecha fechaFabricacion, String materialMembrana, int numPiezas, double altura)
+    public Percusion (int id, String nombre, String marca, Fecha fechaFabricacion, double precio, String materialMembrana, int numPiezas, double altura)
     {
-        super (id, nombre, marca, fechaFabricacion);
+        super (id, nombre, marca, fechaFabricacion, precio);
         this.materialMembrana = materialMembrana;
         this.numPiezas = numPiezas;
         this.altura = altura;  

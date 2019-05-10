@@ -19,7 +19,7 @@ public class Conexion {
         
         try{            
             Class.forName("com.mysql.jdbc.Driver");
-            String url="jdbc:mysql://10.2.1.34:3306/Base";
+            String url="jdbc:mysql://10.2.1.34:3306/TiendaMusica";
             String user="bd";
             String pass="Adri_2612";
             con = DriverManager.getConnection(url, user, pass);

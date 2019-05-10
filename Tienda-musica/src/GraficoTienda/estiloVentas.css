@@ -1,0 +1,9 @@
+.fondo{
+  -fx-background-color: rgb(166, 115, 115);
+  -fx-background-radius: 15 15 15 15;
+}
+
+.fondoTabla{
+  -fx-background-color: rgb(166, 115, 115);
+  -fx-background-radius: 0 0 15 15;
+}

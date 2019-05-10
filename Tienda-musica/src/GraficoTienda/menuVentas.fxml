@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="485.0" prefWidth="939.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuVentasController">
+    <stylesheets>
+        <URL value="@menuventas.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="495.0" fitWidth="952.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
+         </image>
+      </ImageView>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="939.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane layoutX="28.0" layoutY="52.0" prefHeight="414.0" prefWidth="395.0" styleClass="fondo" stylesheets="@estiloVentas.css">
+         <children>
+            <Label layoutX="141.0" layoutY="27.0" text="VENTAS" textFill="#c9c344">
+               <font>
+                  <Font name="Calibri Light" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="160.0" text="PRODUCTO" textFill="#c9c9c9">
+               <font>
+                  <Font name="Calibri Light" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="97.0" layoutY="207.0" text="CLIENTE" textFill="#c9c9c9">
+               <font>
+                  <Font name="Calibri Light" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="141.0" layoutY="111.0" text="ID" textFill="#c9c9c9">
+               <font>
+                  <Font name="Calibri Light" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="257.0" text="FECHA DE VENTA" textFill="#c9c9c9">
+               <font>
+                  <Font name="Calibri Light" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="198.0" layoutY="110.0" prefHeight="25.0" prefWidth="174.0" />
+            <TextField layoutX="198.0" layoutY="159.0" prefHeight="25.0" prefWidth="174.0" />
+            <TextField layoutX="198.0" layoutY="206.0" prefHeight="25.0" prefWidth="174.0" />
+            <TextField layoutX="198.0" layoutY="256.0" prefHeight="25.0" prefWidth="174.0" />
+         </children>
+      </AnchorPane>
+      <TableView layoutX="455.0" layoutY="58.0" prefHeight="403.0" prefWidth="462.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="141.0" text="PRODUCTO" />
+            <TableColumn prefWidth="122.0" text="CLIENTE" />
+            <TableColumn prefWidth="123.0" text="FECHA DE VENTA" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

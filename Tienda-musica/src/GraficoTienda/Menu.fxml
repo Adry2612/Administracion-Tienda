@@ -34,20 +34,14 @@
             <Font name="Calibri" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="b_alquileres" layoutX="160.0" layoutY="317.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
-      <Button fx:id="b_ventas" layoutX="394.0" layoutY="317.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
-      <Button fx:id="b_distribuidores" layoutX="627.0" layoutY="317.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
-      <Label layoutX="186.0" layoutY="445.0" text="ALQUILERES" textFill="#b9b9b9">
+      <Button fx:id="b_alquileres" layoutX="278.0" layoutY="317.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Button fx:id="b_ventas" layoutX="516.0" layoutY="317.0" mnemonicParsing="false" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Label layoutX="304.0" layoutY="439.0" text="ALQUILERES" textFill="#b9b9b9">
          <font>
             <Font name="Calibri" size="21.0" />
          </font>
       </Label>
-      <Label layoutX="438.0" layoutY="445.0" text="VENTAS" textFill="#b9b9b9">
-         <font>
-            <Font name="Calibri" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="633.0" layoutY="445.0" text="DISTRIBUIDORES" textFill="#b9b9b9">
+      <Label layoutX="560.0" layoutY="445.0" text="VENTAS" textFill="#b9b9b9">
          <font>
             <Font name="Calibri" size="21.0" />
          </font>

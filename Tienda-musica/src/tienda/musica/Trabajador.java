@@ -54,8 +54,9 @@ public class Trabajador extends Persona{
         this.id = id;
     }
     
-    /*
-    Metodo que nos permitirá obtener toda la información (exceptuando la contraseña) del trabajador.
+    /**
+     * Metodo que nos permitirá obtener toda la información (exceptuando la contraseña) del trabajador.
+     * 
     */
     @Override
     public String info()

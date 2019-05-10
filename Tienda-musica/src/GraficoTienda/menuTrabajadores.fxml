@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
@@ -7,8 +9,82 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuTrabajadoresController">
+<AnchorPane id="AnchorPane" prefHeight="590.0" prefWidth="1088.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuTrabajadoresController">
     <stylesheets>
-        <URL value="@estiloTrabajadores.css"/>
+        <URL value="@estiloTrabajadores.css" />
     </stylesheets>
+   <children>
+      <ImageView fitHeight="590.0" fitWidth="1122.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
+         </image>
+      </ImageView>
+      <MenuBar fx:id="menu" layoutX="2.0" layoutY="2.0" prefHeight="25.0" prefWidth="1115.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane layoutX="54.0" layoutY="92.0" prefHeight="456.0" prefWidth="435.0" styleClass="fondo" stylesheets="@estiloTrabajadores.css">
+         <children>
+            <Label layoutX="154.0" layoutY="14.0" prefHeight="98.0" prefWidth="149.0" text="EMPLEADOS" textAlignment="CENTER" textFill="#c4c956">
+               <font>
+                  <Font name="Calibri Light" size="29.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_id" layoutX="212.0" layoutY="120.0" prefHeight="32.0" prefWidth="186.0" />
+            <TextField fx:id="tf_nombre" layoutX="212.0" layoutY="166.0" prefHeight="32.0" prefWidth="186.0" />
+            <TextField fx:id="tf_apellido1" layoutX="212.0" layoutY="216.0" prefHeight="32.0" prefWidth="186.0" />
+            <TextField fx:id="tf_apellido2" layoutX="212.0" layoutY="265.0" prefHeight="32.0" prefWidth="186.0" />
+            <Label layoutX="128.0" layoutY="120.0" prefHeight="17.0" prefWidth="36.0" text="ID" textFill="#cdcdcd">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="59.0" layoutY="166.0" prefHeight="32.0" prefWidth="95.0" text="NOMBRE" textFill="#cdcdcd">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="216.0" prefHeight="32.0" prefWidth="124.0" text="APELLIDO 1" textAlignment="RIGHT" textFill="#cdcdcd">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="265.0" prefHeight="32.0" prefWidth="124.0" text="APELLIDO 2" textAlignment="RIGHT" textFill="#cdcdcd">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Button fx:id="but_anadir" layoutX="67.0" layoutY="390.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="AÑADIR" textFill="WHITE" />
+            <Button fx:id="but_eliminar" layoutX="170.0" layoutY="390.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="85.0" styleClass="botones" text="ELIMINAR" />
+            <Button fx:id="but_modificar" layoutX="282.0" layoutY="390.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="85.0" styleClass="botones" text="MODIFICAR" />
+            <CheckBox fx:id="cb_administrador" layoutX="136.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="¿ADMINISTRADOR?" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="17.0" />
+               </font></CheckBox>
+         </children></AnchorPane>
+      <TableView fx:id="tableview_trabajadores" layoutX="614.0" layoutY="89.0" prefHeight="462.0" prefWidth="435.0" styleClass="fondoTabla">
+        <columns>
+          <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
+            <TableColumn fx:id="col_apellido1" prefWidth="75.0" text="APELLIDO 1" />
+            <TableColumn fx:id="col_apellido2" prefWidth="75.0" text="APELLIDO 2" />
+            <TableColumn fx:id="col_administrador" prefWidth="139.0" text="ADMINISTRADOR" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

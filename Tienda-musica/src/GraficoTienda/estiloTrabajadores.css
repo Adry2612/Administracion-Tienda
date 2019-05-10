@@ -1,4 +1,22 @@
+.fondo{
+  -fx-background-color: rgb(166, 115, 115);
+  -fx-background-radius: 15 15 15 15;
+}
 
-.mainFxmlClass {
+.fondoTabla{
+  -fx-background-color: rgb(166, 115, 115);
+  -fx-background-radius: 0 0 15 15;
+}
 
+.botones{
+    -fx-background-color: rgb(153, 153, 153);
+    -fx-text-fill: white;
+    -fx-background-radius: 15 15 15 15;
+    -fx-padding: 0px;
+}
+
+.botones:hover
+{
+  -fx-background-color: rgb(78, 78, 78);
+  -fx-opacity: 1;
 }

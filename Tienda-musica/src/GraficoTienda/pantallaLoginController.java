@@ -17,6 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import tienda.musica.Conexion;
 
 /**
@@ -46,10 +51,29 @@ public class pantallaLoginController implements Initializable {
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();
         PreparedStatement stmt = null;
+        ResultSet rs = null;
         
         try
         {
-             
+            String usuario = tf_usuario.getText();
+            String pass = tf_contrasenya.getText();
+            
+            stmt = con.prepareStatement("SELECT Contrasenya FROM Empleado WHERE nombre = ?");
+            stmt.setString (1, usuario);
+            stmt.executeQuery();
+            rs.next();
+            
+            if (rs.getString("Contrasenya").equals pass)
+            {
+                abrirVentana();
+                
+            }
+            
+            else
+            {
+                    
+            }
+              
         }
         
         catch (Exception ex)
@@ -60,5 +84,21 @@ public class pantallaLoginController implements Initializable {
         
         
     }
-    
+
+    public void abrirVentana()
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            Parent root1 = (Parent)fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        catch(Exception ex)
+        {
+            ex.getMessage();
+        }
+}
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="1111.0" stylesheets="@estiloInstrumentos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuClientesController">
+   <children>
+      <ImageView fitHeight="622.0" fitWidth="1122.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="36.0" layoutY="83.0" prefHeight="469.0" prefWidth="430.0" styleClass="fondo">
+         <children>
+            <Label layoutX="13.0" layoutY="24.0" text="Instrumentos de percusion" textFill="#ffd780">
+               <font>
+                  <Font name="Calibri" size="37.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_id" layoutX="244.0" layoutY="95.0" />
+            <Label layoutX="62.0" layoutY="94.0" prefHeight="26.0" prefWidth="49.0" text="ID" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_nombre" layoutX="244.0" layoutY="133.0" />
+            <TextField fx:id="tf_marca" layoutX="244.0" layoutY="174.0" prefHeight="25.0" prefWidth="149.0" />
+            <TextField fx:id="tf_calibre" layoutX="244.0" layoutY="211.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="62.0" layoutY="132.0" prefHeight="25.0" prefWidth="110.0" text="NOMBRE" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="62.0" layoutY="173.0" prefHeight="25.0" prefWidth="110.0" text="MARCA" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="211.0" prefHeight="26.0" prefWidth="195.0" text="CALIBRE CUERDA" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <Button layoutX="49.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="MODIFICAR" />
+            <Button layoutX="172.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
+            <Button layoutX="299.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
+            <TextField fx:id="tf_puente" layoutX="244.0" layoutY="253.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="62.0" layoutY="252.0" prefHeight="26.0" prefWidth="103.0" text="PUENTE" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="295.0" prefHeight="26.0" prefWidth="195.0" text="PRECIO" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_precio" layoutX="244.0" layoutY="296.0" prefHeight="25.0" prefWidth="149.0" />
+         </children>
+      </AnchorPane>
+      <TableView layoutX="512.0" layoutY="79.0" prefHeight="476.0" prefWidth="591.0" styleClass="fondoTabla">
+         <columns>
+            <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
+            <TableColumn fx:id="col_apellido1" text="MARCA" />
+            <TableColumn fx:id="col_apellido2" prefWidth="79.0" text="CALIBRE CUERDA" />
+            <TableColumn fx:id="col_valoracion" prefWidth="107.0" text="TIPO DE PUENTE" />
+            <TableColumn fx:id="col_descrip" prefWidth="174.0" text="PRECIO" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

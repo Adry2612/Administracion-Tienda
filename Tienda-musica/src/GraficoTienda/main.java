@@ -3,7 +3,7 @@
  * músicales. Habra una lista con cada uno de los clientes, los empleados y los instrumentos músicales que estan
  * o hayan estado en la tienda.
  */
-package tienda.musica;
+package GraficoTienda;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("pantallaLogin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         
         Scene scene = new Scene(root);
         

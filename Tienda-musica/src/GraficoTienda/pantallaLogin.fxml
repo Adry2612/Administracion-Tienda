@@ -39,7 +39,7 @@
                   <Font name="Calibri" size="15.0" />
                </font>
             </PasswordField>
-            <Button fx:id="but_inicioSesion" layoutX="31.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#iniciarSesion" prefHeight="27.0" prefWidth="329.0" styleClass="enviarDatos" stylesheets="@estilo1.css" text="INICIO SESIÓN" textFill="#d7cccc">
+            <Button fx:id="but_inicioSesion" layoutX="31.0" layoutY="341.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="27.0" prefWidth="329.0" styleClass="enviarDatos" stylesheets="@estilo1.css" text="INICIO SESIÓN" textFill="#d7cccc">
                <font>
                   <Font name="Calibri" size="16.0" />
                </font></Button>

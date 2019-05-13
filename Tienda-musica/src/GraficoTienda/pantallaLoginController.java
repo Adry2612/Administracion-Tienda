@@ -6,45 +6,49 @@
 package GraficoTienda;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-
-import java.sql.*;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.sql.*;
 import tienda.musica.Conexion;
 
 /**
+ * FXML Controller class
  *
- * @author Adrian Vidal Lopez
+ * @author DAW
  */
 public class pantallaLoginController implements Initializable {
 
     @FXML
     private TextField tf_usuario;
     @FXML
-    private Button but_inicioSesion;
-    @FXML
     private PasswordField tf_contrasenya;
-    
-    private ResultSet rs = null;
-    
+    @FXML
+    private Button but_inicioSesion;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-    }    
 
+    }    
+    
     @FXML
     private void iniciarSesion(MouseEvent event) {
         
@@ -58,31 +62,29 @@ public class pantallaLoginController implements Initializable {
             String usuario = tf_usuario.getText();
             String pass = tf_contrasenya.getText();
             
-            stmt = con.prepareStatement("SELECT Contrasenya FROM Empleado WHERE nombre = ?");
+            stmt = con.prepareStatement("SELECT Password FROM Empleado WHERE Id = ?");
             stmt.setString (1, usuario);
-            stmt.executeQuery();
-            rs.next();
+            rs = stmt.executeQuery();
             
-            if (rs.getString("Contrasenya").equals pass)
+            while (rs.next())
             {
-                abrirVentana();
-                
-            }
-            
-            else
-            {
-                    
+                if (rs.getString("Password").equals(pass))
+                {
+                    abrirVentana();
+                }
+
+                else
+                {
+                    errorContrasena();
+                }
             }
               
         }
         
-        catch (Exception ex)
+        catch (SQLException ex)
         {
-            
+            System.out.println(ex.getMessage());
         }
-        
-        
-        
     }
 
     public void abrirVentana()
@@ -100,5 +102,16 @@ public class pantallaLoginController implements Initializable {
         {
             ex.getMessage();
         }
-}
+    }
+    
+    public void errorContrasena()
+    {
+        Alert alert = new Alert (AlertType.ERROR);
+        alert.setTitle("INFORMACIÓN");
+        alert.setHeaderText(null);
+        alert.setContentText("La contraseña que ha introducido es erronea. Vuelve a intentarlo.");
+        alert.showAndWait();
+    }
+
+   
 }

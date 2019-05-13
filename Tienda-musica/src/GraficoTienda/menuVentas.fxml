@@ -65,10 +65,12 @@
                   <Font name="Calibri Light" size="20.0" />
                </font>
             </Label>
-            <TextField layoutX="198.0" layoutY="110.0" prefHeight="25.0" prefWidth="174.0" />
-            <TextField layoutX="198.0" layoutY="159.0" prefHeight="25.0" prefWidth="174.0" />
-            <TextField layoutX="198.0" layoutY="206.0" prefHeight="25.0" prefWidth="174.0" />
-            <TextField layoutX="198.0" layoutY="256.0" prefHeight="25.0" prefWidth="174.0" />
+            <TextField fx:id="tf_id" layoutX="198.0" layoutY="110.0" prefHeight="25.0" prefWidth="174.0" />
+            <DatePicker fx:id="cb_fecha" layoutX="198.0" layoutY="256.0" />
+            <ComboBox fx:id="cb_producto" layoutX="198.0" layoutY="159.0" prefHeight="25.0" prefWidth="174.0" />
+            <ComboBox fx:id="cb_cliente" layoutX="198.0" layoutY="206.0" prefHeight="25.0" prefWidth="174.0" />
+            <Button fx:id="but_anadir1" layoutX="163.0" layoutY="348.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="ELIMINAR" textFill="WHITE" />
+            <Button fx:id="but_anadir2" layoutX="272.0" layoutY="348.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="MODIFICAR" textFill="WHITE" />
          </children>
       </AnchorPane>
       <TableView layoutX="455.0" layoutY="58.0" prefHeight="403.0" prefWidth="462.0">
@@ -79,5 +81,6 @@
             <TableColumn prefWidth="123.0" text="FECHA DE VENTA" />
         </columns>
       </TableView>
+      <Button fx:id="but_anadir" layoutX="77.0" layoutY="400.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="AÑADIR" textFill="WHITE" />
    </children>
 </AnchorPane>

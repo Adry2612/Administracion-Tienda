@@ -14,6 +14,15 @@ package tienda.musica;
 
 public class Persona {
     
+    protected int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     protected String nombre;
     protected String apellido1;
     protected String apellido2;
@@ -42,8 +51,9 @@ public class Persona {
         this.apellido2 = apellido2;
     }
     
-    public Persona (String nombre, String apellido1, String apellido2)
+    public Persona (int id, String nombre, String apellido1, String apellido2)
     {
+        this.id = id;
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
@@ -51,7 +61,8 @@ public class Persona {
     
     public String info()
     {
-        String info = "Nombre: " +this.nombre+ " " +this.apellido1+ " " +this.apellido2+ "\n";
+        String info = "Id: " +this.id+ "\n"
+                + "Nombre: " +this.nombre+ " " +this.apellido1+ " " +this.apellido2+ "\n";
         
         return info;
     }

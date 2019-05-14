@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="1042.0" styleClass="fondo" stylesheets="@estilo1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tienda.musica.pantallaLoginController">
+<AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="1042.0" styleClass="fondo" stylesheets="@estilo1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.LoginController">
    <children>
       <ImageView fitHeight="676.0" fitWidth="1211.0" opacity="0.64" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -42,7 +41,8 @@
             <Button fx:id="but_inicioSesion" layoutX="31.0" layoutY="341.0" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="27.0" prefWidth="329.0" styleClass="enviarDatos" stylesheets="@estilo1.css" text="INICIO SESIÓN" textFill="#d7cccc">
                <font>
                   <Font name="Calibri" size="16.0" />
-               </font></Button>
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

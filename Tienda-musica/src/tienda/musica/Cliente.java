@@ -5,6 +5,8 @@
  */
 package tienda.musica;
 
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Adrian Vidal
@@ -13,6 +15,10 @@ package tienda.musica;
  */
 
 public class Cliente extends Persona{
+
+    public static void rellenarTabla(ObservableList<Cliente> tvClientes) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     private String descripción;
     private int valoracion;
@@ -33,9 +39,9 @@ public class Cliente extends Persona{
         this.valoracion = valoracion;
     }
     
-    public Cliente (String nombre, String apellido1, String apellido2)
+    public Cliente (int id, String nombre, String apellido1, String apellido2)
     {
-        super (nombre, apellido1, apellido2);
+        super (id, nombre, apellido1, apellido2);
     }
     
     @Override

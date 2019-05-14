@@ -16,7 +16,6 @@ import java.sql.*;
 public class Trabajador extends Persona{
     
     private String contrasenya;
-    private int id;
     private boolean administrador;
     
     Conexion conexion = new Conexion();
@@ -39,19 +38,10 @@ public class Trabajador extends Persona{
     public void setContrasenya(String contrasenya) {
         this.contrasenya = contrasenya;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
     
-    public Trabajador (String nombre, String apellido1, String apellido2, int id)
+    public Trabajador (int id, String nombre, String apellido1, String apellido2)
     {
-        super (nombre, apellido1, apellido2);
-        this.id = id;
+        super (id, nombre, apellido1, apellido2);
     }
     
     /**
@@ -62,7 +52,6 @@ public class Trabajador extends Persona{
     public String info()
     {
         String info = super.info();
-        info += "Id: " +this.id+ "\n";
         
         if (administrador == true)
         {

@@ -9,6 +9,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,22 +18,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.sql.*;
 import tienda.musica.Conexion;
 
 /**
  * FXML Controller class
  *
- * @author DAW
+ * @author Adrián
  */
-public class pantallaLoginController implements Initializable {
+public class LoginController implements Initializable {
 
     @FXML
     private TextField tf_usuario;
@@ -46,10 +45,10 @@ public class pantallaLoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        // TODO
     }    
-    
-    @FXML
+
+     @FXML
     private void iniciarSesion(MouseEvent event) {
         
         Conexion conexion = new Conexion();
@@ -81,9 +80,24 @@ public class pantallaLoginController implements Initializable {
               
         }
         
-        catch (SQLException ex)
+        catch (Exception ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
@@ -91,7 +105,7 @@ public class pantallaLoginController implements Initializable {
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menu.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
             Parent root1 = (Parent)fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -106,12 +120,20 @@ public class pantallaLoginController implements Initializable {
     
     public void errorContrasena()
     {
-        Alert alert = new Alert (AlertType.ERROR);
+        Alert alert = new Alert (Alert.AlertType.ERROR);
         alert.setTitle("INFORMACIÓN");
         alert.setHeaderText(null);
         alert.setContentText("La contraseña que ha introducido es erronea. Vuelve a intentarlo.");
         alert.showAndWait();
     }
-
+    
+    public void errorConexion()
+    {
+        Alert alert = new Alert (Alert.AlertType.INFORMATION);
+        alert.setTitle("INFORMACIÓN");
+        alert.setHeaderText(null);
+        alert.setContentText("Parece que ha habido un error de conexión con la base de datos. Intentalo de nuevo más tarde.");
+        alert.showAndWait();
+    } 
    
 }

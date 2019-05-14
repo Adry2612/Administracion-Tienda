@@ -5,6 +5,7 @@
 package tienda.musica;
 
 import java.sql.*;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -14,6 +15,7 @@ import java.sql.*;
  */
 
 public class Trabajador extends Persona{
+
     
     private String contrasenya;
     private boolean administrador;
@@ -59,6 +61,30 @@ public class Trabajador extends Persona{
         }
         
         return info;
+    }
+    
+     public static void rellenarTabla (ObservableList <Trabajador> tvTrabajadores)
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            stmt = con.prepareStatement("SELECT * FROM Empleado");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                tvTrabajadores.add(new Trabajador (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Apellido1"), rs.getString("Apellido2")));
+            }
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
     
     

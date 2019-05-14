@@ -69,9 +69,9 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <Button fx:id="but_anadir" layoutX="67.0" layoutY="390.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="AÑADIR" textFill="WHITE" />
-            <Button fx:id="but_eliminar" layoutX="170.0" layoutY="390.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="85.0" styleClass="botones" text="ELIMINAR" />
-            <Button fx:id="but_modificar" layoutX="282.0" layoutY="390.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="85.0" styleClass="botones" text="MODIFICAR" />
+            <Button fx:id="but_anadir" layoutX="67.0" layoutY="390.0" mnemonicParsing="false" onAction="#anadirEmpleado" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="AÑADIR" textFill="WHITE" />
+            <Button fx:id="but_eliminar" layoutX="170.0" layoutY="390.0" mnemonicParsing="false" onAction="#eliminarEmpleado" prefHeight="47.0" prefWidth="85.0" styleClass="botones" text="ELIMINAR" />
+            <Button fx:id="but_modificar" layoutX="282.0" layoutY="390.0" mnemonicParsing="false" onAction="#modificarEmpleado" prefHeight="47.0" prefWidth="85.0" styleClass="botones" text="MODIFICAR" />
             <CheckBox fx:id="cb_administrador" layoutX="136.0" layoutY="325.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="186.0" text="¿ADMINISTRADOR?" textFill="WHITE">
                <font>
                   <Font name="Calibri Light" size="17.0" />

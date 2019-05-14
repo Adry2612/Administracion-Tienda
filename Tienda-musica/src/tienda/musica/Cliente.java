@@ -5,6 +5,9 @@
  */
 package tienda.musica;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javafx.collections.ObservableList;
 
 /**
@@ -16,10 +19,6 @@ import javafx.collections.ObservableList;
 
 public class Cliente extends Persona{
 
-    public static void rellenarTabla(ObservableList<Cliente> tvClientes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     private String descripción;
     private int valoracion;
 
@@ -42,6 +41,31 @@ public class Cliente extends Persona{
     public Cliente (int id, String nombre, String apellido1, String apellido2)
     {
         super (id, nombre, apellido1, apellido2);
+    }
+    
+      public static void rellenarTabla(ObservableList <Cliente> tvClientes)
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            stmt = con.prepareStatement("SELECT * FROM Clientes");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                tvClientes.add(new Cliente (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Apellido1"), rs.getString("Apellido2")));
+            }
+            
+        }
+        
+        catch (Exception ex)
+        {
+            
+        }
     }
     
     @Override

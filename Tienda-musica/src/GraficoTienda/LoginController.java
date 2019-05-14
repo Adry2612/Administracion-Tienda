@@ -48,8 +48,9 @@ public class LoginController implements Initializable {
         // TODO
     }    
 
-     @FXML
-    private void iniciarSesion(MouseEvent event) {
+    @FXML
+    private void iniciarSesion(ActionEvent event) {
+    
         
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();
@@ -111,6 +112,8 @@ public class LoginController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+            Stage stage2 = (Stage)but_inicioSesion.getScene().getWindow();
+            stage2.close();
         }
         catch(Exception ex)
         {
@@ -135,5 +138,5 @@ public class LoginController implements Initializable {
         alert.setContentText("Parece que ha habido un error de conexión con la base de datos. Intentalo de nuevo más tarde.");
         alert.showAndWait();
     } 
-   
+
 }

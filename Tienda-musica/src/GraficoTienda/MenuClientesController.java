@@ -9,8 +9,10 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,6 +61,15 @@ public class MenuClientesController implements Initializable {
     private ObservableList <Cliente> tvClientes;
     @FXML
     private TableView<Cliente> tablaClientes;
+    
+    private final ListChangeListener <Cliente> selectorClientes = new ListChangeListener <Cliente>()
+    {
+        @Override
+        public void onChanged (ListChangeListener.Change<? extends Cliente> c)
+        {
+            escribirClienteSel();
+        }
+    };
 
     /**
      * Initializes the controller class.
@@ -67,37 +78,42 @@ public class MenuClientesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        
         tvClientes = FXCollections.observableArrayList();
+        tablaClientes.getSelectionModel().getSelectedItems();
+        tvClientes.addListener(selectorClientes);   
         Cliente.rellenarTabla(tvClientes);
         tablaClientes.setItems(tvClientes);
         asociarValores();
         
     }
-
-    public static void rellenarTabla(ObservableList <Cliente> tvClientes)
-    {
-        Conexion conexion = new Conexion();
-        Connection con = conexion.conectar();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        
-        try
-        {
-            stmt = con.prepareStatement("SELECT * FROM Clientes");
-            rs = stmt.executeQuery();
-            
-            while (rs.next())
-            {
-                tvClientes.add(new Cliente (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Apellido1"), rs.getString("Apellido2")));
-            }
-            
-        }
-        
-        catch (Exception ex)
-        {
-            
-        }
-    }
     
+    
+            
+    public void escribirClienteSel(){
+        
+        final Cliente cliente 
+        
+        
+    }  
+    
+    public Cliente obtenerTabla()
+    {
+       if (tablaClientes != null)
+       {
+           List <Cliente> tabla = tablaClientes.getSelectionModel().getSelectedItems();
+           
+           if (tabla.size() == 1)
+           {
+               final Cliente clienteSel = tabla.get(0);
+               return clienteSel;
+           }
+       }
+
+        return null;
+       
+    }
+            
+            
+
     public void asociarValores()
     {
         col_id.setCellValueFactory(new PropertyValueFactory <Cliente, String>("id"));

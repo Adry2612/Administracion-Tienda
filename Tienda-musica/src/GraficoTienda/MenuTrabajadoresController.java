@@ -54,7 +54,7 @@ public class MenuTrabajadoresController implements Initializable {
     @FXML
     private TableView<Trabajador> tableview_trabajadores;
     @FXML
-    private TableColumn<Trabajador, String> col_id;
+    private TableColumn<Trabajador, Integer> col_id;
     @FXML
     private TableColumn<Trabajador, String> col_nombre;
     @FXML
@@ -78,7 +78,7 @@ public class MenuTrabajadoresController implements Initializable {
 
     public void asociarValores()
     {
-        col_id.setCellValueFactory(new PropertyValueFactory <Trabajador, String>("id"));
+        col_id.setCellValueFactory(new PropertyValueFactory <Trabajador, Integer>("id"));
         col_nombre.setCellValueFactory(new PropertyValueFactory <Trabajador, String>("nombre"));
         col_apellido1.setCellValueFactory(new PropertyValueFactory <Trabajador, String>("apellido1"));
         col_apellido2.setCellValueFactory(new PropertyValueFactory <Trabajador, String>("apellido2"));

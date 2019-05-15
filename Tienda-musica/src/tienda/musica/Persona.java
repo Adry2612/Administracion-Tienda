@@ -14,13 +14,13 @@ package tienda.musica;
 
 public class Persona {
     
-    protected int id;
+    protected Integer id;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     protected String nombre;
@@ -51,7 +51,7 @@ public class Persona {
         this.apellido2 = apellido2;
     }
     
-    public Persona (int id, String nombre, String apellido1, String apellido2)
+    public Persona (Integer id, String nombre, String apellido1, String apellido2)
     {
         this.id = id;
         this.nombre = nombre;

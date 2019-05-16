@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -19,7 +20,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -64,10 +67,14 @@ public class MenuClientesController implements Initializable {
     private Button b_vaciar;
     @FXML
     private Button b_guardar;
-    
-    private ObservableList <Cliente> tvClientes;
+    @FXML
+    private Button b_eliminar;
+    @FXML
+    private Button b_guardarCambios;
     @FXML
     private TableView<Cliente> tablaClientes;
+    private ObservableList <Cliente> tvClientes;
+    
     
     private final ListChangeListener <Cliente> selectorClientes = new ListChangeListener <Cliente>()
     {
@@ -134,51 +141,95 @@ public class MenuClientesController implements Initializable {
         col_apellido2.setCellValueFactory(new PropertyValueFactory <Cliente, String>("apellido2"));
     }
     
-    public Integer idMaximo()
+    //Modificar Clientes.
+    @FXML
+    private void modificar(ActionEvent event) 
     {
-        Integer idMax = null;
+        botonesPrinInvisibles();
+        b_guardarCambios.setVisible(true);
+        b_guardarCambios.setDisable(false);
+        b_vaciar.setVisible(true);
+        b_vaciar.setDisable(false);
+    }
+    
+    @FXML
+    private void guardarCambiosActualizar(ActionEvent event) 
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        text_id.setEditable(false);
+        String nombre = text_nombre.getText();
+        String apellido1 = text_apellido1.getText();
+        String apellido2 = text_apellido2.getText();
+        String descripcion = text_nombre.getText();
+        
         try
         {
-            Conexion conexion = new Conexion();
-            Connection con = conexion.conectar();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-
-            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Clientes");
-            rs = stmt.executeQuery();
-            rs.next();
-            
-            idMax = rs.getInt(1) +1;
+            stmt = con.prepareStatement("UPDATE Clientes SET Nombre = ?, Apellido1 = ?, Apellido2 = ?");
+            stmt.setString(1, nombre);
+            stmt.setString(2, apellido1);
+            stmt.setString(3, apellido2);
+            stmt.executeUpdate();
         }
         
         catch (SQLException ex)
         {
             System.out.println(ex.getMessage());
         }
-        
-        return idMax;
     }
-
+    
+    //Eliminar Clientes.
     @FXML
-    private void modificar(ActionEvent event) {
+    private void eliminarCliente(ActionEvent event) 
+    {
+        botonesPrinInvisibles();
+        b_eliminar.setVisible(true);
+        b_eliminar.setDisable(false);
+    }
+    
+    @FXML
+    private void guardarCambiosBorrar(ActionEvent event) 
+    {
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        botonesPrinInvisibles();
-        
+        Integer id = Integer.parseInt(text_id.getText());
         try
         {
-             
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación de eliminación de registros.");
+            alert.setHeaderText("Esta apunto de eliminar el registro seleccionado.");
+            alert.setContentText("¿Desea continuar?");
+            Optional <ButtonType> result = alert.showAndWait();
+
+            if ((result.isPresent())&& result.get() == ButtonType.OK)
+            {
+                System.out.println("Si");
+                
+                stmt = con.prepareStatement("DELETE FROM Clientes WHERE Id = ?");
+                stmt.setInt(1, id);
+                stmt.executeUpdate();
+            }
+
+            else
+            {
+                System.out.println("Cancelar");
+            }
+            
         }
         
         catch (Exception ex)
         {
-            
+            System.out.println(ex.getMessage());
         }
     }
 
+    //Añadir Clientes.
     @FXML
     private void anadirCliente(ActionEvent event) 
     {
@@ -201,38 +252,10 @@ public class MenuClientesController implements Initializable {
         
         catch (Exception ex)
         {
-            System.out.println("hbd");
+            System.out.println(ex.getMessage());
         }
     }
-
-    @FXML
-    private void eliminarCliente(ActionEvent event) {
-    }
     
-    public void botonesPrinVisibles()
-    {
-        b_modificar.setVisible(true);
-        b_anadir.setVisible(true);
-        b_borrar.setVisible(true);
-    }
-    
-    public void botonesPrinInvisibles()
-    {
-        b_modificar.setVisible(false);
-        b_anadir.setVisible(false);
-        b_borrar.setVisible(false);
-    }
-
-    @FXML
-    private void vaciarFormulario(ActionEvent event) {
-        
-        String idMax = Integer.toString(idMaximo());
-        text_id.setText(idMax);
-        text_nombre.setText(null);
-        text_apellido1.setText(null);
-        text_apellido2.setText(null);
-    }
-
     @FXML
     private void guardarCambiosModificar(ActionEvent event) 
     {
@@ -265,10 +288,61 @@ public class MenuClientesController implements Initializable {
         }
     }
     
+    //Botones y formulario.
+    public void botonesPrinVisibles()
+    {
+        b_modificar.setVisible(true);
+        b_anadir.setVisible(true);
+        b_borrar.setVisible(true);
+    }
+    
+    public void botonesPrinInvisibles()
+    {
+        b_modificar.setVisible(false);
+        b_anadir.setVisible(false);
+        b_borrar.setVisible(false);
+    }
+    
+    public Integer idMaximo()
+    {
+        Integer idMax = null;
+        try
+        {
+            Conexion conexion = new Conexion();
+            Connection con = conexion.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+
+            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Clientes");
+            rs = stmt.executeQuery();
+            rs.next();
+            
+            idMax = rs.getInt(1) +1;
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
+        return idMax;
+    }
+
+    @FXML
+    private void vaciarFormulario(ActionEvent event) 
+    {        
+        String idMax = Integer.toString(idMaximo());
+        text_id.setText(idMax);
+        text_nombre.setText(null);
+        text_apellido1.setText(null);
+        text_apellido2.setText(null);
+    }
+    
+    // ALERTAS
     public void alertaInsercionCompletada()
     {
         Alert alert = new Alert (Alert.AlertType.INFORMATION);
-        alert.setTitle("INSERCIÓN COMPLEATADA");
+        alert.setTitle("INSERCIÓN COMPLETADA");
         alert.setHeaderText(null);
         alert.setContentText("La inserción a la base de datos se ha realizado correctamente.");
         alert.showAndWait();
@@ -283,4 +357,24 @@ public class MenuClientesController implements Initializable {
         alert.showAndWait();
     }
     
+    public void confirmacionEliminar()
+    {
+       Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación de eliminación de registros.");
+            alert.setHeaderText("Esta apunto de eliminar el registro seleccionado.");
+            alert.setContentText("¿Desea continuar?");
+            Optional <ButtonType> result = alert.showAndWait();
+
+            if ((result.isPresent())&& result.get() == ButtonType.OK)
+            {
+                System.out.println("Si");
+            }
+
+            else
+            {
+                System.out.println("Cancelar");
+            }
+        
+    }
+
 }

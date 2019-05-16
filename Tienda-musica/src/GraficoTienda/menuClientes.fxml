@@ -42,11 +42,13 @@
                <font>
                   <Font name="Calibri Light" size="22.0" />
                </font></Label>
-            <Button fx:id="b_modificar" layoutX="49.0" layoutY="362.0" mnemonicParsing="false" onAction="#modificar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="MODIFICAR" />
+            <Button fx:id="b_modificar" layoutX="63.0" layoutY="362.0" mnemonicParsing="false" onAction="#modificar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="MODIFICAR" />
             <Button fx:id="b_anadir" layoutX="172.0" layoutY="362.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
             <Button fx:id="b_borrar" layoutX="299.0" layoutY="362.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
-            <Button fx:id="b_guardar" disable="true" layoutX="49.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosModificar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="GUARDAR" visible="false" />
+            <Button fx:id="b_guardar" disable="true" layoutX="38.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosModificar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="GUARDAR" />
             <Button fx:id="b_vaciar" disable="true" layoutX="252.0" layoutY="362.0" mnemonicParsing="false" onAction="#vaciarFormulario" prefHeight="49.0" prefWidth="164.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VACIAR FORMULARIO" visible="false" />
+            <Button fx:id="b_eliminar" disable="true" layoutX="47.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosBorrar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="ELIMINAR" visible="false" />
+            <Button fx:id="b_guardarCambios" disable="true" layoutX="69.0" layoutY="382.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="GUARDAR CAMBIOS" visible="false" />
          </children>
       </AnchorPane>
       <TableView fx:id="tablaClientes" layoutX="512.0" layoutY="79.0" prefHeight="476.0" prefWidth="591.0" styleClass="fondoTabla">
@@ -59,5 +61,26 @@
             <TableColumn fx:id="col_descrip" prefWidth="174.0" text="DESCRIPCIÓN" />
         </columns>
       </TableView>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1117.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Opciones">
+              <items>
+                  <MenuItem mnemonicParsing="false" text="Volver al menu principal" />
+                <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Archivos">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Crear lista de clientes " />
+                  <MenuItem mnemonicParsing="false" text="Lista de clientes con retraso" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+         </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

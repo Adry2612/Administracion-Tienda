@@ -76,6 +76,8 @@
                <font>
                   <Font name="Calibri Light" size="17.0" />
                </font></CheckBox>
+            <Button fx:id="but_guardar" disable="true" layoutX="67.0" layoutY="390.0" mnemonicParsing="false" onAction="#guardarAnadir" prefHeight="47.0" prefWidth="117.0" styleClass="botones" text="GUARDAR DATOS" textFill="WHITE" visible="false" />
+            <Button fx:id="but_vaciar" disable="true" layoutX="240.0" layoutY="390.0" mnemonicParsing="false" onAction="#vaciarFormulario" prefHeight="47.0" prefWidth="149.0" styleClass="botones" text="VACIAR FORMULARIO" textFill="WHITE" visible="false" />
          </children></AnchorPane>
       <TableView fx:id="tableview_trabajadores" layoutX="614.0" layoutY="89.0" prefHeight="462.0" prefWidth="435.0" styleClass="fondoTabla">
         <columns>

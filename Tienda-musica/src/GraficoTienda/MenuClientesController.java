@@ -72,6 +72,8 @@ public class MenuClientesController implements Initializable {
     @FXML
     private Button b_guardarCambios;
     @FXML
+    private Button b_volver;
+    @FXML
     private TableView<Cliente> tablaClientes;
     private ObservableList <Cliente> tvClientes;
     
@@ -129,8 +131,7 @@ public class MenuClientesController implements Initializable {
            }
        }
 
-        return null;
-       
+        return null; 
     }
             
     public void asociarValores()
@@ -139,6 +140,14 @@ public class MenuClientesController implements Initializable {
         col_nombre.setCellValueFactory(new PropertyValueFactory <Cliente, String>("nombre"));
         col_apellido1.setCellValueFactory(new PropertyValueFactory <Cliente, String>("apellido1"));
         col_apellido2.setCellValueFactory(new PropertyValueFactory <Cliente, String>("apellido2"));
+    }
+    
+    public void actualizarTableView()
+    {
+        tvClientes = FXCollections.observableArrayList(); 
+        Cliente.rellenarTabla(tvClientes);
+        tablaClientes.setItems(tvClientes);
+        asociarValores();
     }
     
     //Modificar Clientes.
@@ -150,6 +159,10 @@ public class MenuClientesController implements Initializable {
         b_guardarCambios.setDisable(false);
         b_vaciar.setVisible(true);
         b_vaciar.setDisable(false);
+        b_vaciar.setVisible(true);
+        b_vaciar.setDisable(false);
+        b_volver.setVisible(true);
+        b_volver.setDisable(false);
     }
     
     @FXML
@@ -168,11 +181,13 @@ public class MenuClientesController implements Initializable {
         
         try
         {
-            stmt = con.prepareStatement("UPDATE Clientes SET Nombre = ?, Apellido1 = ?, Apellido2 = ?");
+            stmt = con.prepareStatement("UPDATE Clientes SET Nombre = ?, Apellido1 = ?, Apellido2 = ? WHERE Id = ?");
             stmt.setString(1, nombre);
             stmt.setString(2, apellido1);
             stmt.setString(3, apellido2);
+            stmt.setInt(4, Integer.parseInt(text_id.getText()));
             stmt.executeUpdate();
+            actualizarTableView();
         }
         
         catch (SQLException ex)
@@ -188,6 +203,8 @@ public class MenuClientesController implements Initializable {
         botonesPrinInvisibles();
         b_eliminar.setVisible(true);
         b_eliminar.setDisable(false);
+        b_volver.setVisible(true);
+        b_volver.setDisable(false);
     }
     
     @FXML
@@ -209,16 +226,17 @@ public class MenuClientesController implements Initializable {
 
             if ((result.isPresent())&& result.get() == ButtonType.OK)
             {
-                System.out.println("Si");
+                System.out.println("Operación realizada.");
                 
                 stmt = con.prepareStatement("DELETE FROM Clientes WHERE Id = ?");
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
+                actualizarTableView();
             }
 
             else
             {
-                System.out.println("Cancelar");
+                System.out.println("Operación cancelada.");
             }
             
         }
@@ -239,6 +257,9 @@ public class MenuClientesController implements Initializable {
         b_guardar.setDisable(false);
         b_vaciar.setVisible(true);
         b_vaciar.setDisable(false);
+        b_volver.setVisible(true);
+        b_volver.setDisable(false);
+        
         
         //if trabajador.administrador = true; else alert
         try
@@ -278,8 +299,8 @@ public class MenuClientesController implements Initializable {
             stmt.setString(4, apellido2);
             stmt.executeUpdate();
             
+            actualizarTableView();
             alertaInsercionCompletada();
-            
         }
         
         catch (SQLException ex)
@@ -373,8 +394,31 @@ public class MenuClientesController implements Initializable {
             else
             {
                 System.out.println("Cancelar");
-            }
-        
+            } 
+    }
+    
+    public void alertaValorNecesario()
+    {
+        Alert alert = new Alert (AlertType.ERROR);
+        alert.setTitle("ERROR AL INSERTAR DATOS.");
+        alert.setHeaderText(null);
+        alert.setContentText("No se puede insertar un cliente sin nombre o apellido.");
+        alert.showAndWait();
     }
 
+    @FXML
+    private void volver(ActionEvent event) {
+        botonesPrinVisibles();
+        b_guardar.setVisible(false);
+        b_guardar.setDisable(true);
+        b_vaciar.setVisible(false);
+        b_vaciar.setDisable(true);
+        b_eliminar.setVisible(false);
+        b_eliminar.setDisable(true);
+        b_volver.setDisable(true);
+        b_volver.setVisible(false);
+        b_guardarCambios.setDisable(true);
+        b_guardarCambios.setVisible(false);
+    }
+    
 }

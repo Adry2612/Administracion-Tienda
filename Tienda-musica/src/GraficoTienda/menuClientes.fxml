@@ -43,12 +43,13 @@
                   <Font name="Calibri Light" size="22.0" />
                </font></Label>
             <Button fx:id="b_modificar" layoutX="63.0" layoutY="362.0" mnemonicParsing="false" onAction="#modificar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="MODIFICAR" />
-            <Button fx:id="b_anadir" layoutX="172.0" layoutY="362.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
-            <Button fx:id="b_borrar" layoutX="299.0" layoutY="362.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
-            <Button fx:id="b_guardar" disable="true" layoutX="38.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosModificar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="GUARDAR" />
+            <Button fx:id="b_anadir" layoutX="174.0" layoutY="362.0" mnemonicParsing="false" onAction="#anadirCliente" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
+            <Button fx:id="b_borrar" layoutX="293.0" layoutY="362.0" mnemonicParsing="false" onAction="#eliminarCliente" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
+            <Button fx:id="b_guardar" disable="true" layoutX="38.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosModificar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="GUARDAR" visible="false" />
             <Button fx:id="b_vaciar" disable="true" layoutX="252.0" layoutY="362.0" mnemonicParsing="false" onAction="#vaciarFormulario" prefHeight="49.0" prefWidth="164.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VACIAR FORMULARIO" visible="false" />
             <Button fx:id="b_eliminar" disable="true" layoutX="47.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosBorrar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="ELIMINAR" visible="false" />
-            <Button fx:id="b_guardarCambios" disable="true" layoutX="69.0" layoutY="382.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="GUARDAR CAMBIOS" visible="false" />
+            <Button fx:id="b_guardarCambios" disable="true" layoutX="48.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" prefHeight="49.0" prefWidth="139.0" styleClass="botones" text="GUARDAR CAMBIOS" visible="false" />
+            <Button fx:id="b_volver" disable="true" layoutX="28.0" layoutY="23.0" mnemonicParsing="false" onAction="#volver" prefHeight="49.0" prefWidth="49.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VOLVER" visible="false" />
          </children>
       </AnchorPane>
       <TableView fx:id="tablaClientes" layoutX="512.0" layoutY="79.0" prefHeight="476.0" prefWidth="591.0" styleClass="fondoTabla">

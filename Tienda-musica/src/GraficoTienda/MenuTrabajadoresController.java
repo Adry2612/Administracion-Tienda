@@ -88,6 +88,8 @@ public class MenuTrabajadoresController implements Initializable {
             escribirTrabajadorSel();
         }
     };
+    @FXML
+    private Button b_volver;
     
 
     /**
@@ -99,6 +101,10 @@ public class MenuTrabajadoresController implements Initializable {
         Trabajador.rellenarTabla(tvTrabajadores);
         tableview_trabajadores.setItems(tvTrabajadores);
         asociarValores();
+        tf_id.setEditable(false);
+        
+        tvTrabajadores = tableview_trabajadores.getSelectionModel().getSelectedItems();
+        tvTrabajadores.addListener(selectorTrabajador);
     }
     
     public Trabajador obtenerTabla()
@@ -124,16 +130,16 @@ public class MenuTrabajadoresController implements Initializable {
         
         if (trabajador != null)
         {
-            String idCliente = Integer.toString(trabajador.getId());
+            String idTrabajador = Integer.toString(trabajador.getId());
             
-            tf_id.setText(idCliente);
+            tf_id.setText(idTrabajador);
             tf_nombre.setText(trabajador.getNombre());
             tf_apellido1.setText(trabajador.getApellido1());
             tf_apellido2.setText(trabajador.getApellido2());
             cb_administrador.setSelected(trabajador.isAdministrador());
         }   
-    }  
-
+    } 
+   
     public void asociarValores()
     {
         col_id.setCellValueFactory(new PropertyValueFactory <Trabajador, Integer>("id"));
@@ -142,7 +148,16 @@ public class MenuTrabajadoresController implements Initializable {
         col_apellido2.setCellValueFactory(new PropertyValueFactory <Trabajador, String>("apellido2"));
         col_administrador.setCellValueFactory(new PropertyValueFactory <Trabajador, String>("administrador"));
     }
+    
+    public void actualizarTableView()
+    {
+       tvTrabajadores = FXCollections.observableArrayList();
+        Trabajador.rellenarTabla(tvTrabajadores);
+        tableview_trabajadores.setItems(tvTrabajadores);
+        asociarValores();
+    }
 
+    //Añadir Empleados
     @FXML
     private void anadirEmpleado(ActionEvent event) {
         
@@ -159,7 +174,8 @@ public class MenuTrabajadoresController implements Initializable {
         but_guardar.setDisable(false);
         but_vaciar.setVisible(true);
         but_vaciar.setDisable(false);
-        
+        b_volver.setVisible(true);
+        b_volver.setDisable(false);
     }
     
     @FXML
@@ -198,12 +214,17 @@ public class MenuTrabajadoresController implements Initializable {
         }
     }
 
+    //Eliminar Empleados
     @FXML
     private void eliminarEmpleado(ActionEvent event) 
     {
         botonesInvisibles();
         but_confirmarEliminar.setDisable(false);
         but_confirmarEliminar.setVisible(true);
+        but_vaciar.setDisable(false);
+        but_vaciar.setVisible(true);
+        b_volver.setVisible(true);
+        b_volver.setDisable(false);
     }
     
     @FXML
@@ -238,8 +259,6 @@ public class MenuTrabajadoresController implements Initializable {
             {
                 System.out.println("Operación cancelada.");
             }
-            
-            
         }
         
         catch (SQLException ex)
@@ -256,6 +275,8 @@ public class MenuTrabajadoresController implements Initializable {
         but_actualizar.setVisible(true);
         but_vaciar.setDisable(false);
         but_vaciar.setVisible(true);
+        b_volver.setVisible(true);
+        b_volver.setDisable(false);
     }
     
     @FXML
@@ -266,7 +287,6 @@ public class MenuTrabajadoresController implements Initializable {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
-        tf_id.setEditable(false);
         String nombre = tf_nombre.getText();
         String apellido1 = tf_apellido1.getText();
         String apellido2 = tf_apellido2.getText();
@@ -300,7 +320,7 @@ public class MenuTrabajadoresController implements Initializable {
         but_modificar.setVisible(false);
     }
     
-    public void botonesvisibles()
+    public void botonesVisibles()
     {
         but_anadir.setVisible(true);
         but_eliminar.setVisible(true);
@@ -310,6 +330,8 @@ public class MenuTrabajadoresController implements Initializable {
     @FXML
     private void vaciarFormulario(ActionEvent event) 
     {
+        String idMax = Integer.toString(idMaximo());
+        tf_id.setText(idMax);
         tf_nombre.setText(null);
         tf_apellido1.setText(null);
         tf_apellido2.setText(null);
@@ -339,14 +361,6 @@ public class MenuTrabajadoresController implements Initializable {
         }
         
         return idMax;
-    }
-    
-    public void actualizarTableView()
-    {
-       tvTrabajadores = FXCollections.observableArrayList();
-        Trabajador.rellenarTabla(tvTrabajadores);
-        tableview_trabajadores.setItems(tvTrabajadores);
-        asociarValores();
     }
     
     //Alertas
@@ -403,5 +417,21 @@ public class MenuTrabajadoresController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("No se puede insertar un cliente sin nombre o apellido.");
         alert.showAndWait();
+    }
+
+    @FXML
+    private void volver(ActionEvent event) 
+    {
+        botonesVisibles();
+        but_actualizar.setVisible(false);
+        but_actualizar.setDisable(true);
+        but_confirmarEliminar.setVisible(false);
+        but_confirmarEliminar.setDisable(true);
+        but_guardar.setVisible(false);
+        but_guardar.setDisable(true);
+        b_volver.setDisable(true);
+        b_volver.setVisible(false);
+        but_vaciar.setVisible(false);
+        but_vaciar.setDisable(true);
     }
 }

@@ -5,7 +5,8 @@
  */
 package tienda.musica;
 
-import java.sql.Date;
+import java.sql.*;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Venta {
     private Instrumento instrumento;
     private Cliente cliente;
     private Date fechaCompra;
+    private double precio;
 
     public Integer getId() {
         return id;
@@ -52,12 +54,38 @@ public class Venta {
         this.fechaCompra = fechaCompra;
     }
     
-    public Venta (Integer id, Instrumento instrumento, Cliente cliente, Date fechaCompra)
+    public Venta (Integer id, Instrumento instrumento, Cliente cliente, Date fechaCompra, double precio)
     {
         this.id = id;
         this.instrumento = instrumento;
         this.cliente = cliente;
         this.fechaCompra = fechaCompra;
+        this.precio = precio;
+    }
+    
+    public static void rellenarTabla (ObservableList <Venta> tvVenta)
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            stmt = con.prepareStatement("SELECT * FROM Ventas");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                tvVenta.add(new Venta (rs.getInt("Id"), rs.get("Producto", Class <Instrumento>), rs.getString("Cliente"), rs.getDate("FechaCompra"), rs.getDouble("Precio")));
+            }
+        }
+        
+        catch (SQLException ex)
+        {
+            
+        }
+        
     }
     
 }

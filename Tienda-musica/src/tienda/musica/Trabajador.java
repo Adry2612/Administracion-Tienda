@@ -88,46 +88,5 @@ public class Trabajador extends Persona{
     }
     
     
-    public void obtenerTrabajadores(){
-        
-        try{
-            stmt = con.prepareStatement("SELECT * FROM trabajadores");
-            rs = stmt.executeQuery();
-            
-            while (rs.next())
-            {
-                
-            }
-        }
-        
-        catch (SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-        
-    }
-    
-    public void inscribirCliente (){
-        
-        
-    }
-    
-    public void eliminarCliente (String nombre, String apellido1){
-        
-        try
-        {
-            stmt = con.prepareStatement("DELETE * FROM Clientes WHERE nombre = nombre AND apellido1 = apellido1");
-        }
-        
-        catch (SQLException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-        
-        
-    }
-    
-    public void eliminarInstrumentos (){
-    
-    }
     
 }

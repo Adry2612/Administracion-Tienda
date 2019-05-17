@@ -78,6 +78,8 @@
                </font></CheckBox>
             <Button fx:id="but_guardar" disable="true" layoutX="67.0" layoutY="390.0" mnemonicParsing="false" onAction="#guardarAnadir" prefHeight="47.0" prefWidth="117.0" styleClass="botones" text="GUARDAR DATOS" textFill="WHITE" visible="false" />
             <Button fx:id="but_vaciar" disable="true" layoutX="240.0" layoutY="390.0" mnemonicParsing="false" onAction="#vaciarFormulario" prefHeight="47.0" prefWidth="149.0" styleClass="botones" text="VACIAR FORMULARIO" textFill="WHITE" visible="false" />
+            <Button fx:id="but_confirmarEliminar" disable="true" layoutX="57.0" layoutY="392.0" mnemonicParsing="false" onAction="#guardarEliminar" prefHeight="47.0" prefWidth="117.0" styleClass="botones" text="ELIMINAR EMPLEADO" textFill="WHITE" visible="false" />
+            <Button fx:id="but_actualizar" disable="true" layoutX="61.0" layoutY="390.0" mnemonicParsing="false" onAction="#guardarModificar" prefHeight="47.0" prefWidth="117.0" styleClass="botones" text="ACTUALIZAR" textFill="WHITE" visible="false" />
          </children></AnchorPane>
       <TableView fx:id="tableview_trabajadores" layoutX="614.0" layoutY="89.0" prefHeight="462.0" prefWidth="435.0" styleClass="fondoTabla">
         <columns>

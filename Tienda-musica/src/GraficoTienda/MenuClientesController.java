@@ -159,8 +159,6 @@ public class MenuClientesController implements Initializable {
         b_guardarCambios.setDisable(false);
         b_vaciar.setVisible(true);
         b_vaciar.setDisable(false);
-        b_vaciar.setVisible(true);
-        b_vaciar.setDisable(false);
         b_volver.setVisible(true);
         b_volver.setDisable(false);
     }

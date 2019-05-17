@@ -56,6 +56,14 @@ public class MenuTrabajadoresController implements Initializable {
     @FXML
     private Button but_modificar;
     @FXML
+    private Button but_actualizar;
+    @FXML
+    private Button but_confirmarEliminar;
+    @FXML
+    private Button but_guardar;
+    @FXML
+    private Button but_vaciar;
+    @FXML
     private CheckBox cb_administrador;
     @FXML
     private TableView<Trabajador> tableview_trabajadores;
@@ -70,10 +78,7 @@ public class MenuTrabajadoresController implements Initializable {
     @FXML
     private TableColumn<Trabajador, String> col_administrador;
     private ObservableList <Trabajador> tvTrabajadores;
-    @FXML
-    private Button but_guardar;
-    @FXML
-    private Button but_vaciar;
+    
     
     private final ListChangeListener <Trabajador> selectorTrabajador = new ListChangeListener <Trabajador>()
     {
@@ -83,6 +88,7 @@ public class MenuTrabajadoresController implements Initializable {
             escribirTrabajadorSel();
         }
     };
+    
 
     /**
      * Initializes the controller class.
@@ -195,11 +201,95 @@ public class MenuTrabajadoresController implements Initializable {
     @FXML
     private void eliminarEmpleado(ActionEvent event) 
     {
+        botonesInvisibles();
+        but_confirmarEliminar.setDisable(false);
+        but_confirmarEliminar.setVisible(true);
+    }
+    
+    @FXML
+    private void guardarEliminar(ActionEvent event) 
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         
+        Integer id = Integer.parseInt(tf_id.getText());
+        
+        try
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación de eliminación de registros.");
+            alert.setHeaderText("Esta apunto de eliminar el registro seleccionado.");
+            alert.setContentText("¿Desea continuar?");
+            Optional <ButtonType> result = alert.showAndWait();
+
+            if ((result.isPresent())&& result.get() == ButtonType.OK)
+            {
+                System.out.println("Operación realizada.");
+                
+                stmt = con.prepareStatement("DELETE FROM Empleado WHERE Id = ?");
+                stmt.setInt(1, id);
+                stmt.executeUpdate();
+                actualizarTableView();
+            }
+
+            else
+            {
+                System.out.println("Operación cancelada.");
+            }
+            
+            
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
-    private void modificarEmpleado(ActionEvent event) {
+    private void modificarEmpleado(ActionEvent event) 
+    {
+        botonesInvisibles();
+        but_actualizar.setDisable(false);
+        but_actualizar.setVisible(true);
+        but_vaciar.setDisable(false);
+        but_vaciar.setVisible(true);
+    }
+    
+    @FXML
+    private void guardarModificar(ActionEvent event) 
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        tf_id.setEditable(false);
+        String nombre = tf_nombre.getText();
+        String apellido1 = tf_apellido1.getText();
+        String apellido2 = tf_apellido2.getText();
+        boolean administrador = cb_administrador.isSelected();
+        
+        try
+        {
+            stmt = con.prepareStatement("UPDATE Empleado SET Nombre = ?, Apellido1 = ?, Apellido2 = ?, Administrador = ? WHERE Id = ?");
+            stmt.setString(1, nombre);
+            stmt.setString(2, apellido1);
+            stmt.setString(3, apellido2);
+            stmt.setBoolean(4, administrador);
+            stmt.setInt(5, Integer.parseInt(tf_id.getText()));
+            stmt.executeUpdate();
+            
+            actualizarTableView();
+            alertaModificacionCompletada();
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        } 
     }
     
     //Comprobaciones de botones y tableview.
@@ -215,6 +305,15 @@ public class MenuTrabajadoresController implements Initializable {
         but_anadir.setVisible(true);
         but_eliminar.setVisible(true);
         but_modificar.setVisible(true);
+    }
+    
+    @FXML
+    private void vaciarFormulario(ActionEvent event) 
+    {
+        tf_nombre.setText(null);
+        tf_apellido1.setText(null);
+        tf_apellido2.setText(null);
+        cb_administrador.setSelected(false);
     }
     
     public Integer idMaximo()
@@ -260,6 +359,15 @@ public class MenuTrabajadoresController implements Initializable {
         alert.showAndWait();
     }
     
+    public void alertaModificacionCompletada()
+    {
+        Alert alert = new Alert (Alert.AlertType.INFORMATION);
+        alert.setTitle("Modificación COMPLETADA");
+        alert.setHeaderText(null);
+        alert.setContentText("La modificación del empleado se ha realizado correctamente.");
+        alert.showAndWait();
+    }
+    
     public void alertaErrorInsercion()
     {
         Alert alert = new Alert (Alert.AlertType.ERROR);
@@ -295,16 +403,5 @@ public class MenuTrabajadoresController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("No se puede insertar un cliente sin nombre o apellido.");
         alert.showAndWait();
-    }
-
-    
-
-    @FXML
-    private void vaciarFormulario(ActionEvent event) 
-    {
-        tf_nombre.setText(null);
-        tf_apellido1.setText(null);
-        tf_apellido2.setText(null);
-        cb_administrador.setSelected(false);
     }
 }

@@ -69,6 +69,8 @@ public class Venta {
         Connection con = conexion.conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        PreparedStatement stmt2= null;
+        ResultSet rs2 = null;
         
         try
         {
@@ -77,7 +79,13 @@ public class Venta {
             
             while (rs.next())
             {
-                tvVenta.add(new Venta (rs.getInt("Id"), rs.get("Producto", Class <Instrumento>), rs.getString("Cliente"), rs.getDate("FechaCompra"), rs.getDouble("Precio")));
+                stmt2 = con.prepareStatement("SELECT * FROM Instrumentos WHERE Id = ?");
+                rs2 = stmt2.executeQuery();
+                rs2.next();
+                Instrumento instrumentos = new Instrumento (rs2.getInt("Id"), rs2.getString ("Nombre"), rs.getString("Marca"), rs.getDate("fechaFabricacion"), rs.getDouble("Precio"));
+                Cliente clientes = new Cliente (rs2.getInt("Id"), rs2.getString ("Nombre"), rs.getString("Marca"), rs.getString("Marca"));
+                
+                tvVenta.add(new Venta (rs.getInt("Id"), instrumentos, clientes, rs.getDate("FechaCompra"), rs.getDouble("Precio")));
             }
         }
         

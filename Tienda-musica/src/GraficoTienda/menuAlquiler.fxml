@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
 <?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="485.0" prefWidth="939.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuVentasController">
-    <stylesheets>
-        <URL value="@menuventas.css" />
-    </stylesheets>
    <children>
       <ImageView fitHeight="495.0" fitWidth="952.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,27 +17,27 @@
          </image>
       </ImageView>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="939.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
       </MenuBar>
       <AnchorPane layoutX="28.0" layoutY="52.0" prefHeight="414.0" prefWidth="395.0" styleClass="fondo" stylesheets="@estiloVentas.css">
          <children>
-            <Label layoutX="141.0" layoutY="27.0" text="VENTAS" textFill="#c9c344">
+            <Label layoutX="141.0" layoutY="27.0" text="ALQUILER" textFill="#c9c344">
                <font>
                   <Font name="Calibri Light" size="30.0" />
                </font>
@@ -60,15 +57,15 @@
                   <Font name="Calibri Light" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="27.0" layoutY="228.0" text="FECHA DE VENTA" textFill="#c9c9c9">
+            <Label layoutX="7.0" layoutY="228.0" text="FECHA DE ALQUILER" textFill="#c9c9c9">
                <font>
                   <Font name="Calibri Light" size="20.0" />
                </font>
             </Label>
             <TextField fx:id="tf_id" layoutX="198.0" layoutY="83.0" prefHeight="25.0" prefWidth="174.0" />
             <DatePicker fx:id="cb_fecha" layoutX="198.0" layoutY="227.0" />
-            <ComboBox fx:id="cb_producto" layoutX="198.0" layoutY="130.0" onAction="#seleccionarProducto" prefHeight="25.0" prefWidth="174.0" />
-            <ComboBox fx:id="cb_cliente" layoutX="198.0" layoutY="178.0" onAction="#seleccionarCliente" prefHeight="25.0" prefWidth="174.0" />
+            <ComboBox fx:id="cb_producto" layoutX="198.0" layoutY="130.0" prefHeight="25.0" prefWidth="174.0" />
+            <ComboBox fx:id="cb_cliente" layoutX="198.0" layoutY="178.0" prefHeight="25.0" prefWidth="174.0" />
             <Button fx:id="but_eliminar" layoutX="163.0" layoutY="348.0" mnemonicParsing="false" onAction="#eliminarVenta" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="ELIMINAR" textFill="WHITE" />
             <Button fx:id="but_modificar" layoutX="272.0" layoutY="348.0" mnemonicParsing="false" onAction="#modificarVenta" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="MODIFICAR" textFill="WHITE" />
             <Label layoutX="106.0" layoutY="278.0" text="PRECIO" textFill="#c9c9c9">
@@ -77,22 +74,25 @@
                </font>
             </Label>
             <TextField fx:id="tf_precio" layoutX="198.0" layoutY="277.0" prefHeight="25.0" prefWidth="174.0" />
-            <Button fx:id="but_anadir" cacheShape="false" layoutX="57.0" layoutY="348.0" mnemonicParsing="false" onAction="#nuevaVenta" prefHeight="47.0" prefWidth="79.0" styleClass="botones" stylesheets="@estiloVentas.css" text="AÑADIR" textFill="WHITE" />
-            <Button fx:id="but_borrar" disable="true" layoutX="40.0" layoutY="348.0" mnemonicParsing="false" onAction="#confirmarEliminar" prefHeight="47.0" prefWidth="113.0" styleClass="botones" text="BORRAR VENTA" textFill="WHITE" visible="false" />
+            <Button fx:id="but_anadir" cacheShape="false" layoutX="57.0" layoutY="348.0" mnemonicParsing="false" onAction="#nuevoAlquiler" prefHeight="47.0" prefWidth="79.0" styleClass="botones" stylesheets="@estiloVentas.css" text="AÑADIR" textFill="WHITE" />
+            <Button fx:id="but_borrar" disable="true" layoutX="40.0" layoutY="348.0" mnemonicParsing="false" onAction="#confirmarEliminar" prefHeight="47.0" prefWidth="113.0" styleClass="botones" text="BORRAR ALQUILER" textFill="WHITE" visible="false" />
             <Button fx:id="but_vaciar" disable="true" layoutX="216.0" layoutY="348.0" mnemonicParsing="false" onAction="#vaciarFormulario" prefHeight="47.0" prefWidth="139.0" styleClass="botones" text="VACIAR FORMULARIO" textFill="WHITE" visible="false" />
             <Button fx:id="b_volver" disable="true" layoutX="40.0" layoutY="22.0" mnemonicParsing="false" onAction="#volver" prefHeight="49.0" prefWidth="49.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VOLVER" visible="false" />
-            <Button fx:id="but_guardar" disable="true" layoutX="50.0" layoutY="348.0" mnemonicParsing="false" onAction="#confirmarGuardar" prefHeight="47.0" prefWidth="113.0" styleClass="botones" text="GUARDAR VENTA" textFill="WHITE" visible="false" />
-            <Button fx:id="but_actualizar" disable="true" layoutX="50.0" layoutY="348.0" mnemonicParsing="false" onAction="#confirmarActualizar" prefHeight="47.0" prefWidth="113.0" styleClass="botones" text="ACTUALIZAR VENTA" textFill="WHITE" visible="false" />
+            <Button fx:id="but_guardar" disable="true" layoutX="50.0" layoutY="348.0" mnemonicParsing="false" onAction="#confirmarGuardar" prefHeight="47.0" prefWidth="113.0" styleClass="botones" text="GUARDAR ALQUILER" textFill="WHITE" visible="false" />
+            <Button fx:id="but_actualizar" disable="true" layoutX="50.0" layoutY="348.0" mnemonicParsing="false" onAction="#confirmarActualizar" prefHeight="47.0" prefWidth="113.0" styleClass="botones" text="ACTUALIZAR ALQUILAR" textFill="WHITE" visible="false" />
          </children>
       </AnchorPane>
       <TableView fx:id="tv_ventas" layoutX="455.0" layoutY="58.0" prefHeight="403.0" prefWidth="462.0" styleClass="fondoTabla" stylesheets="@estiloVentas.css">
-        <columns>
-          <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="col_producto" prefWidth="141.0" text="PRODUCTO" />
+         <columns>
+            <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="col_producto" prefWidth="141.0" text="PRODUCTO" />
             <TableColumn fx:id="col_cliente" prefWidth="122.0" text="CLIENTE" />
             <TableColumn fx:id="col_fecha" prefWidth="123.0" text="FECHA DE VENTA" />
             <TableColumn fx:id="col_precio" prefWidth="123.0" text="FECHA DE VENTA" />
-        </columns>
+         </columns>
       </TableView>
    </children>
+   <stylesheets>
+      <URL value="@menuventas.css" />
+   </stylesheets>
 </AnchorPane>

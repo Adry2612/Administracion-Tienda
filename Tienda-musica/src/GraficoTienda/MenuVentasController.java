@@ -26,7 +26,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import tienda.musica.Cliente;
 import tienda.musica.Conexion;
+import tienda.musica.Instrumento;
 import tienda.musica.Venta;
 
 /**
@@ -41,9 +43,9 @@ public class MenuVentasController implements Initializable {
     @FXML
     private DatePicker cb_fecha;
     @FXML
-    private ComboBox<?> cb_producto;
+    private ComboBox<Instrumento> cb_producto;
     @FXML
-    private ComboBox<?> cb_cliente;
+    private ComboBox<Cliente> cb_cliente;
     @FXML
     private TextField tf_precio;
     @FXML
@@ -99,6 +101,22 @@ public class MenuVentasController implements Initializable {
         olVentas = tv_ventas.getSelectionModel().getSelectedItems();
         olVentas.addListener(selectorVenta);
     }   
+
+    public Venta obtenerTabla()
+    {
+       if (tv_ventas != null)
+       {
+           List <Venta> tabla = tv_ventas.getSelectionModel().getSelectedItems();
+           
+           if (tabla.size() == 1)
+           {
+               final Venta ventaSel = tabla.get(0);
+               return ventaSel;
+           }
+       }
+
+        return null; 
+    }
     
     public void escribirVentaSel(){
         
@@ -114,22 +132,6 @@ public class MenuVentasController implements Initializable {
             col_cliente.setText(venta.getCliente().getNombre() +" "+ venta.getCliente().getApellido1());
             col_fecha.setText(venta.getFechaCompra().toString());
         }   
-    }
-    
-    public Venta obtenerTabla()
-    {
-       if (tv_ventas != null)
-       {
-           List <Venta> tabla = tv_ventas.getSelectionModel().getSelectedItems();
-           
-           if (tabla.size() == 1)
-           {
-               final Venta ventaSel = tabla.get(0);
-               return ventaSel;
-           }
-       }
-
-        return null; 
     }
     
     public void asociarValores()
@@ -211,6 +213,8 @@ public class MenuVentasController implements Initializable {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
+        String nombre = tf
+        
         try
         {
             
@@ -222,9 +226,6 @@ public class MenuVentasController implements Initializable {
         }
     }
 
-    @FXML
-    private void nuevaVenta(ActionEvent event) {
-    }
     
     @FXML
     private void confirmarGuardar(ActionEvent event) {
@@ -351,5 +352,21 @@ public class MenuVentasController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("No se puede insertar un cliente sin nombre o apellido.");
         alert.showAndWait();
+    }
+
+    @FXML
+    private void seleccionarProducto(ActionEvent event) 
+    {
+        olVentas = FXCollections.observableArrayList();
+        
+        Instrumento.
+    }
+
+    @FXML
+    private void seleccionarCliente(ActionEvent event) {
+    }
+
+    @FXML
+    private void nuevaVenta(ActionEvent event) {
     }
 }

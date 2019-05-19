@@ -5,6 +5,8 @@
  */
 package tienda.musica;
 
+import java.sql.Date;
+
 /**
  *
  * @author Adrian Vidal
@@ -18,7 +20,7 @@ public class Instrumento {
     protected String nombre;
     protected String marca;
     protected boolean disponible;
-    protected Fecha fechaFabricacion;
+    protected Date fechaFabricacion;
     protected double precio;
 
     public int getId() {
@@ -53,11 +55,11 @@ public class Instrumento {
         this.disponible = disponible;
     }
 
-    public Fecha getFechaFabricacion() {
+    public Date getFechaFabricacion() {
         return fechaFabricacion;
     }
 
-    public void setFechaFabricacion(Fecha fechaFabricacion) {
+    public void setFechaFabricacion(Date fechaFabricacion) {
         this.fechaFabricacion = fechaFabricacion;
     }
 
@@ -69,7 +71,7 @@ public class Instrumento {
         this.precio = precio;
     }
     
-    public Instrumento (int id, String nombre, String marca, Fecha fechaFabricacion, double precio)
+    public Instrumento (int id, String nombre, String marca, Date fechaFabricacion, double precio)
     {
         this.id = id;
         this.nombre = nombre;

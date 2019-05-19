@@ -9,36 +9,88 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="472.0" prefWidth="901.0" stylesheets="@estiloInstrumentos.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="GraficoTienda.MenuInstrumentosController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="1111.0" stylesheets="@estiloInstrumentos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuClientesController">
    <children>
-      <ImageView fitHeight="558.0" fitWidth="979.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="622.0" fitWidth="1122.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="b_instrumentos" layoutX="49.0" layoutY="151.0" mnemonicParsing="false" onMouseClicked="#ventanaInstrumentos" opacity="0.95" prefHeight="208.0" prefWidth="208.0" styleClass="boton" stylesheets="@menu.css" />
-      <Button fx:id="but_cuerda" layoutX="283.0" layoutY="154.0" mnemonicParsing="false" onMouseClicked="#ventanaCuerda" opacity="0.95" prefHeight="208.0" prefWidth="208.0" styleClass="boton" stylesheets="@menu.css" />
-      <Button fx:id="but_viento" layoutX="513.0" layoutY="155.0" mnemonicParsing="false" onMouseClicked="#ventanaViento" opacity="0.95" prefHeight="207.0" prefWidth="208.0" styleClass="boton" stylesheets="@menu.css" />
-      <Button fx:id="but_percusion" layoutX="747.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#ventanaPercusion" opacity="0.95" prefHeight="208.0" prefWidth="208.0" styleClass="boton" stylesheets="@menu.css" />
-      <Label layoutX="85.0" layoutY="310.0" text="INSTRUMENTOS" textFill="#b9b9b9">
-         <font>
-            <Font name="Calibri" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="351.0" layoutY="311.0" text="CUERDA" textFill="#b9b9b9">
-         <font>
-            <Font name="Calibri" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="584.0" layoutY="311.0" text="VIENTO" textFill="#b9b9b9">
-         <font>
-            <Font name="Calibri" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="806.0" layoutY="310.0" text="PERCUSIÓN" textFill="#b9b9b9">
-         <font>
-            <Font name="Calibri" size="21.0" />
-         </font>
-      </Label>
+      <AnchorPane layoutX="36.0" layoutY="83.0" prefHeight="469.0" prefWidth="430.0" styleClass="fondo">
+         <children>
+            <Label layoutX="111.0" layoutY="14.0" text="INSTRUMENTOS" textFill="#ffd780">
+               <font>
+                  <Font name="Calibri" size="37.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_id" layoutX="244.0" layoutY="95.0" />
+            <Label layoutX="144.0" layoutY="95.0" prefHeight="26.0" prefWidth="27.0" text="ID" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_nombre" layoutX="244.0" layoutY="133.0" />
+            <TextField fx:id="tf_marca" layoutX="244.0" layoutY="174.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="90.0" layoutY="133.0" prefHeight="26.0" prefWidth="86.0" text="NOMBRE" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="110.0" layoutY="174.0" prefHeight="26.0" prefWidth="70.0" text="MARCA" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="21.0" />
+               </font>
+            </Label>
+            <Button layoutX="48.0" layoutY="396.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="MODIFICAR" />
+            <Button layoutX="172.0" layoutY="396.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
+            <Button layoutX="299.0" layoutY="396.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
+            <TextField fx:id="tf_puente" layoutX="244.0" layoutY="287.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="106.0" layoutY="287.0" prefHeight="26.0" prefWidth="79.0" text="PUENTE" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="111.0" layoutY="322.0" prefHeight="26.0" prefWidth="70.0" text="PRECIO" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_precio" layoutX="245.0" layoutY="322.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="133.0" layoutY="210.0" prefHeight="26.0" prefWidth="49.0" text="TIPO" textFill="#bcbcbc">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cb_tipo" layoutX="244.0" layoutY="210.0" onAction="#seleccionarTipo" prefWidth="150.0" />
+            <Label layoutX="26.0" layoutY="247.0" prefHeight="26.0" prefWidth="160.0" text="CALIBRE CUERDA" textFill="#bcbcbc" visible="false">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_calibre" disable="true" layoutX="245.0" layoutY="247.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+            <Label layoutX="8.0" layoutY="248.0" prefHeight="26.0" prefWidth="207.0" text="TIPO DE MEMBRANA" textFill="#bcbcbc" visible="false">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_boquilla" disable="true" layoutX="245.0" layoutY="248.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+            <Label layoutX="107.0" layoutY="248.0" prefHeight="26.0" prefWidth="79.0" text="BOQUILLA" textFill="#bcbcbc" visible="false">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_membrana" disable="true" layoutX="245.0" layoutY="247.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+         </children>
+      </AnchorPane>
+      <TableView layoutX="512.0" layoutY="79.0" prefHeight="476.0" prefWidth="591.0" styleClass="fondoTabla">
+         <columns>
+            <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
+            <TableColumn fx:id="col_apellido1" text="MARCA" />
+            <TableColumn fx:id="col_apellido2" prefWidth="79.0" text="CALIBRE CUERDA" />
+            <TableColumn fx:id="col_valoracion" prefWidth="107.0" text="TIPO DE PUENTE" />
+            <TableColumn fx:id="col_descrip" prefWidth="174.0" text="PRECIO" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

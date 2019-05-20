@@ -5,6 +5,13 @@
  */
 package tienda.musica;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Adrian Vidal
@@ -14,16 +21,8 @@ package tienda.musica;
 
 public class Viento extends Instrumento {
     
-    private String tipoTubo;
+    private String tipoBoquilla;
     private String modoExcitacion;
-
-    public String getTipoTubo() {
-        return tipoTubo;
-    }
-
-    public void setTipoTubo(String tipoTubo) {
-        this.tipoTubo = tipoTubo;
-    }
 
     public String getModoExcitacion() {
         return modoExcitacion;
@@ -32,19 +31,53 @@ public class Viento extends Instrumento {
     public void setModoExcitacion(String modoExcitacion) {
         this.modoExcitacion = modoExcitacion;
     }
+
+    public String getTipoBoquilla() {
+        return tipoBoquilla;
+    }
+
+    public void setTipoBoquilla(String tipoBoquilla) {
+        this.tipoBoquilla = tipoBoquilla;
+    }
     
-    public Viento (int id, String nombre, String marca, Fecha fechaFabricacion, double precio, String tipoTubo, String modoExcitacion)
+    public Viento (int id, String nombre, String marca, double precio, String tipoBoquilla, String modoExcitacion)
     {
-        super (id, nombre, marca, fechaFabricacion, precio);
-        this.tipoTubo = tipoTubo;
+        super (id, nombre, marca, precio);
+        this.tipoBoquilla = tipoBoquilla;
         this.modoExcitacion = modoExcitacion;
+    }
+    
+    @Override
+    public void rellenarTabla (ObservableList <Instrumento> ol_percusion)
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            stmt = con.prepareStatement("SELECT * FROM Viento;");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                ol_percusion.add (new Viento (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Marca"), rs.getDouble("Precio"), rs.getString("TipoBoquilla"), rs.getString("ModoExcitacion")));
+            }
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
     }
     
     @Override
     public String info()
     {
         String info = super.info();
-        info += "Tipo de tubo: " +this.tipoTubo+ "\n"
+        info += "Tipo de tubo: " +this.tipoBoquilla+ "\n"
                 + "Modo de excitación: " +this.modoExcitacion+ "\n";
         
         return info;

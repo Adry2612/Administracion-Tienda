@@ -5,6 +5,13 @@
  */
 package tienda.musica;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Adrian Vidal
@@ -16,7 +23,6 @@ public class Percusion extends Instrumento{
     
     private String materialMembrana;
     private int numPiezas;
-    private double altura;
 
     public String getMaterialMembrana() {
         return materialMembrana;
@@ -33,21 +39,38 @@ public class Percusion extends Instrumento{
     public void setNumPiezas(int numPiezas) {
         this.numPiezas = numPiezas;
     }
-
-    public double getAltura() {
-        return altura;
-    }
-
-    public void setAltura(double altura) {
-        this.altura = altura;
-    }
     
-    public Percusion (int id, String nombre, String marca, Fecha fechaFabricacion, double precio, String materialMembrana, int numPiezas, double altura)
+    public Percusion (int id, String nombre, String marca, double precio, String materialMembrana, int numPiezas)
     {
-        super (id, nombre, marca, fechaFabricacion, precio);
+        super (id, nombre, marca, precio);
         this.materialMembrana = materialMembrana;
         this.numPiezas = numPiezas;
-        this.altura = altura;  
+    }
+    
+    @Override
+    public void rellenarTabla (ObservableList <Instrumento> ol_percusion)
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            stmt = con.prepareStatement("SELECT * FROM Percusion;");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                ol_percusion.add (new Percusion (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Marca"), rs.getDouble("Precio"), rs.getString("MaterialMembrana"), rs.getInt("NoPiezas")));
+            }
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
     }
     
     @Override
@@ -55,8 +78,7 @@ public class Percusion extends Instrumento{
     {
         String info = super.info();
         info += "Material membrana: " +this.materialMembrana+ "\n"
-                + "Número de piezas: " +this.numPiezas+ "\n"
-                + "Altura: " +this.altura+ "\n";
+                + "Número de piezas: " +this.numPiezas+ "\n";
         
         return info;
     }

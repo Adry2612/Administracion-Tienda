@@ -211,9 +211,7 @@ public class MenuVentasController implements Initializable {
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();
         PreparedStatement stmt = null;
-        ResultSet rs = null;
-        
-        String nombre = tf
+        ResultSet rs = null; 
         
         try
         {
@@ -358,8 +356,7 @@ public class MenuVentasController implements Initializable {
     private void seleccionarProducto(ActionEvent event) 
     {
         olVentas = FXCollections.observableArrayList();
-        
-        Instrumento.
+       
     }
 
     @FXML

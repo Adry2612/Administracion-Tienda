@@ -5,6 +5,10 @@
  */
 package tienda.musica;
 
+
+import java.sql.*;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author Adrian Vidal
@@ -15,8 +19,6 @@ package tienda.musica;
 public class Cuerda extends Instrumento{
     
     private int calibreCuerda;
-    private String material;
-    private String tipoPastillas;
     private String tipoPuente;
 
     public int getCalibreCuerda() {
@@ -27,22 +29,6 @@ public class Cuerda extends Instrumento{
         this.calibreCuerda = calibreCuerda;
     }
 
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
-        this.material = material;
-    }
-
-    public String getTipoPastillas() {
-        return tipoPastillas;
-    }
-
-    public void setTipoPastillas(String tipoPastillas) {
-        this.tipoPastillas = tipoPastillas;
-    }
-
     public String getTipoPuente() {
         return tipoPuente;
     }
@@ -51,13 +37,37 @@ public class Cuerda extends Instrumento{
         this.tipoPuente = tipoPuente;
     }
     
-    public Cuerda (int id, String nombre, String marca, Fecha fechaFabricacion, double precio, int calibreCuerda, String material, String tipoPastillas, String tipoPuente)
+    public Cuerda (int id, String nombre, String marca, double precio, int calibreCuerda, String tipoPuente)
     {
-        super (id, nombre, marca, fechaFabricacion, precio);
+        super (id, nombre, marca, precio);
         this.calibreCuerda = calibreCuerda;
-        this.material = material;
-        this.tipoPastillas = tipoPastillas;
         this.tipoPuente = tipoPuente;
+    }
+    
+    @Override
+    public void rellenarTabla (ObservableList <Instrumento> ol_cuerda)
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            stmt = con.prepareStatement("SELECT * FROM Cuerda;");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                ol_cuerda.add (new Cuerda (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Marca"), rs.getDouble("Precio"), rs.getInt("CalibreCuerda"), rs.getString("TipoPuente")));
+            }
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
     }
     
     @Override
@@ -70,13 +80,8 @@ public class Cuerda extends Instrumento{
     {
         String info = super.info();
         info += "Calibre de cuerda: " +this.calibreCuerda+ "\n"
-                + "Material: " +this.material+ "\n"
-                + "Tipo de pastillas: " +this.tipoPastillas+ "\n"
                 + "Tipo de puente: " +this.tipoPuente+ "\n";
         
         return info;
-    }
-    
-    
-    
+    }  
 }

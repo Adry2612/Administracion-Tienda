@@ -5,7 +5,8 @@
  */
 package tienda.musica;
 
-import java.sql.Date;
+import java.sql.*;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -20,7 +21,6 @@ public class Instrumento {
     protected String nombre;
     protected String marca;
     protected boolean disponible;
-    protected Date fechaFabricacion;
     protected double precio;
 
     public int getId() {
@@ -55,14 +55,6 @@ public class Instrumento {
         this.disponible = disponible;
     }
 
-    public Date getFechaFabricacion() {
-        return fechaFabricacion;
-    }
-
-    public void setFechaFabricacion(Date fechaFabricacion) {
-        this.fechaFabricacion = fechaFabricacion;
-    }
-
     public double getPrecio() {
         return precio;
     }
@@ -71,13 +63,17 @@ public class Instrumento {
         this.precio = precio;
     }
     
-    public Instrumento (int id, String nombre, String marca, Date fechaFabricacion, double precio)
+    public Instrumento (int id, String nombre, String marca, double precio)
     {
         this.id = id;
         this.nombre = nombre;
         this.marca = marca;
-        this.fechaFabricacion = fechaFabricacion;
         this.precio = precio;
+    }
+    
+    public void rellenarTabla (ObservableList <Instrumento> ol_instrumentos)
+    {
+        
     }
     
     public String info()
@@ -85,7 +81,6 @@ public class Instrumento {
         String info = "ID: " +this.id+ "\n"
                 + "Nombre: " +this.nombre+ "\n"
                 + "Marca: " +this.marca+ "\n"
-                + "Fecha de fabricación: " +this.fechaFabricacion+ "\n"
                 + "Precio: " +this.precio + "\n";
         
         return info;

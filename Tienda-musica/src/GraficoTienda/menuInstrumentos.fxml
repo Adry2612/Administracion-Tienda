@@ -9,16 +9,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="1111.0" stylesheets="@estiloInstrumentos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuClientesController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="1111.0" stylesheets="@estiloInstrumentos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraficoTienda.MenuInstrumentosController">
    <children>
       <ImageView fitHeight="622.0" fitWidth="1122.0" opacity="0.69" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="36.0" layoutY="83.0" prefHeight="469.0" prefWidth="430.0" styleClass="fondo">
+      <AnchorPane layoutX="21.0" layoutY="83.0" prefHeight="469.0" prefWidth="430.0" styleClass="fondo">
          <children>
-            <Label layoutX="111.0" layoutY="14.0" text="INSTRUMENTOS" textFill="#ffd780">
+            <Label layoutX="100.0" layoutY="14.0" text="INSTRUMENTOS" textFill="#ffd780">
                <font>
                   <Font name="Calibri" size="37.0" />
                </font>
@@ -41,11 +41,10 @@
                   <Font name="Calibri Light" size="21.0" />
                </font>
             </Label>
-            <Button layoutX="48.0" layoutY="396.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="MODIFICAR" />
-            <Button layoutX="172.0" layoutY="396.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
-            <Button layoutX="299.0" layoutY="396.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
-            <TextField fx:id="tf_puente" layoutX="244.0" layoutY="287.0" prefHeight="25.0" prefWidth="149.0" />
-            <Label layoutX="106.0" layoutY="287.0" prefHeight="26.0" prefWidth="79.0" text="PUENTE" textFill="#bcbcbc">
+            <Button fx:id="b_anadir" layoutX="39.0" layoutY="396.0" mnemonicParsing="false" onAction="#anadirInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
+            <Button fx:id="b_borrar" layoutX="299.0" layoutY="396.0" mnemonicParsing="false" onAction="#borrarInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
+            <TextField fx:id="tf_puente" disable="true" layoutX="244.0" layoutY="287.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+            <Label layoutX="106.0" layoutY="287.0" prefHeight="26.0" prefWidth="79.0" text="PUENTE" textFill="#bcbcbc" visible="false">
                <font>
                   <Font name="Calibri Light" size="22.0" />
                </font>
@@ -61,35 +60,67 @@
                   <Font name="Calibri Light" size="22.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cb_tipo" layoutX="244.0" layoutY="210.0" onAction="#seleccionarTipo" prefWidth="150.0" />
+            <ComboBox fx:id="cb_tipo" layoutX="244.0" layoutY="210.0" prefWidth="150.0" />
             <Label layoutX="26.0" layoutY="247.0" prefHeight="26.0" prefWidth="160.0" text="CALIBRE CUERDA" textFill="#bcbcbc" visible="false">
                <font>
                   <Font name="Calibri Light" size="22.0" />
                </font>
             </Label>
             <TextField fx:id="tf_calibre" disable="true" layoutX="245.0" layoutY="247.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
-            <Label layoutX="8.0" layoutY="248.0" prefHeight="26.0" prefWidth="207.0" text="TIPO DE MEMBRANA" textFill="#bcbcbc" visible="false">
-               <font>
-                  <Font name="Calibri Light" size="22.0" />
-               </font>
-            </Label>
-            <TextField fx:id="tf_boquilla" disable="true" layoutX="245.0" layoutY="248.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
             <Label layoutX="107.0" layoutY="248.0" prefHeight="26.0" prefWidth="79.0" text="BOQUILLA" textFill="#bcbcbc" visible="false">
                <font>
                   <Font name="Calibri Light" size="22.0" />
                </font>
             </Label>
+            <TextField fx:id="tf_boquilla" disable="true" layoutX="245.0" layoutY="248.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+            <Label layoutX="8.0" layoutY="248.0" prefHeight="26.0" prefWidth="207.0" text="TIPO DE MEMBRANA" textFill="#bcbcbc" visible="false">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
             <TextField fx:id="tf_membrana" disable="true" layoutX="245.0" layoutY="247.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+            <Label disable="true" layoutX="71.0" layoutY="287.0" prefHeight="26.0" prefWidth="109.0" text="EXCITACIÓN" textFill="#bcbcbc" visible="false">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_excitacion" layoutX="244.0" layoutY="287.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+            <Label layoutX="112.0" layoutY="287.0" prefHeight="26.0" prefWidth="70.0" text="PIEZAS" textFill="#bcbcbc" visible="false">
+               <font>
+                  <Font name="Calibri Light" size="22.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tf_piezas" disable="true" layoutX="244.0" layoutY="287.0" prefHeight="25.0" prefWidth="149.0" visible="false" />
+            <Button fx:id="b_modificar" layoutX="171.0" layoutY="396.0" mnemonicParsing="false" onAction="#modificarInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="MODIFICAR" />
+            <Button fx:id="b_guardar" disable="true" layoutX="39.0" layoutY="396.0" mnemonicParsing="false" onAction="#guardarCambiosNuevo" prefHeight="49.0" prefWidth="149.0" styleClass="botones" stylesheets="@estiloClientes.css" text="GUARDAR INSTRUMENTO" visible="false" />
+            <Button fx:id="b_vaciar" disable="true" layoutX="245.0" layoutY="396.0" mnemonicParsing="false" onAction="#vaciarFormulario" prefHeight="49.0" prefWidth="160.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VACIAR FORMULARIO" visible="false" />
          </children>
       </AnchorPane>
-      <TableView layoutX="512.0" layoutY="79.0" prefHeight="476.0" prefWidth="591.0" styleClass="fondoTabla">
+      <TableView fx:id="tableview_instrumentos" layoutX="475.0" layoutY="79.0" prefHeight="476.0" prefWidth="387.0" styleClass="fondoTabla">
          <columns>
-            <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
-            <TableColumn fx:id="col_apellido1" text="MARCA" />
-            <TableColumn fx:id="col_apellido2" prefWidth="79.0" text="CALIBRE CUERDA" />
-            <TableColumn fx:id="col_valoracion" prefWidth="107.0" text="TIPO DE PUENTE" />
-            <TableColumn fx:id="col_descrip" prefWidth="174.0" text="PRECIO" />
+            <TableColumn fx:id="col_id" prefWidth="47.6666259765625" text="ID" />
+            <TableColumn fx:id="col_nombre" prefWidth="89.0" text="NOMBRE" />
+            <TableColumn fx:id="col_apellido1" prefWidth="84.0" text="MARCA" />
+            <TableColumn fx:id="col_descrip" prefWidth="85.3333740234375" text="PRECIO" />
+            <TableColumn fx:id="col_descrip1" prefWidth="78.33331298828125" text="TIPO" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableview_cuerda" disable="true" layoutX="861.0" layoutY="79.0" prefHeight="476.0" prefWidth="226.0" styleClass="fondoTabla" visible="false">
+         <columns>
+            <TableColumn fx:id="col_calibre" prefWidth="75.0" text="CALIBRE" />
+            <TableColumn fx:id="col_puente" prefWidth="75.0" text="PUENTE" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableview_viento" disable="true" layoutX="861.0" layoutY="79.0" prefHeight="476.0" prefWidth="160.0" styleClass="fondoTabla" visible="false">
+         <columns>
+            <TableColumn fx:id="col_boquilla" prefWidth="75.0" text="BOQUILLA" />
+            <TableColumn fx:id="col_excitacion" prefWidth="83.0" text="EXCITACION" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableview_percusion" disable="true" layoutX="862.0" layoutY="79.0" prefHeight="476.0" prefWidth="239.0" styleClass="fondoTabla" visible="false">
+         <columns>
+            <TableColumn fx:id="col_membrana" prefWidth="82.0" text="MEMBRANA" />
+            <TableColumn fx:id="col_piezas" prefWidth="76.0" text="PIEZAS" />
          </columns>
       </TableView>
    </children>

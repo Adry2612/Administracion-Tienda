@@ -79,7 +79,7 @@ public class Cliente extends Persona{
     @Override
     public String toString()
     {
-        String infoCombo = id +"- "+ nombre +" "+ apellido1;
+        String infoCombo = nombre +" "+ apellido1;
         
         return infoCombo;
     }   

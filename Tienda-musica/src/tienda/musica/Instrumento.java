@@ -76,6 +76,11 @@ public class Instrumento {
         
     }
     
+    @Override
+    public String toString()
+    {
+        return nombre;
+    }
     public String info()
     {
         String info = "ID: " +this.id+ "\n"

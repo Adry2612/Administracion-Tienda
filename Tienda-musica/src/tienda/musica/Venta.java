@@ -82,7 +82,7 @@ public class Venta {
                 stmt2 = con.prepareStatement("SELECT * FROM Instrumentos WHERE Id = ?");
                 rs2 = stmt2.executeQuery();
                 rs2.next();
-                Instrumento instrumentos = new Instrumento (rs2.getInt("Id"), rs2.getString ("Nombre"), rs.getString("Marca"), rs.getDate("fechaFabricacion"), rs.getDouble("Precio"));
+                Instrumento instrumentos = new Instrumento (rs2.getInt("Id"), rs2.getString ("Nombre"), rs.getString("Marca"), rs.getDouble("Precio"));
                 Cliente clientes = new Cliente (rs2.getInt("Id"), rs2.getString ("Nombre"), rs.getString("Marca"), rs.getString("Marca"));
                 
                 tvVenta.add(new Venta (rs.getInt("Id"), instrumentos, clientes, rs.getDate("FechaCompra"), rs.getDouble("Precio")));

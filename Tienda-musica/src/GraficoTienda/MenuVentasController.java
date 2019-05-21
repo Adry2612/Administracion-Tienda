@@ -8,6 +8,7 @@ package GraficoTienda;
 import java.sql.*;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -26,10 +27,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import tienda.musica.Cliente;
-import tienda.musica.Conexion;
-import tienda.musica.Instrumento;
-import tienda.musica.Venta;
+import tienda.musica.*;
+
 
 /**
  * FXML Controller class
@@ -97,6 +96,8 @@ public class MenuVentasController implements Initializable {
         Venta.rellenarTabla(olVentas);
         tv_ventas.setItems(olVentas);
         asociarValores(); 
+        rellenarClientes();
+        rellenarInstrumentos();
         
         olVentas = tv_ventas.getSelectionModel().getSelectedItems();
         olVentas.addListener(selectorVenta);
@@ -142,8 +143,65 @@ public class MenuVentasController implements Initializable {
         col_fecha.setCellValueFactory(new PropertyValueFactory <Venta, Date>("fechaCompra"));
     }
     
+    private void nuevaVenta(ActionEvent event) 
+    {
+        botonesInvisibles();
+        tf_id.setEditable(false);
+        but_guardar.setVisible(true);
+        but_guardar.setDisable(false);
+        but_vaciar.setVisible(true);
+        but_vaciar.setDisable(false);
+        b_volver.setVisible(true);
+        b_volver.setDisable(false);
+        
+        try
+        {
+            String idMax = Integer.toString(idMaximo());
+            tf_id.setText(idMax);
+            cb_producto.setValue(null);
+            cb_cliente.setValue(null);
+            cb_fecha.setValue(null);
+        }
+        
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
     
-
+    @FXML
+    private void confirmarGuardar(ActionEvent event) 
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            Integer id = idMaximo();
+            Instrumento ins = cb_producto.getValue();
+            Cliente cli = cb_cliente.getValue();
+            LocalDate fecha = cb_fecha.getValue();
+            
+            stmt = con.prepareStatement("INSERT INTO Ventas (Id, Producto, Cliente, FechaCompra, Precio) VALUES (?, ?, ?, ?);");
+            stmt.setInt(1, id);
+            stmt.setInt(2, ins.getId());
+            stmt.setInt(3, cli.getId());
+            stmt.setDate(4, fecha);
+            stmt.setDouble(5, precio);
+            
+            actualizarTableView();
+            alertaInsercionCompletada();
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+    
     @FXML
     private void eliminarVenta(ActionEvent event) 
     {
@@ -213,24 +271,36 @@ public class MenuVentasController implements Initializable {
         PreparedStatement stmt = null;
         ResultSet rs = null; 
         
+        tf_id.setDisable(true);
+        Instrumento ins = cb_producto.getValue();
+        Cliente cli = cb_cliente.getValue();
+        LocalDate fecha = cb_fecha.getValue();
+
         try
         {
-            
+            stmt = con.prepareStatement("UPDATE Ventas SET Producto = ?, Cliente = ?, FechaCompra = ? WHERE Id = ?;");
+            stmt.setInt(1, ins.getId());
+            stmt.setInt(2, cli.getId());
+            stmt.setDate(3, fecha);
+            stmt.setInt(4, Integer.parseInt(tf_id.getText()));
+            stmt.executeUpdate();
+            actualizarTableView();
         }
         
         catch (Exception ex)
         {
-            
+            System.out.println(ex.getMessage());
         }
     }
 
-    
     @FXML
-    private void confirmarGuardar(ActionEvent event) {
-    }
-    
-    @FXML
-    private void vaciarFormulario(ActionEvent event) {
+    private void vaciarFormulario(ActionEvent event) 
+    {
+        String idMax = Integer.toString(idMaximo());
+        tf_id.setText(idMax);
+        cb_producto.setValue(null);
+        cb_cliente.setValue(null);
+        cb_fecha.setValue(null);
     }
 
     @FXML
@@ -352,24 +422,19 @@ public class MenuVentasController implements Initializable {
         alert.showAndWait();
     }
 
-    @FXML
     private void seleccionarProducto(ActionEvent event) 
     {
         olVentas = FXCollections.observableArrayList();
        
     }
 
-    @FXML
-    private void seleccionarCliente(ActionEvent event) {
-    }
 
-    @FXML
-    private void nuevaVenta(ActionEvent event) {
-    }
     
+    
+   
     private void rellenarInstrumentos()
     {
-        ObservableList <String> instrumento = FXCollections.observableArrayList();
+        ObservableList <Instrumento> instrumento = FXCollections.observableArrayList();
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();
         PreparedStatement stmt = null;
@@ -377,20 +442,41 @@ public class MenuVentasController implements Initializable {
         
         try
         {
-            stmt = con.prepareStatement("SELECT * FROM Instrumentos I, Cuerda C, Viento V, Percusion P WHERE I.Id = C.Id OR I.Id = V.Id OR I.Id = P.Id;");
+            stmt = con.prepareStatement("SELECT * FROM Cuerda;");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())                
+
+            {
+                Instrumento ins1 = new Cuerda (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getInt("CalibreCuerda"), rs.getString("TipoPuente"));
+                instrumento.add(ins1);
+            }
+            
+            stmt = con.prepareStatement ("SELECT * FROM Viento;");
             rs = stmt.executeQuery();
             
             while (rs.next())
             {
-                Instrumento instrumento = new Cuerda ();
-                instrumento.add(rs.getString("Nombre"));
+                Instrumento ins2 = new Viento (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("ModoExcitacion"), rs.getString("TipoBoquilla")); 
+                instrumento.add(ins2);
             }
+            
+            stmt = con.prepareStatement ("SELECT * FROM Percusion;");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                Instrumento ins3 = new Percusion (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("MaterialMembrana"), rs.getInt("NoPiezas")); 
+                instrumento.add(ins3);
+            }
+            
+            cb_producto.setItems(instrumento);
         }
         
         catch (SQLException ex)
         {
             System.out.println(ex.getMessage());
-        } 
+        }     
     }
     
     private void rellenarClientes()

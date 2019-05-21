@@ -76,16 +76,11 @@ public class Cliente extends Persona{
         return info;
     }
     
-    public void comprar(){
+    @Override
+    public String toString()
+    {
+        String infoCombo = id +"- "+ nombre +" "+ apellido1;
         
-    }
-    
-    public void alquilar(){
-        
-    }
-        
-    public void vender(){
-        
-    }
-    
+        return infoCombo;
+    }   
 }

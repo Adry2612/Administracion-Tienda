@@ -366,4 +366,58 @@ public class MenuVentasController implements Initializable {
     @FXML
     private void nuevaVenta(ActionEvent event) {
     }
+    
+    private void rellenarInstrumentos()
+    {
+        ObservableList <String> instrumento = FXCollections.observableArrayList();
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            stmt = con.prepareStatement("SELECT * FROM Instrumentos I, Cuerda C, Viento V, Percusion P WHERE I.Id = C.Id OR I.Id = V.Id OR I.Id = P.Id;");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                Instrumento instrumento = new Cuerda ();
+                instrumento.add(rs.getString("Nombre"));
+            }
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        } 
+    }
+    
+    private void rellenarClientes()
+    {
+        ObservableList <Cliente> cliente = FXCollections.observableArrayList();
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try
+        {
+            stmt = con.prepareStatement("SELECT * FROM Clientes;");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                Cliente c1 = new Cliente (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Apellido1"), rs.getString("Apellido2"));
+                cliente.add(c1);
+            }
+        }
+        
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        } 
+        
+        cb_cliente.setItems(cliente);
+    }
 }

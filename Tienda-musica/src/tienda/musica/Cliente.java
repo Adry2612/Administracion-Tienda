@@ -43,7 +43,7 @@ public class Cliente extends Persona{
         super (id, nombre, apellido1, apellido2);
     }
     
-      public static void rellenarTabla(ObservableList <Cliente> tvClientes)
+    public static void rellenarTabla(ObservableList <Cliente> tvClientes)
     {
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();

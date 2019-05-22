@@ -95,7 +95,8 @@ public class MenuVentasController implements Initializable {
         olVentas = FXCollections.observableArrayList(); 
         Venta.rellenarTabla(olVentas);
         tv_ventas.setItems(olVentas);
-        asociarValores(); 
+        asociarValores();
+        
         rellenarClientes();
         rellenarInstrumentos();
         
@@ -126,9 +127,9 @@ public class MenuVentasController implements Initializable {
         
         if (venta != null)
         {
-            String idCliente = Integer.toString(venta.getId());
+            String idVenta = Integer.toString(venta.getId());
             
-            tf_id.setText(idCliente);
+            tf_id.setText(idVenta);
             col_producto.setText(venta.getInstrumento().getNombre());
             col_cliente.setText(venta.getCliente().getNombre() +" "+ venta.getCliente().getApellido1());
             col_fecha.setText(venta.getFechaCompra().toString());
@@ -143,6 +144,7 @@ public class MenuVentasController implements Initializable {
         col_fecha.setCellValueFactory(new PropertyValueFactory <Venta, Date>("fechaCompra"));
     }
     
+    @FXML
     private void nuevaVenta(ActionEvent event) 
     {
         botonesInvisibles();
@@ -184,12 +186,12 @@ public class MenuVentasController implements Initializable {
             Cliente cli = cb_cliente.getValue();
             LocalDate fecha = cb_fecha.getValue();
             
-            stmt = con.prepareStatement("INSERT INTO Ventas (Id, Producto, Cliente, FechaCompra, Precio) VALUES (?, ?, ?, ?);");
+            stmt = con.prepareStatement("INSERT INTO Venta (IdVenta, Instrumento, Cliente, FechaVenta, Precio) VALUES (?, ?, ?, ?);");
             stmt.setInt(1, id);
             stmt.setInt(2, ins.getId());
             stmt.setInt(3, cli.getId());
-            stmt.setDate(4, fecha);
-            stmt.setDouble(5, precio);
+            //stmt.setDate(4, fecha);
+            //stmt.setDouble(5, precio);
             
             actualizarTableView();
             alertaInsercionCompletada();
@@ -233,7 +235,7 @@ public class MenuVentasController implements Initializable {
             {
                 System.out.println("Operación realizada.");
                 
-                stmt = con.prepareStatement("DELETE FROM Ventas WHERE Id = ?");
+                stmt = con.prepareStatement("DELETE FROM Venta WHERE IdVenta = ?");
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 actualizarTableView();
@@ -278,10 +280,10 @@ public class MenuVentasController implements Initializable {
 
         try
         {
-            stmt = con.prepareStatement("UPDATE Ventas SET Producto = ?, Cliente = ?, FechaCompra = ? WHERE Id = ?;");
+            stmt = con.prepareStatement("UPDATE Venta SET Instrumento = ?, Cliente = ?, FechaVenta = ? WHERE IdVenta = ?;");
             stmt.setInt(1, ins.getId());
             stmt.setInt(2, cli.getId());
-            stmt.setDate(3, fecha);
+            //stmt.setDate(3, fecha);
             stmt.setInt(4, Integer.parseInt(tf_id.getText()));
             stmt.executeUpdate();
             actualizarTableView();
@@ -290,6 +292,22 @@ public class MenuVentasController implements Initializable {
         catch (Exception ex)
         {
             System.out.println(ex.getMessage());
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs!= null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();
+            }
+            
+            catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+                
         }
     }
 
@@ -351,7 +369,7 @@ public class MenuVentasController implements Initializable {
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
-            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Ventas");
+            stmt = con.prepareStatement ("SELECT MAX(IdVenta) FROM Venta");
             rs = stmt.executeQuery();
             rs.next();
             

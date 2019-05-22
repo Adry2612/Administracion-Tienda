@@ -53,6 +53,14 @@ public class Venta {
     public void setFechaCompra(Date fechaCompra) {
         this.fechaCompra = fechaCompra;
     }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
     
     public Venta (Integer id, Instrumento instrumento, Cliente cliente, Date fechaCompra, double precio)
     {
@@ -69,29 +77,59 @@ public class Venta {
         Connection con = conexion.conectar();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        PreparedStatement stmt2= null;
-        ResultSet rs2 = null;
         
         try
         {
-            stmt = con.prepareStatement("SELECT * FROM Ventas");
+            stmt = con.prepareStatement("SELECT * FROM Venta");
             rs = stmt.executeQuery();
+            Instrumento ins = null;
             
             while (rs.next())
             {
-                stmt2 = con.prepareStatement("SELECT * FROM Instrumentos WHERE Id = ?");
-                rs2 = stmt2.executeQuery();
-                rs2.next();
-                Instrumento instrumentos = new Instrumento (rs2.getInt("Id"), rs2.getString ("Nombre"), rs.getString("Marca"), rs.getDouble("Precio"));
-                Cliente clientes = new Cliente (rs2.getInt("Id"), rs2.getString ("Nombre"), rs.getString("Marca"), rs.getString("Marca"));
                 
-                tvVenta.add(new Venta (rs.getInt("Id"), instrumentos, clientes, rs.getDate("FechaCompra"), rs.getDouble("Precio")));
+                int instrumento = rs.getInt("Instrumento");
+                int cliente = rs.getInt("Cliente");
+                
+                PreparedStatement stmt2 = con.prepareStatement("SELECT * FROM Cliente WHERE Id = ?;");
+                stmt2.setInt(1, cliente);
+                ResultSet rs2 = stmt.executeQuery();
+                rs2.next();
+                Cliente cli = new Cliente (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Apellido1"), rs2.getString("Apellido2"));
+                
+                stmt2 = con.prepareStatement("SELECT * FROM Cuerda;");
+                rs2 = stmt.executeQuery();
+            
+                    while (rs.next())                
+
+                    {
+                        ins = new Cuerda (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Fabricante"), rs2.getDouble("Precio"), rs2.getInt("CalibreCuerda"), rs2.getString("TipoPuente"));
+                    }
+
+                    stmt = con.prepareStatement ("SELECT * FROM Viento;");
+                    rs2 = stmt.executeQuery();
+
+                    while (rs.next())
+                    {
+                        ins = new Viento (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Fabricante"), rs2.getDouble("Precio"), rs2.getString("ModoExcitacion"), rs2.getString("TipoBoquilla")); 
+                    }
+
+                    stmt = con.prepareStatement ("SELECT * FROM Percusion;");
+                    rs2 = stmt.executeQuery();
+
+                    while (rs.next())
+                    {
+                       ins = new Percusion (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Fabricante"), rs2.getDouble("Precio"), rs2.getString("MaterialMembrana"), rs2.getInt("NoPiezas")); 
+                    }
+                   
+                    tvVenta.add (new Venta (rs.getInt("IdVenta"), ins, cli, rs.getDate("FechaVenta"), rs.getDouble("Precio")));
+                    
             }
+            
         }
         
         catch (SQLException ex)
         {
-            
+            System.out.println(ex.getMessage());
         }
         
     }

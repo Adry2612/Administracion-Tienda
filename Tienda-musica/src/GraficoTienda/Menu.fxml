@@ -34,14 +34,8 @@
             <Font name="Calibri" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="b_alquileres" layoutX="263.0" layoutY="324.0" mnemonicParsing="false" onAction="#ventanaAlquileres" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
-      <Button fx:id="b_ventas" layoutX="514.0" layoutY="317.0" mnemonicParsing="false" onAction="#ventanaVentas" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
-      <Label layoutX="289.0" layoutY="445.0" text="ALQUILERES" textFill="#b9b9b9">
-         <font>
-            <Font name="Calibri" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="558.0" layoutY="445.0" text="VENTAS" textFill="#b9b9b9">
+      <Button fx:id="b_ventas" layoutX="395.0" layoutY="311.0" mnemonicParsing="false" onAction="#ventanaVentas" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Label layoutX="439.0" layoutY="437.0" text="VENTAS" textFill="#b9b9b9">
          <font>
             <Font name="Calibri" size="21.0" />
          </font>

@@ -20,7 +20,6 @@ public class Instrumento {
     protected int id;
     protected String nombre;
     protected String marca;
-    protected boolean disponible;
     protected double precio;
 
     public int getId() {
@@ -45,14 +44,6 @@ public class Instrumento {
 
     public void setMarca(String marca) {
         this.marca = marca;
-    }
-
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
     }
 
     public double getPrecio() {

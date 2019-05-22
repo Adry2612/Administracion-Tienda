@@ -67,8 +67,8 @@
             </Label>
             <TextField fx:id="tf_id" layoutX="198.0" layoutY="83.0" prefHeight="25.0" prefWidth="174.0" />
             <DatePicker fx:id="cb_fecha" layoutX="198.0" layoutY="227.0" />
-            <ComboBox fx:id="cb_producto" layoutX="198.0" layoutY="130.0" onAction="#seleccionarProducto" prefHeight="25.0" prefWidth="174.0" />
-            <ComboBox fx:id="cb_cliente" layoutX="198.0" layoutY="178.0" onAction="#seleccionarCliente" prefHeight="25.0" prefWidth="174.0" />
+            <ComboBox fx:id="cb_producto" layoutX="198.0" layoutY="130.0" prefHeight="25.0" prefWidth="174.0" />
+            <ComboBox fx:id="cb_cliente" layoutX="198.0" layoutY="178.0" prefHeight="25.0" prefWidth="174.0" />
             <Button fx:id="but_eliminar" layoutX="163.0" layoutY="348.0" mnemonicParsing="false" onAction="#eliminarVenta" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="ELIMINAR" textFill="WHITE" />
             <Button fx:id="but_modificar" layoutX="272.0" layoutY="348.0" mnemonicParsing="false" onAction="#modificarVenta" prefHeight="47.0" prefWidth="79.0" styleClass="botones" text="MODIFICAR" textFill="WHITE" />
             <Label layoutX="106.0" layoutY="278.0" text="PRECIO" textFill="#c9c9c9">

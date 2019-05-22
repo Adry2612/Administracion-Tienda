@@ -421,16 +421,6 @@ public class MenuVentasController implements Initializable {
         alert.setContentText("No se puede insertar un cliente sin nombre o apellido.");
         alert.showAndWait();
     }
-
-    private void seleccionarProducto(ActionEvent event) 
-    {
-        olVentas = FXCollections.observableArrayList();
-       
-    }
-
-
-    
-    
    
     private void rellenarInstrumentos()
     {

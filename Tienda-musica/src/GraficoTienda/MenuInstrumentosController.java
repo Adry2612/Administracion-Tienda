@@ -21,6 +21,11 @@ import java.sql.*;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -29,72 +34,29 @@ import javafx.collections.ListChangeListener;
  */
 public class MenuInstrumentosController implements Initializable {
 
-    @FXML
-    private TextField tf_id;
-    @FXML
-    private TextField tf_nombre;
-    @FXML
-    private TextField tf_marca;
-    @FXML
-    private Button b_anadir;
-    @FXML
-    private Button b_borrar;
-    @FXML
     private TextField tf_puente;
-    @FXML
-    private TextField tf_precio;
-    @FXML
     private ComboBox<String> cb_tipo;
-    @FXML
     private TextField tf_calibre;
-    @FXML
     private TextField tf_boquilla;
-    @FXML
     private TextField tf_membrana;
-    @FXML
     private TextField tf_excitacion;
-    @FXML
     private TextField tf_piezas;
-    @FXML
-    private Button b_modificar;
-    @FXML
-    private Button b_guardar;
-    @FXML
-    private Button b_vaciar;
-    @FXML
-    private TableColumn<Instrumento, ?> col_id;
-    @FXML
-    private TableColumn<?, ?> col_nombre;
-    @FXML
-    private TableColumn<?, ?> col_apellido1;
-    @FXML
-    private TableColumn<?, ?> col_descrip;
-    @FXML
-    private TableColumn<?, ?> col_descrip1;
-    @FXML
     private TableView<Viento> tableview_viento;
-    @FXML
-    private TableColumn<?, ?> col_calibre;
-    @FXML
-    private TableColumn<?, ?> col_puente;
-    @FXML
     private TableView<Cuerda> tableview_cuerda;
-    @FXML
-    private TableColumn<?, ?> col_boquilla;
-    @FXML
-    private TableColumn<?, ?> col_excitacion;
-    @FXML
     private TableView<Percusion> tableview_percusion;
-    @FXML
     private TableView<Instrumento> tableview_instrumentos;
-    @FXML
-    private TableColumn<?, ?> col_membrana;
-    @FXML
-    private TableColumn<?, ?> col_piezas;
     private ObservableList <Instrumento> instrumento;
     private ObservableList <Cuerda> cuerda;
     private ObservableList <Viento> viento;
     private ObservableList <Percusion> percusion;
+    @FXML
+    private Button b_todos;
+    @FXML
+    private Button b_cuerda;
+    @FXML
+    private Button b_percusion;
+    @FXML
+    private Button b_viento;
     
     /*
     private final ListChangeListener <Cliente> selectorClientes = new ListChangeListener <Cliente>()
@@ -158,13 +120,6 @@ public class MenuInstrumentosController implements Initializable {
     }
    
 
-    @FXML
-    private void anadirInstrumento(ActionEvent event) {
-    }
-
-    @FXML
-    private void borrarInstrumento(ActionEvent event) {
-    }
     
     private void rellenarComboBox() 
     {
@@ -247,16 +202,64 @@ public class MenuInstrumentosController implements Initializable {
     }
 
     @FXML
-    private void modificarInstrumento(ActionEvent event) {
+    private void ventanaTodos(ActionEvent event) {
     }
 
     @FXML
-    private void guardarCambiosNuevo(ActionEvent event) {
+    private void ventanaCuerda(ActionEvent event) 
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menuCuerda.fxml"));
+            Parent root1 = (Parent)fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene (root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
-    private void vaciarFormulario(ActionEvent event) {
-    }
-
+    private void ventanaPercusion(ActionEvent event) {
+        
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menuPercusion.fxml"));
+            Parent root1 = (Parent)fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene (root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
     
+    }
+
+    @FXML
+    private void ventanaViento(ActionEvent event) 
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menuViento.fxml"));
+            Parent root1 = (Parent)fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene (root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

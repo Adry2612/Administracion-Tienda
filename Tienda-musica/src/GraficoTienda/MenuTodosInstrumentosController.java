@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -20,7 +21,7 @@ import javafx.scene.control.TextField;
  *
  * @author Adrián
  */
-public class MenuVientoController implements Initializable {
+public class MenuTodosInstrumentosController implements Initializable {
 
     @FXML
     private TextField tf_id;
@@ -28,10 +29,6 @@ public class MenuVientoController implements Initializable {
     private TextField tf_nombre;
     @FXML
     private TextField tf_marca;
-    @FXML
-    private TextField tf_excitacion;
-    @FXML
-    private TextField tf_boquilla;
     @FXML
     private TextField tf_precio;
     @FXML
@@ -43,7 +40,9 @@ public class MenuVientoController implements Initializable {
     @FXML
     private Button b_eliminar;
     @FXML
-    private TableView<?> tv_viento;
+    private ComboBox<?> cb_tipo;
+    @FXML
+    private TableView<?> tv_cuerda;
     @FXML
     private TableColumn<?, ?> col_id;
     @FXML
@@ -51,9 +50,7 @@ public class MenuVientoController implements Initializable {
     @FXML
     private TableColumn<?, ?> col_apellido1;
     @FXML
-    private TableColumn<?, ?> col_excitacion;
-    @FXML
-    private TableColumn<?, ?> col_boquilla;
+    private TableColumn<?, ?> col_tipo;
     @FXML
     private TableColumn<?, ?> col_descrip;
 

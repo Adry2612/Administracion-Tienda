@@ -27,17 +27,16 @@ import tienda.musica.Trabajador;
  */
 public class MenuController implements Initializable {
 
-    @FXML
     private Button b_clientes;
-    @FXML
-    private Button b_empleado;
-    @FXML
-    private Button b_alquileres;
-    @FXML
-    private Button b_ventas;
-    @FXML
-    private Button b_instrumentos;
     private ObservableList <Trabajador> tvEmpleados;
+    @FXML
+    private Button b_todos;
+    @FXML
+    private Button b_cuerda;
+    @FXML
+    private Button b_percusion;
+    @FXML
+    private Button b_viento;
 
     /**
      * Initializes the controller class.
@@ -49,7 +48,6 @@ public class MenuController implements Initializable {
         
     }    
 
-    @FXML
     private void ventanaClientes(ActionEvent event) {
         try
         {
@@ -69,7 +67,6 @@ public class MenuController implements Initializable {
         }
     }
 
-    @FXML
     private void ventanaEmpleados(ActionEvent event) {
         try
         {
@@ -89,7 +86,6 @@ public class MenuController implements Initializable {
         }
     }
 
-    @FXML
     private void ventanaAlquileres(ActionEvent event) {
         try
         {
@@ -107,7 +103,6 @@ public class MenuController implements Initializable {
         }
     }
 
-    @FXML
     private void ventanaVentas(ActionEvent event) {
         try
         {
@@ -125,7 +120,6 @@ public class MenuController implements Initializable {
         }
     }
 
-    @FXML
     private void ventanaInstrumentos(ActionEvent event) {
         try
         {

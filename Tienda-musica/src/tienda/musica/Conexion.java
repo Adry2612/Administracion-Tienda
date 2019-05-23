@@ -19,9 +19,9 @@ public class Conexion {
         
         try{            
             Class.forName("com.mysql.jdbc.Driver");
-            String url="jdbc:mysql://10.2.1.34:3306/TiendaMusica?useSSL=false";
-            String user="bd";
-            String pass="Adri_2612";
+            String url="jdbc:mysql://127.0.0.1:3306/TiendaMusica?useSSL=false";
+            String user="root";
+            String pass="";
             con = DriverManager.getConnection(url, user, pass);
         }
         catch(Exception ex){            

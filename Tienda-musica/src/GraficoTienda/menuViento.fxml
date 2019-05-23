@@ -47,9 +47,9 @@
                   <Font name="Calibri Light" size="22.0" />
                </font>
             </Label>
-            <Button layoutX="51.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="97.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="MODIFICAR" />
-            <Button layoutX="172.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
-            <Button layoutX="299.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
+            <Button fx:id="b_modificar" layoutX="51.0" layoutY="362.0" mnemonicParsing="false" onAction="#modificarInstrumento" prefHeight="49.0" prefWidth="97.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="MODIFICAR" />
+            <Button fx:id="b_anadir" layoutX="172.0" layoutY="362.0" mnemonicParsing="false" onAction="#anadirInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
+            <Button fx:id="b_borrar" layoutX="299.0" layoutY="362.0" mnemonicParsing="false" onAction="#borrarInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
             <TextField fx:id="tf_boquilla" layoutX="244.0" layoutY="253.0" prefHeight="25.0" prefWidth="149.0" />
             <Label layoutX="83.0" layoutY="253.0" prefHeight="26.0" prefWidth="103.0" text="BOQUILLA" textFill="#bcbcbc">
                <font>
@@ -67,6 +67,7 @@
             <Button fx:id="b_agregar" disable="true" layoutX="48.0" layoutY="362.0" mnemonicParsing="false" onAction="#agregarInstrumento" prefHeight="49.0" prefWidth="149.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="AGREGAR INSTRUMENTO" visible="false" />
             <Button fx:id="b_eliminar" disable="true" layoutX="48.0" layoutY="362.0" mnemonicParsing="false" onAction="#eliminarInstrumento" prefHeight="49.0" prefWidth="149.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="ELIMINAR INSTRUMENTO" visible="false" />
             <Button fx:id="b_volver" disable="true" layoutX="27.0" layoutY="71.0" mnemonicParsing="false" onAction="#volver" prefHeight="49.0" prefWidth="49.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VOLVER" />
+            <Button fx:id="b_borrar1" layoutX="309.0" layoutY="372.0" mnemonicParsing="false" onAction="#borrarInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
          </children>
       </AnchorPane>
       <TableView fx:id="tv_viento" layoutX="512.0" layoutY="79.0" prefHeight="476.0" prefWidth="591.0" styleClass="fondoTabla">

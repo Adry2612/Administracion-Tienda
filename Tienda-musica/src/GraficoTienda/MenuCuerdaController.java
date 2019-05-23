@@ -66,7 +66,7 @@ public class MenuCuerdaController implements Initializable {
     private TableColumn<Cuerda, String> col_marca;
     private TableColumn<Cuerda, String> col_puente;
     private TableColumn<Cuerda, Integer> col_calibre;
-    private TableColumn<Cuerda, Integer> col_precio;
+    private TableColumn<Cuerda, Double> col_precio;
     private ObservableList <Cuerda> ol_cuerda;
 
     private final ListChangeListener <Cuerda> selectorInstrumento= new ListChangeListener <Cuerda>()
@@ -103,14 +103,14 @@ public class MenuCuerdaController implements Initializable {
     public void escribirInstrumentoSel(){
         
         final Cuerda cuerda = obtenerTabla();
-        Integer posicionCliente = ol_cuerda.indexOf(cuerda);
+        Integer posicionInstrumento = ol_cuerda.indexOf(cuerda);
         
         if (cuerda != null)
         {
-            String idCliente = Integer.toString(cuerda.getId());
+            String idInstrumento = Integer.toString(cuerda.getId());
             String calibre = Integer.toString(cuerda.getCalibreCuerda());
             
-            tf_id.setText(idCliente);
+            tf_id.setText(idInstrumento);
             tf_nombre.setText(cuerda.getNombre());
             tf_marca.setText(cuerda.getMarca());
             tf_calibre.setText(calibre);
@@ -141,7 +141,7 @@ public class MenuCuerdaController implements Initializable {
         col_marca.setCellValueFactory(new PropertyValueFactory <Cuerda, String>("marca"));
         col_calibre.setCellValueFactory(new PropertyValueFactory <Cuerda, Integer>("calibreCuerda"));
         col_puente.setCellValueFactory(new PropertyValueFactory <Cuerda, String>("tipoPuente"));
-        col_precio.setCellValueFactory(new PropertyValueFactory <Cuerda, Integer>("precio"));
+        col_precio.setCellValueFactory(new PropertyValueFactory <Cuerda, Double>("precio"));
     }
     
     @FXML

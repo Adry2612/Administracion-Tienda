@@ -131,11 +131,10 @@ public class MenuVentasController implements Initializable {
             String idVenta = Integer.toString(venta.getId());
             
             tf_id.setText(idVenta);
-           // cb_producto.setValue(venta);
-            cb_cliente.setValue(clienteSeleccionado(venta.getCliente()));
-            col_cliente.setText(venta.getCliente().getNombre() +" "+ venta.getCliente().getApellido1());
-            col_fecha.setText(venta.getFechaCompra().toString());
-            //tf_precio.setText (venta.getPrecio());
+            cb_producto.setValue(venta.getInstrumento());
+            cb_cliente.setValue(venta.getCliente());
+            cb_fecha.setValue(venta.getFechaCompra().toLocalDate());
+            tf_precio.setText(String.valueOf(venta.getPrecio()));
         }   
         }
         catch (Exception ex)
@@ -524,61 +523,5 @@ public class MenuVentasController implements Initializable {
         cb_cliente.setItems(cliente);
     }
     
-    public Instrumento instrumentoSeleccionado()
-    {
-        Conexion conexion = new Conexion();
-        Connection con = conexion.conectar();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        Instrumento instrumentoSeleccionado = null;
-        
-        try
-        {
-            stmt = con.prepareStatement("SELECT * FROM Instrumento WHERE Id = ?");
-            stmt.setInt(1, rs.getInt("Id"));
-            ResultSet rs2 = stmt.executeQuery();
-            
-            if (rs2.next() == true)
-            {
-                rs2.first();
-                //instrumentoSeleccionado = ""
-            }
-        }
-        
-        catch (SQLException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-        
-        return instrumentoSeleccionado;
-    }
     
-    public Cliente clienteSeleccionado(Cliente cli)
-    {
-        Conexion conexion = new Conexion();
-        Connection con = conexion.conectar();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        Cliente clienteSeleccionado = null;
-        
-        try
-        {
-            stmt = con.prepareStatement("SELECT * FROM Clientes WHERE Id = ?");
-            stmt.setInt(1, cli.getId());
-            ResultSet rs2 = stmt.executeQuery();
-            
-            if (rs2.next() == true)
-            {
-                rs2.first();
-                clienteSeleccionado = new Cliente (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Apellido1"), rs.getString("Apellido2"));
-            }
-        }
-        
-        catch (SQLException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-        
-        return clienteSeleccionado;
-    }
 }

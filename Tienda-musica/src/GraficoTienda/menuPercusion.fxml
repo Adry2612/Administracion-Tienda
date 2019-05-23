@@ -47,9 +47,9 @@
                   <Font name="Calibri Light" size="22.0" />
                </font>
             </Label>
-            <Button layoutX="51.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="97.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="MODIFICAR" />
-            <Button layoutX="172.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
-            <Button layoutX="299.0" layoutY="362.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
+            <Button fx:id="b_modificar" layoutX="51.0" layoutY="362.0" mnemonicParsing="false" onAction="#modificarInstrumento" prefHeight="49.0" prefWidth="97.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="MODIFICAR" />
+            <Button fx:id="b_anadir" layoutX="172.0" layoutY="362.0" mnemonicParsing="false" onAction="#anadirInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="AÑADIR" />
+            <Button fx:id="b_borrar" layoutX="299.0" layoutY="362.0" mnemonicParsing="false" onAction="#borrarInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
             <TextField fx:id="tf_piezas" layoutX="244.0" layoutY="253.0" prefHeight="25.0" prefWidth="149.0" />
             <Label layoutX="112.0" layoutY="253.0" prefHeight="26.0" prefWidth="72.0" text="PIEZAS" textFill="#bcbcbc">
                <font>

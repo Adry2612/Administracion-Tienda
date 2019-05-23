@@ -47,7 +47,6 @@ public class Viento extends Instrumento {
         this.modoExcitacion = modoExcitacion;
     }
     
-    @Override
     public void rellenarTabla (ObservableList <Instrumento> ol_percusion)
     {
         Conexion conexion = new Conexion();

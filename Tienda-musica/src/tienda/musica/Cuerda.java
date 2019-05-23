@@ -44,7 +44,7 @@ public class Cuerda extends Instrumento{
         this.tipoPuente = tipoPuente;
     }
     
-    public void rellenarTabla (ObservableList <Cuerda> ol_cuerda)
+    static public void rellenarTabla (ObservableList <Cuerda> ol_cuerda)
     {
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();

@@ -27,16 +27,15 @@ import tienda.musica.Trabajador;
  */
 public class MenuController implements Initializable {
 
+    @FXML
     private Button b_clientes;
     private ObservableList <Trabajador> tvEmpleados;
     @FXML
-    private Button b_todos;
+    private Button b_empleado;
     @FXML
-    private Button b_cuerda;
+    private Button b_ventas;
     @FXML
-    private Button b_percusion;
-    @FXML
-    private Button b_viento;
+    private Button b_instrumentos;
 
     /**
      * Initializes the controller class.
@@ -48,6 +47,7 @@ public class MenuController implements Initializable {
         
     }    
 
+    @FXML
     private void ventanaClientes(ActionEvent event) {
         try
         {
@@ -67,6 +67,7 @@ public class MenuController implements Initializable {
         }
     }
 
+    @FXML
     private void ventanaEmpleados(ActionEvent event) {
         try
         {
@@ -86,23 +87,7 @@ public class MenuController implements Initializable {
         }
     }
 
-    private void ventanaAlquileres(ActionEvent event) {
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menuAlquileres.fxml"));
-            Parent root1 = (Parent)fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene (root1));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-        }
-        
-        catch (Exception ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-    }
-
+    @FXML
     private void ventanaVentas(ActionEvent event) {
         try
         {
@@ -120,6 +105,7 @@ public class MenuController implements Initializable {
         }
     }
 
+    @FXML
     private void ventanaInstrumentos(ActionEvent event) {
         try
         {
@@ -133,7 +119,7 @@ public class MenuController implements Initializable {
         
         catch (Exception ex)
         {
-            System.out.println(ex.getMessage());
+            System.out.println(ex);
         }
     }
     

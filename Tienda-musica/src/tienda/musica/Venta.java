@@ -90,33 +90,33 @@ public class Venta {
                 int instrumento = rs.getInt("Instrumento");
                 int cliente = rs.getInt("Cliente");
                 
-                PreparedStatement stmt2 = con.prepareStatement("SELECT * FROM Cliente WHERE Id = ?;");
+                PreparedStatement stmt2 = con.prepareStatement("SELECT * FROM Clientes WHERE Id = ?;");
                 stmt2.setInt(1, cliente);
-                ResultSet rs2 = stmt.executeQuery();
+                ResultSet rs2 = stmt2.executeQuery();
                 rs2.next();
                 Cliente cli = new Cliente (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Apellido1"), rs2.getString("Apellido2"));
                 
                 stmt2 = con.prepareStatement("SELECT * FROM Cuerda;");
-                rs2 = stmt.executeQuery();
+                rs2 = stmt2.executeQuery();
             
-                    while (rs.next())                
+                    while (rs2.next())                
 
                     {
                         ins = new Cuerda (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Fabricante"), rs2.getDouble("Precio"), rs2.getInt("CalibreCuerda"), rs2.getString("TipoPuente"));
                     }
 
-                    stmt = con.prepareStatement ("SELECT * FROM Viento;");
-                    rs2 = stmt.executeQuery();
+                    stmt2 = con.prepareStatement ("SELECT * FROM Viento;");
+                    rs2 = stmt2.executeQuery();
 
-                    while (rs.next())
+                    while (rs2.next())
                     {
                         ins = new Viento (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Fabricante"), rs2.getDouble("Precio"), rs2.getString("ModoExcitacion"), rs2.getString("TipoBoquilla")); 
                     }
 
-                    stmt = con.prepareStatement ("SELECT * FROM Percusion;");
-                    rs2 = stmt.executeQuery();
+                    stmt2 = con.prepareStatement ("SELECT * FROM Percusion;");
+                    rs2 = stmt2.executeQuery();
 
-                    while (rs.next())
+                    while (rs2.next())
                     {
                        ins = new Percusion (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Fabricante"), rs2.getDouble("Precio"), rs2.getString("MaterialMembrana"), rs2.getInt("NoPiezas")); 
                     }

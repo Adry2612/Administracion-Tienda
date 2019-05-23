@@ -47,7 +47,6 @@ public class Percusion extends Instrumento{
         this.numPiezas = numPiezas;
     }
     
-    @Override
     public void rellenarTabla (ObservableList <Instrumento> ol_percusion)
     {
         Conexion conexion = new Conexion();

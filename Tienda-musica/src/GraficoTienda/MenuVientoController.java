@@ -56,6 +56,8 @@ public class MenuVientoController implements Initializable {
     private TableColumn<?, ?> col_boquilla;
     @FXML
     private TableColumn<?, ?> col_descrip;
+    @FXML
+    private Button b_volver;
 
     /**
      * Initializes the controller class.
@@ -79,6 +81,10 @@ public class MenuVientoController implements Initializable {
 
     @FXML
     private void eliminarInstrumento(ActionEvent event) {
+    }
+
+    @FXML
+    private void volver(ActionEvent event) {
     }
     
 }

@@ -61,12 +61,7 @@ public class Instrumento {
         this.marca = marca;
         this.precio = precio;
     }
-    
-    public void rellenarTabla (ObservableList <Instrumento> ol_instrumentos)
-    {
-        
-    }
-    
+
     @Override
     public String toString()
     {

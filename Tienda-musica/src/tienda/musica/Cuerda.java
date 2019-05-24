@@ -58,7 +58,7 @@ public class Cuerda extends Instrumento{
             
             while (rs.next())
             {
-                ol_cuerda.add (new Cuerda (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Marca"), rs.getDouble("Precio"), rs.getInt("CalibreCuerda"), rs.getString("TipoPuente")));
+                ol_cuerda.add (new Cuerda (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getInt("CalibreCuerda"), rs.getString("TipoPuente")));
             }
         }
         

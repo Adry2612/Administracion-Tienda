@@ -73,10 +73,10 @@
          <columns>
             <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
-            <TableColumn fx:id="col_apellido1" text="MARCA" />
-            <TableColumn fx:id="col_apellido2" prefWidth="79.0" text="CALIBRE CUERDA" />
-            <TableColumn fx:id="col_valoracion" prefWidth="107.0" text="TIPO DE PUENTE" />
-            <TableColumn fx:id="col_descrip" prefWidth="174.0" text="PRECIO" />
+            <TableColumn fx:id="col_marca" text="MARCA" />
+            <TableColumn fx:id="col_calibre" prefWidth="109.0" text="CALIBRE CUERDA" />
+            <TableColumn fx:id="col_puente" prefWidth="135.0" text="TIPO DE PUENTE" />
+            <TableColumn fx:id="col_precio" prefWidth="116.0" text="PRECIO" />
          </columns>
       </TableView>
    </children>

@@ -47,7 +47,7 @@ public class Viento extends Instrumento {
         this.modoExcitacion = modoExcitacion;
     }
     
-    public void rellenarTabla (ObservableList <Instrumento> ol_percusion)
+    static public void rellenarTabla (ObservableList <Viento> ol_viento)
     {
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();
@@ -61,7 +61,7 @@ public class Viento extends Instrumento {
             
             while (rs.next())
             {
-                ol_percusion.add (new Viento (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Marca"), rs.getDouble("Precio"), rs.getString("TipoBoquilla"), rs.getString("ModoExcitacion")));
+                ol_viento.add (new Viento (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("TipoBoquilla"), rs.getString("ModoExcitacion")));
             }
         }
         

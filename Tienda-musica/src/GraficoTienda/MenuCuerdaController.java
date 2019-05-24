@@ -63,9 +63,13 @@ public class MenuCuerdaController implements Initializable {
     private TableColumn<Cuerda, Integer> col_id;
     @FXML
     private TableColumn<Cuerda, String> col_nombre;
+    @FXML
     private TableColumn<Cuerda, String> col_marca;
+    @FXML
     private TableColumn<Cuerda, String> col_puente;
+    @FXML
     private TableColumn<Cuerda, Integer> col_calibre;
+    @FXML
     private TableColumn<Cuerda, Double> col_precio;
     private ObservableList <Cuerda> ol_cuerda;
 
@@ -156,6 +160,17 @@ public class MenuCuerdaController implements Initializable {
         tf_precio.setText(null);
     }
     
+    public void vaciaCampos()
+    {
+        String idMax = Integer.toString(idMaximo());
+        tf_id.setText(idMax);
+        tf_nombre.setText(null);
+        tf_marca.setText(null);
+        tf_calibre.setText(null);
+        tf_puente.setText(null);
+        tf_precio.setText(null);
+    }
+    
     @FXML
     private void modificarInstrumento(ActionEvent event) 
     {
@@ -185,7 +200,7 @@ public class MenuCuerdaController implements Initializable {
         
         try
         {
-            stmt = con.prepareStatement("UPDATE Cuerda SET Nombre = ?,  = ?, Fabricante = ?, CalibreCuerda = ?, TipoPuente = ?, Precio = ? WHERE Id = ?");
+            stmt = con.prepareStatement("UPDATE Cuerda SET Nombre = ?, Fabricante = ?, CalibreCuerda = ?, TipoPuente = ?, Precio = ? WHERE Id = ?");
             stmt.setString(1, nombre);
             stmt.setString(2, marca);
             stmt.setInt(3, calibre);
@@ -239,19 +254,20 @@ public class MenuCuerdaController implements Initializable {
             Integer calibre = Integer.parseInt(tf_calibre.getText());
             String puente = tf_puente.getText();
             double precio = Double.valueOf(tf_precio.getText());
-            stmt = con.prepareStatement("INSERT INTO Instrumento (Id, TipoInstrumento) VALUES (?, 1)");
+            stmt = con.prepareStatement("INSERT INTO Instrumentos (Id, TipoInstrumento) VALUES (?, 1)");
             stmt.setInt(1, id);
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
             
-            stmt = con.prepareStatement("INSERT INTO Cuerda (Id, Nombre, Apellido1, Apellido2) VALUES (?, ?, ?, ?)");
-            stmt.setString(1, nombre);
-            stmt.setString(2, marca);
-            stmt.setInt(3, calibre);
-            stmt.setString(4, puente);
-            stmt.setDouble(5, precio);
-            stmt.setInt(6, Integer.parseInt(tf_id.getText()));
-            stmt.executeQuery();
+            stmt = con.prepareStatement("INSERT INTO Cuerda (Id, Nombre, Fabricante, CalibreCuerda, TipoPuente, Precio) VALUES (?, ?, ?, ?, ?, ?);");
+            stmt.setInt(1, id);
+            stmt.setString(2, nombre);
+            stmt.setString(3, marca);
+            stmt.setInt(4, calibre);
+            stmt.setString(5, puente);
+            stmt.setDouble(6, precio);
+            stmt.executeUpdate();
             actualizarTableView();
+            vaciaCampos();
         }
         
         catch(SQLException ex)
@@ -298,10 +314,11 @@ public class MenuCuerdaController implements Initializable {
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 
-                stmt = con.prepareStatement("DELETE FROM Instrumento WHERE Id = ?");
+                stmt = con.prepareStatement("DELETE FROM Instrumentos WHERE Id = ?");
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 actualizarTableView();
+                vaciaCampos();
             }
 
             else
@@ -348,7 +365,7 @@ public class MenuCuerdaController implements Initializable {
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
-            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Instrumento");
+            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Instrumentos");
             rs = stmt.executeQuery();
             rs.next();
             

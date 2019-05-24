@@ -61,7 +61,7 @@ public class Percusion extends Instrumento{
             
             while (rs.next())
             {
-                ol_percusion.add (new Percusion (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Marca"), rs.getDouble("Precio"), rs.getString("MaterialMembrana"), rs.getInt("NoPiezas")));
+                ol_percusion.add (new Percusion (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("MaterialMembrana"), rs.getInt("NoPiezas")));
             }
         }
         

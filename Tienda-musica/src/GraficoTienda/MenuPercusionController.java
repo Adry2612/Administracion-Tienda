@@ -94,6 +94,7 @@ public class MenuPercusionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         ol_percusion = FXCollections.observableArrayList(); 
         Percusion.rellenarTabla(ol_percusion);
         tv_percusion.setItems(ol_percusion);
@@ -142,7 +143,7 @@ public class MenuPercusionController implements Initializable {
         col_id.setCellValueFactory(new PropertyValueFactory <Percusion, Integer>("id"));
         col_nombre.setCellValueFactory(new PropertyValueFactory <Percusion, String>("nombre"));
         col_marca.setCellValueFactory(new PropertyValueFactory <Percusion, String>("marca"));
-        col_membrana.setCellValueFactory(new PropertyValueFactory <Percusion, String>("tipoMembrana"));
+        col_membrana.setCellValueFactory(new PropertyValueFactory <Percusion, String>("materialMembrana"));
         col_piezas.setCellValueFactory(new PropertyValueFactory <Percusion, Integer>("numPiezas"));
         col_precio.setCellValueFactory(new PropertyValueFactory <Percusion, Double>("precio"));
     }
@@ -188,7 +189,7 @@ public class MenuPercusionController implements Initializable {
         
         try
         {
-            stmt = con.prepareStatement("UPDATE Percusion SET Nombre = ?,  = ?, Fabricante = ?, MaterialMembrana = ?, NoPiezas = ?, Precio = ? WHERE Id = ?");
+            stmt = con.prepareStatement("UPDATE Percusion SET Nombre = ?, Fabricante = ?, MaterialMembrana = ?, NoPiezas = ?, Precio = ? WHERE Id = ?");
             stmt.setString(1, nombre);
             stmt.setString(2, marca);
             stmt.setString(3, membrana);
@@ -237,15 +238,16 @@ public class MenuPercusionController implements Initializable {
         {
             Integer id = idMaximo();
             tf_id.setEditable(false);
+            tf_id.setText(Integer.toString(id));
             String nombre = tf_nombre.getText();
             String marca = tf_marca.getText();
             Integer piezas = Integer.parseInt(tf_piezas.getText());
             String membrana = tf_membrana.getText();
             double precio = Double.valueOf(tf_precio.getText());
             
-            stmt = con.prepareStatement("INSERT INTO Instrumento (Id, TipoInstrumento) VALUES (?, 3)");
+            stmt = con.prepareStatement("INSERT INTO Instrumentos (Id, TipoInstrumento) VALUES (?, 3)");
             stmt.setInt(1, id);
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
             
             stmt = con.prepareStatement("INSERT INTO Percusion (Id, Nombre, Fabricante, MaterialMembrana, NoPiezas, Precio) VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setInt(1, id);
@@ -255,8 +257,9 @@ public class MenuPercusionController implements Initializable {
             stmt.setInt(5, piezas);
             stmt.setDouble(6, precio);
             
-            stmt.executeQuery();
+            stmt.executeUpdate();
             actualizarTableView();
+            vaciaCampos();
         }
         
         catch(SQLException ex)
@@ -303,10 +306,11 @@ public class MenuPercusionController implements Initializable {
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 
-                stmt = con.prepareStatement("DELETE FROM Instrumento WHERE Id = ?");
+                stmt = con.prepareStatement("DELETE FROM Instrumentos WHERE Id = ?");
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 actualizarTableView();
+                vaciaCampos();
             }
 
             else
@@ -353,7 +357,7 @@ public class MenuPercusionController implements Initializable {
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
-            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Instrumento");
+            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Instrumentos");
             rs = stmt.executeQuery();
             rs.next();
             
@@ -382,6 +386,17 @@ public class MenuPercusionController implements Initializable {
         b_volver.setVisible(false);
         b_actualizar.setDisable(true);
         b_actualizar.setVisible(false);
+    }
+    
+    public void vaciaCampos()
+    {
+        String idMax = Integer.toString(idMaximo());
+        tf_id.setText(idMax);
+        tf_nombre.setText(null);
+        tf_marca.setText(null);
+        tf_membrana.setText(null);
+        tf_piezas.setText(null);
+        tf_precio.setText(null);
     }
     
 }

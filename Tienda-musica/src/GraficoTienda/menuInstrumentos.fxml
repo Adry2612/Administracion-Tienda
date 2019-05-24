@@ -16,19 +16,13 @@
             <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="330.0" layoutY="45.0" opacity="0.6" text="MENÚ PRINCIPAL" textFill="#b9b939">
+      <Label layoutX="330.0" layoutY="45.0" opacity="0.6" text="INSTRUMENTOS" textFill="#b9b939">
          <font>
             <Font name="Calibri Bold" size="39.0" />
          </font>
       </Label>
-      <Button fx:id="b_todos" layoutX="86.0" layoutY="178.0" mnemonicParsing="false" onAction="#ventanaTodos" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
-      <Button fx:id="b_cuerda" layoutX="279.0" layoutY="180.0" mnemonicParsing="false" onAction="#ventanaCuerda" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
-      <Label layoutX="134.0" layoutY="297.0" text="TODOS" textFill="#b9b9b9">
-         <font>
-            <Font name="Calibri" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="321.0" layoutY="297.0" text="CUERDA" textFill="#b9b9b9">
+      <Button fx:id="b_cuerda" layoutX="149.0" layoutY="177.0" mnemonicParsing="false" onAction="#ventanaCuerda" opacity="0.95" prefHeight="160.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Label layoutX="191.0" layoutY="297.0" text="CUERDA" textFill="#b9b9b9">
          <font>
             <Font name="Calibri" size="21.0" />
          </font>
@@ -39,11 +33,30 @@
             <Font name="Calibri" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="b_viento" layoutX="490.0" layoutY="177.0" mnemonicParsing="false" onAction="#ventanaViento" opacity="0.95" prefHeight="162.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
-      <Label layoutX="535.0" layoutY="298.0" text="VIENTO" textFill="#b9b9b9">
+      <Button fx:id="b_viento" layoutX="412.0" layoutY="176.0" mnemonicParsing="false" onAction="#ventanaViento" opacity="0.95" prefHeight="162.0" prefWidth="156.0" styleClass="boton" stylesheets="@menu.css" />
+      <Label layoutX="457.0" layoutY="298.0" text="VIENTO" textFill="#b9b9b9">
          <font>
             <Font name="Calibri" size="21.0" />
          </font>
       </Label>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="943.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

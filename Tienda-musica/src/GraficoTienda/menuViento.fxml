@@ -24,7 +24,7 @@
                </font>
             </Label>
             <TextField fx:id="tf_id" layoutX="244.0" layoutY="95.0" />
-            <Label layoutX="123.0" layoutY="95.0" prefHeight="26.0" prefWidth="34.0" text="ID" textFill="#bcbcbc">
+            <Label layoutX="148.0" layoutY="95.0" prefHeight="26.0" prefWidth="24.0" text="ID" textFill="#bcbcbc">
                <font>
                   <Font name="Calibri Light" size="22.0" />
                </font>
@@ -66,18 +66,17 @@
             <Button fx:id="b_vaciar" layoutX="275.0" layoutY="362.0" mnemonicParsing="false" onAction="#vaciarFormulario" prefHeight="49.0" prefWidth="126.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="VACIAR FORMULARIO" visible="false" />
             <Button fx:id="b_agregar" disable="true" layoutX="48.0" layoutY="362.0" mnemonicParsing="false" onAction="#agregarInstrumento" prefHeight="49.0" prefWidth="149.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="AGREGAR INSTRUMENTO" visible="false" />
             <Button fx:id="b_eliminar" disable="true" layoutX="48.0" layoutY="362.0" mnemonicParsing="false" onAction="#eliminarInstrumento" prefHeight="49.0" prefWidth="149.0" styleClass="botones" stylesheets="@estiloTrabajadores.css" text="ELIMINAR INSTRUMENTO" visible="false" />
-            <Button fx:id="b_volver" disable="true" layoutX="27.0" layoutY="71.0" mnemonicParsing="false" onAction="#volver" prefHeight="49.0" prefWidth="49.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VOLVER" />
-            <Button fx:id="b_borrar1" layoutX="309.0" layoutY="372.0" mnemonicParsing="false" onAction="#borrarInstrumento" prefHeight="49.0" prefWidth="103.0" styleClass="botones" stylesheets="@estiloClientes.css" text="BORRAR" />
+            <Button fx:id="b_volver" disable="true" layoutX="27.0" layoutY="71.0" mnemonicParsing="false" onAction="#volver" prefHeight="49.0" prefWidth="49.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VOLVER" visible="false" />
          </children>
       </AnchorPane>
       <TableView fx:id="tv_viento" layoutX="512.0" layoutY="79.0" prefHeight="476.0" prefWidth="591.0" styleClass="fondoTabla">
          <columns>
             <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
-            <TableColumn fx:id="col_apellido1" text="MARCA" />
+            <TableColumn fx:id="col_marca" text="MARCA" />
             <TableColumn fx:id="col_excitacion" prefWidth="132.0" text="MODO EXCITACIÓN" />
             <TableColumn fx:id="col_boquilla" prefWidth="108.0" text="BOQUILLA" />
-            <TableColumn fx:id="col_descrip" prefWidth="120.0" text="PRECIO" />
+            <TableColumn fx:id="col_precio" prefWidth="120.0" text="PRECIO" />
          </columns>
       </TableView>
    </children>

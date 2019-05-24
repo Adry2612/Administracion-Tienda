@@ -71,12 +71,15 @@ public class MenuVientoController implements Initializable {
     private TableColumn<Viento, Double> col_precio;
     @FXML
     private Button b_volver;
+    @FXML
+    private Button b_modificar;
+    @FXML
+    private Button b_anadir;
+    @FXML
+    private Button b_borrar;
     private ObservableList <Viento> ol_viento;
-
-    /**
-     * Initializes the controller class.
-     */
-       private final ListChangeListener <Viento> selectorInstrumento= new ListChangeListener <Viento>()
+    
+    private final ListChangeListener <Viento> selectorInstrumento = new ListChangeListener <Viento>()
     {
         @Override
         public void onChanged (ListChangeListener.Change<? extends Viento> c)
@@ -85,20 +88,13 @@ public class MenuVientoController implements Initializable {
         }
     };
        
-    @FXML
-    private Button b_modificar;
-    @FXML
-    private Button b_anadir;
-    @FXML
-    private Button b_borrar;
-    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ol_viento = FXCollections.observableArrayList(); 
-        Percusion.rellenarTabla(ol_viento);
+        Viento.rellenarTabla(ol_viento);
         tv_viento.setItems(ol_viento);
         asociarValores(); 
         
@@ -113,16 +109,26 @@ public class MenuVientoController implements Initializable {
         
         if (viento != null)
         {
-            String idCliente = Integer.toString(viento.getId());
-            String precio = Integer.toString(viento.getPrecio());
-            
-            tf_id.setText(idCliente);
+            String idInstrumento = Integer.toString(viento.getId());
+            String precio = Double.toString(viento.getPrecio());
+            tf_id.setText(idInstrumento);
             tf_nombre.setText(viento.getNombre());
             tf_marca.setText(viento.getMarca());
             tf_excitacion.setText(viento.getModoExcitacion());
             tf_boquilla.setText(viento.getTipoBoquilla());
         }   
     } 
+    
+    public void vaciaCampos()
+    {
+        String idMax = Integer.toString(idMaximo());
+        tf_id.setText(idMax);
+        tf_nombre.setText(null);
+        tf_marca.setText(null);
+        tf_boquilla.setText(null);
+        tf_excitacion.setText(null);
+        tf_precio.setText(null);
+    }
     
     public Viento obtenerTabla()
     {
@@ -145,8 +151,8 @@ public class MenuVientoController implements Initializable {
         col_id.setCellValueFactory(new PropertyValueFactory <Viento, Integer>("id"));
         col_nombre.setCellValueFactory(new PropertyValueFactory <Viento, String>("nombre"));
         col_marca.setCellValueFactory(new PropertyValueFactory <Viento, String>("marca"));
-        col_excitacion.setCellValueFactory(new PropertyValueFactory <Viento, String>("calibreCuerda"));
-        col_boquilla.setCellValueFactory(new PropertyValueFactory <Viento, String>("tipoPuente"));
+        col_excitacion.setCellValueFactory(new PropertyValueFactory <Viento, String>("modoExcitacion"));
+        col_boquilla.setCellValueFactory(new PropertyValueFactory <Viento, String>("tipoBoquilla"));
         col_precio.setCellValueFactory(new PropertyValueFactory <Viento, Double>("precio"));
     }
     
@@ -185,21 +191,22 @@ public class MenuVientoController implements Initializable {
         tf_id.setEditable(false);
         String nombre = tf_nombre.getText();
         String marca = tf_marca.getText();
-        Integer calibre = Integer.parseInt(tf_calibre.getText());
-        String puente = tf_puente.getText();
+        String excitacion = tf_excitacion.getText();
+        String boquilla = tf_boquilla.getText();
         double precio = Double.valueOf(tf_precio.getText());
         
         try
         {
-            stmt = con.prepareStatement("UPDATE Cuerda SET Nombre = ?,  = ?, Fabricante = ?, CalibreCuerda = ?, TipoPuente = ?, Precio = ? WHERE Id = ?");
+            stmt = con.prepareStatement("UPDATE Viento SET Nombre = ?, Fabricante = ?, ModoExcitacion = ?, TipoBoquilla = ?, Precio = ? WHERE Id = ?");
             stmt.setString(1, nombre);
             stmt.setString(2, marca);
-            stmt.setInt(3, calibre);
-            stmt.setString(4, puente);
+            stmt.setString(3, excitacion);
+            stmt.setString(4, boquilla);
             stmt.setDouble(5, precio);
             stmt.setInt(6, Integer.parseInt(tf_id.getText()));
             stmt.executeUpdate();
             actualizarTableView();
+            vaciaCampos();
         }
         
         catch (SQLException ex)
@@ -223,8 +230,8 @@ public class MenuVientoController implements Initializable {
         tf_id.setText(idMax);
         tf_nombre.setText(null);
         tf_marca.setText(null);
-        tf_calibre.setText(null);
-        tf_puente.setText(null);
+        tf_boquilla.setText(null);
+        tf_excitacion.setText(null);
         tf_precio.setText(null);
     }
 
@@ -242,22 +249,24 @@ public class MenuVientoController implements Initializable {
             Integer id = idMaximo();
             String nombre = tf_nombre.getText();
             String marca = tf_marca.getText();
-            Integer calibre = Integer.parseInt(tf_calibre.getText());
-            String puente = tf_puente.getText();
+            String excitacion = tf_excitacion.getText();
+            String boquilla = tf_boquilla.getText();
             double precio = Double.valueOf(tf_precio.getText());
-            stmt = con.prepareStatement("INSERT INTO Instrumento (Id, TipoInstrumento) VALUES (?, 1)");
-            stmt.setInt(1, id);
-            rs = stmt.executeQuery();
             
-            stmt = con.prepareStatement("INSERT INTO Cuerda (Id, Nombre, Apellido1, Apellido2) VALUES (?, ?, ?, ?)");
-            stmt.setString(1, nombre);
-            stmt.setString(2, marca);
-            stmt.setInt(3, calibre);
-            stmt.setString(4, puente);
-            stmt.setDouble(5, precio);
-            stmt.setInt(6, Integer.parseInt(tf_id.getText()));
-            stmt.executeQuery();
+            stmt = con.prepareStatement("INSERT INTO Instrumentos (Id, TipoInstrumento) VALUES (?, 2)");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            
+            stmt = con.prepareStatement("INSERT INTO Viento (Id, Nombre, Fabricante, ModoExcitacion, TipoBoquilla, Precio) VALUES (?, ?, ?, ?, ?, ?);");
+            stmt.setInt(1, id);
+            stmt.setString(2, nombre);
+            stmt.setString(3, marca);
+            stmt.setString(4, excitacion);
+            stmt.setString(5, boquilla);
+            stmt.setDouble(6, precio);
+            stmt.executeUpdate();
             actualizarTableView();
+            vaciaCampos();
         }
         
         catch(SQLException ex)
@@ -300,11 +309,11 @@ public class MenuVientoController implements Initializable {
             {
                 System.out.println("Operación realizada.");
                 
-                stmt = con.prepareStatement("DELETE FROM Cuerda WHERE Id = ?");
+                stmt = con.prepareStatement("DELETE FROM Viento WHERE Id = ?");
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 
-                stmt = con.prepareStatement("DELETE FROM Instrumento WHERE Id = ?");
+                stmt = con.prepareStatement("DELETE FROM Instrumentos WHERE Id = ?");
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 actualizarTableView();
@@ -338,9 +347,9 @@ public class MenuVientoController implements Initializable {
     
     public void actualizarTableView()
     {
-        ol_cuerda = FXCollections.observableArrayList(); 
-        Cuerda.rellenarTabla(ol_cuerda);
-        tv_cuerda.setItems(ol_cuerda);
+        ol_viento = FXCollections.observableArrayList(); 
+        Viento.rellenarTabla(ol_viento);
+        tv_viento.setItems(ol_viento);
         asociarValores();
     }
     
@@ -354,7 +363,7 @@ public class MenuVientoController implements Initializable {
             PreparedStatement stmt = null;
             ResultSet rs = null;
 
-            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Instrumento");
+            stmt = con.prepareStatement ("SELECT MAX(Id) FROM Instrumentos");
             rs = stmt.executeQuery();
             rs.next();
             

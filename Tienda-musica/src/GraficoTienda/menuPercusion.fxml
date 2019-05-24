@@ -73,10 +73,10 @@
          <columns>
             <TableColumn fx:id="col_id" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
-            <TableColumn fx:id="col_apellido1" text="MARCA" />
+            <TableColumn fx:id="col_marca" text="MARCA" />
             <TableColumn fx:id="col_membrana" prefWidth="148.0" text="MATERIAL MEMBRANA" />
             <TableColumn fx:id="col_piezas" prefWidth="98.0" text="Nº PIEZAS" />
-            <TableColumn fx:id="col_descrip" prefWidth="114.0" text="PRECIO" />
+            <TableColumn fx:id="col_precio" prefWidth="114.0" text="PRECIO" />
          </columns>
       </TableView>
    </children>

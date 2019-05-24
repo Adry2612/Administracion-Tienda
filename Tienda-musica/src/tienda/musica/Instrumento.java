@@ -65,7 +65,7 @@ public class Instrumento {
     @Override
     public String toString()
     {
-        return nombre;
+        return this.nombre;
     }
     public String info()
     {

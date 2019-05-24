@@ -1,0 +1,18 @@
+ID: 2
+Nombre: MX222BX Standard 
+Marca: Millenium
+Precio: 238.0
+Material membrana: Plastico
+Número de piezas: 5
+ID: 4
+Nombre: Journeyman Double Down
+Marca: DDrum
+Precio: 579.0
+Material membrana: Parche
+Número de piezas: 7
+ID: 5
+Nombre: EXX725BR/C
+Marca: Pearl
+Precio: 739.0
+Material membrana: Plastico
+Número de piezas: 5

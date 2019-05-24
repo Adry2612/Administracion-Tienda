@@ -81,7 +81,12 @@ public class LoginController implements Initializable {
               
         }
         
-        catch (Exception ex)
+        catch (NumberFormatException ex)
+        {
+            errorContrasena();
+        }
+        
+        catch (SQLException ex2)
         {
             errorConexion();
         }
@@ -97,7 +102,7 @@ public class LoginController implements Initializable {
             
             catch (SQLException ex)
             {
-                System.out.println(ex.getMessage());
+                errorConexion();
             }
         }
     }
@@ -111,6 +116,8 @@ public class LoginController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Menu Principal");
             stage.show();
             Stage stage2 = (Stage)but_inicioSesion.getScene().getWindow();
             stage2.close();
@@ -126,7 +133,7 @@ public class LoginController implements Initializable {
         Alert alert = new Alert (Alert.AlertType.ERROR);
         alert.setTitle("INFORMACIÓN");
         alert.setHeaderText(null);
-        alert.setContentText("La contraseña que ha introducido es erronea. Vuelve a intentarlo.");
+        alert.setContentText("Alguno de los parametros instroducidos no es valido. Vuelve a intentarlo.");
         alert.showAndWait();
     }
     

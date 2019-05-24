@@ -5,6 +5,9 @@
  */
 package GraficoTienda;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,14 +21,21 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import tienda.musica.*;
 
 /**
@@ -87,6 +97,14 @@ public class MenuVientoController implements Initializable {
             escribirInstrumentoSel();
         }
     };
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private MenuItem mi_menyPrincipal;
+    @FXML
+    private MenuItem mi_cerrarSesion;
+    @FXML
+    private MenuItem mi_lista;
        
     /**
      * Initializes the controller class.
@@ -100,6 +118,7 @@ public class MenuVientoController implements Initializable {
         
         ol_viento = tv_viento.getSelectionModel().getSelectedItems();
         ol_viento.addListener(selectorInstrumento);
+        
     }    
     
     public void escribirInstrumentoSel(){
@@ -116,6 +135,7 @@ public class MenuVientoController implements Initializable {
             tf_marca.setText(viento.getMarca());
             tf_excitacion.setText(viento.getModoExcitacion());
             tf_boquilla.setText(viento.getTipoBoquilla());
+            tf_precio.setText(precio);
         }   
     } 
     
@@ -211,7 +231,22 @@ public class MenuVientoController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
     }
 
@@ -271,7 +306,22 @@ public class MenuVientoController implements Initializable {
         
         catch(SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
                 
     }
@@ -325,9 +375,24 @@ public class MenuVientoController implements Initializable {
             }
         }
         
-        catch (Exception ex)
+        catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
     }
     
@@ -356,13 +421,13 @@ public class MenuVientoController implements Initializable {
     public Integer idMaximo()
     {
         Integer idMax = null;
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
         try
         {
-            Conexion conexion = new Conexion();
-            Connection con = conexion.conectar();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-
             stmt = con.prepareStatement ("SELECT MAX(Id) FROM Instrumentos");
             rs = stmt.executeQuery();
             rs.next();
@@ -372,7 +437,22 @@ public class MenuVientoController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
         
         return idMax;
@@ -392,5 +472,133 @@ public class MenuVientoController implements Initializable {
         b_volver.setVisible(false);
         b_actualizar.setDisable(true);
         b_actualizar.setVisible(false);
+    }
+    
+    public void errorConexion()
+    {
+        Alert alert = new Alert (Alert.AlertType.INFORMATION);
+        alert.setTitle("INFORMACIÓN");
+        alert.setHeaderText(null);
+        alert.setContentText("Parece que ha habido un error de conexión con la base de datos. Intentalo de nuevo más tarde.");
+        alert.showAndWait();
+    } 
+
+    @FXML
+    private void volverMenuPrincipal(ActionEvent event) 
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+            Parent root1 = (Parent)fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Menu Principal");
+            stage.show();
+            Stage stage2 = (Stage)b_agregar.getScene().getWindow();
+            stage2.close();
+
+        }
+        catch(Exception ex)
+        {
+            ex.getMessage();
+        }
+    }
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) 
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root1 = (Parent)fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Login");
+            stage.show();
+            Stage stage2 = (Stage)b_agregar.getScene().getWindow();
+            stage2.close();
+
+        }
+        catch(IOException ex)
+        {
+            ex.getMessage();
+        }
+    }
+
+    @FXML
+    private void generarLista(ActionEvent event) 
+    {
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;       
+        ResultSet rs = null;
+        
+        File archivo = null;
+        FileWriter fw = null;
+        
+        try
+        {
+            archivo = new File ("listadoInstrumentosViento.txt");
+            
+            if (archivo.exists())
+            {
+                archivo.delete();
+            }
+                
+            stmt = con.prepareStatement("SELECT * FROM Viento;");
+            rs = stmt.executeQuery();
+            
+            while (rs.next())
+            {
+                try
+                {
+                    fw = new FileWriter(archivo, true);
+                    Viento v = new Viento (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("TipoBoquilla"), rs.getString("ModoExcitacion"));
+                    fw.write(v.info());
+                }
+                
+                catch (IOException ex)
+                {
+                    errorConexion();
+                }
+                
+                finally
+                {
+                    try
+                    {
+                        if (fw != null) fw.close();
+                    }
+
+                    catch (IOException ex)
+                    {
+                        errorConexion();
+                    }
+                }   
+            }
+        }
+        
+        catch (SQLException ex2)
+        {
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                conexion.desconectar(con);
+            }
+            
+            catch (SQLException ex2)
+            {
+                errorConexion();
+            }
+        }
     }
 }

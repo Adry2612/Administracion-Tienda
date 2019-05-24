@@ -70,13 +70,28 @@ public class Viento extends Instrumento {
             System.out.println(ex.getMessage());
         }
         
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+        
     }
     
     @Override
     public String info()
     {
         String info = super.info();
-        info += "Tipo de tubo: " +this.tipoBoquilla+ "\n"
+        info += "Tipo de boquilla: " +this.tipoBoquilla+ "\n"
                 + "Modo de excitación: " +this.modoExcitacion+ "\n";
         
         return info;

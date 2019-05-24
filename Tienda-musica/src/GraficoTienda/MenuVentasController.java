@@ -126,16 +126,18 @@ public class MenuVentasController implements Initializable {
         Integer posicionVenta = olVentas.indexOf(venta);
         
         try{
-        if (venta != null)
-        {
-            String idVenta = Integer.toString(venta.getId());
-            
-            tf_id.setText(idVenta);
-            cb_producto.setValue(venta.getInstrumento());
-            cb_cliente.setValue(venta.getCliente());
-            cb_fecha.setValue(venta.getFechaCompra().toLocalDate());
-            tf_precio.setText(String.valueOf(venta.getPrecio()));
-        }   
+            if (venta != null)
+            {
+                String idVenta = Integer.toString(venta.getId());
+
+                tf_id.setText(idVenta);
+                cb_producto.setValue(venta.getInstrumento());
+                cb_cliente.setValue(venta.getCliente());
+                cb_fecha.setValue(venta.getFechaCompra().toLocalDate());
+                tf_precio.setText(String.valueOf(venta.getPrecio()));
+
+
+            }   
         }
         catch (Exception ex)
         {
@@ -193,13 +195,16 @@ public class MenuVentasController implements Initializable {
             Instrumento ins = cb_producto.getValue();
             Cliente cli = cb_cliente.getValue();
             LocalDate fecha = cb_fecha.getValue();
+            Date fechaConv = Date.valueOf(fecha);
+            double precio = ins.getPrecio() + (ins.getPrecio()*0.21);
             
-            stmt = con.prepareStatement("INSERT INTO Venta (IdVenta, Instrumento, Cliente, FechaVenta, Precio) VALUES (?, ?, ?, ?);");
+            stmt = con.prepareStatement("INSERT INTO Venta (IdVenta, Instrumento, Cliente, FechaVenta, Precio) VALUES (?, ?, ?, ?, ?);");
             stmt.setInt(1, id);
             stmt.setInt(2, ins.getId());
             stmt.setInt(3, cli.getId());
-            //stmt.setDate(4, fecha);
-            //stmt.setDouble(5, precio);
+            stmt.setDate(4, fechaConv);
+            stmt.setDouble(5, precio);
+            stmt.executeUpdate();
             
             actualizarTableView();
             alertaInsercionCompletada();
@@ -207,7 +212,22 @@ public class MenuVentasController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
         
     }
@@ -257,7 +277,22 @@ public class MenuVentasController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
     }
 
@@ -285,13 +320,14 @@ public class MenuVentasController implements Initializable {
         Instrumento ins = cb_producto.getValue();
         Cliente cli = cb_cliente.getValue();
         LocalDate fecha = cb_fecha.getValue();
+        Date fechaConv = Date.valueOf(fecha);
 
         try
         {
             stmt = con.prepareStatement("UPDATE Venta SET Instrumento = ?, Cliente = ?, FechaVenta = ? WHERE IdVenta = ?;");
             stmt.setInt(1, ins.getId());
             stmt.setInt(2, cli.getId());
-            //stmt.setDate(3, fecha);
+            stmt.setDate(3, fechaConv);
             stmt.setInt(4, Integer.parseInt(tf_id.getText()));
             stmt.executeUpdate();
             actualizarTableView();
@@ -299,23 +335,22 @@ public class MenuVentasController implements Initializable {
         
         catch (Exception ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
         }
         
         finally
         {
             try
             {
-                if (rs!= null) rs.close();
+                if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
-                if (con != null) con.close();
+                if (con != null) con.close();  
             }
             
             catch (SQLException ex)
             {
-                System.out.println(ex.getMessage());
+                errorConexion();
             }
-                
         }
     }
 
@@ -370,13 +405,13 @@ public class MenuVentasController implements Initializable {
     public Integer idMaximo()
     {
         Integer idMax = null;
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
         try
         {
-            Conexion conexion = new Conexion();
-            Connection con = conexion.conectar();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-
             stmt = con.prepareStatement ("SELECT MAX(IdVenta) FROM Venta");
             rs = stmt.executeQuery();
             rs.next();
@@ -386,7 +421,22 @@ public class MenuVentasController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
         
         return idMax;
@@ -473,8 +523,8 @@ public class MenuVentasController implements Initializable {
             
             while (rs.next())
             {
-                Instrumento ins2 = new Viento (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("ModoExcitacion"), rs.getString("TipoBoquilla")); 
-                instrumento.add(ins2);
+                Instrumento ins1 = new Viento (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("ModoExcitacion"), rs.getString("TipoBoquilla")); 
+                instrumento.add(ins1);
             }
             
             stmt = con.prepareStatement ("SELECT * FROM Percusion;");
@@ -482,17 +532,32 @@ public class MenuVentasController implements Initializable {
             
             while (rs.next())
             {
-                Instrumento ins3 = new Percusion (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("MaterialMembrana"), rs.getInt("NoPiezas")); 
-                instrumento.add(ins3);
-            }
-            
-            cb_producto.setItems(instrumento);
+                Instrumento ins1 = new Percusion (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Fabricante"), rs.getDouble("Precio"), rs.getString("MaterialMembrana"), rs.getInt("NoPiezas")); 
+                instrumento.add(ins1);
+            }           
         }
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
-        }     
+           errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
+        }
+        
+        cb_producto.setItems(instrumento);
     }
     
     private void rellenarClientes()
@@ -517,11 +582,34 @@ public class MenuVentasController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
-        } 
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
+        }
         
         cb_cliente.setItems(cliente);
     }
     
+    public void errorConexion()
+    {
+        Alert alert = new Alert (Alert.AlertType.INFORMATION);
+        alert.setTitle("INFORMACIÓN");
+        alert.setHeaderText(null);
+        alert.setContentText("Parece que ha habido un error de conexión con la base de datos. Intentalo de nuevo más tarde.");
+        alert.showAndWait();
+    } 
     
 }

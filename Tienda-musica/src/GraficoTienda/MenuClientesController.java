@@ -24,6 +24,8 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -38,9 +40,13 @@ import tienda.musica.Conexion;
  */
 public class MenuClientesController implements Initializable {
 
+    @FXML
     private TextField text_id;
+    @FXML
     private TextField text_nombre;
+    @FXML
     private TextField text_apellido1;
+    @FXML
     private TextField text_apellido2;
     @FXML
     private TableColumn<Cliente, Integer> col_id;
@@ -48,6 +54,7 @@ public class MenuClientesController implements Initializable {
     private TableColumn<Cliente, String> col_nombre;
     @FXML
     private TableColumn<Cliente, String> col_apellido1;
+    @FXML
     private TableColumn<Cliente, String> col_apellido2;
     @FXML
     private TableColumn<Cliente, String> col_descrip;
@@ -61,9 +68,13 @@ public class MenuClientesController implements Initializable {
     private Button b_vaciar;
     @FXML
     private Button b_guardar;
+    @FXML
     private Button b_eliminar;
+    @FXML
     private Button b_guardarCambios;
+    @FXML
     private Button b_volver;
+    @FXML
     private TableView<Cliente> tablaClientes;
     private ObservableList <Cliente> tvClientes;
     
@@ -76,6 +87,16 @@ public class MenuClientesController implements Initializable {
             escribirClienteSel();
         }
     };
+    @FXML
+    private TableColumn<?, ?> col_valoracion;
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private MenuItem mi_menyPrincipal;
+    @FXML
+    private MenuItem mi_cerrarSesion;
+    @FXML
+    private MenuItem mi_lista;
 
     /**
      * Inicializa la clase controladora.
@@ -141,6 +162,7 @@ public class MenuClientesController implements Initializable {
     }
     
     //Modificar Clientes.
+    @FXML
     private void modificar(ActionEvent event) 
     {
         botonesPrinInvisibles();
@@ -152,6 +174,7 @@ public class MenuClientesController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    @FXML
     private void guardarCambiosActualizar(ActionEvent event) 
     {
         Conexion conexion = new Conexion();
@@ -163,7 +186,6 @@ public class MenuClientesController implements Initializable {
         String nombre = text_nombre.getText();
         String apellido1 = text_apellido1.getText();
         String apellido2 = text_apellido2.getText();
-        String descripcion = text_nombre.getText();
         
         try
         {
@@ -183,6 +205,7 @@ public class MenuClientesController implements Initializable {
     }
     
     //Eliminar Clientes.
+    @FXML
     private void eliminarCliente(ActionEvent event) 
     {
         botonesPrinInvisibles();
@@ -192,6 +215,7 @@ public class MenuClientesController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    @FXML
     private void guardarCambiosBorrar(ActionEvent event) 
     {
         Conexion conexion = new Conexion();
@@ -232,6 +256,7 @@ public class MenuClientesController implements Initializable {
     }
 
     //Añadir Clientes.
+    @FXML
     private void anadirCliente(ActionEvent event) 
     {
         botonesPrinInvisibles();
@@ -243,8 +268,6 @@ public class MenuClientesController implements Initializable {
         b_volver.setVisible(true);
         b_volver.setDisable(false);
         
-        
-        //if trabajador.administrador = true; else alert
         try
         {
             String idMax = Integer.toString(idMaximo());
@@ -260,6 +283,7 @@ public class MenuClientesController implements Initializable {
         }
     }
     
+    @FXML
     private void guardarCambiosModificar(ActionEvent event) 
     {
         Conexion conexion = new Conexion();
@@ -388,6 +412,7 @@ public class MenuClientesController implements Initializable {
         alert.showAndWait();
     }
 
+    @FXML
     private void volver(ActionEvent event) {
         botonesPrinVisibles();
         b_guardar.setVisible(false);
@@ -401,5 +426,6 @@ public class MenuClientesController implements Initializable {
         b_guardarCambios.setDisable(true);
         b_guardarCambios.setVisible(false);
     }
+
     
 }

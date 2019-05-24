@@ -49,7 +49,7 @@
             <Button fx:id="b_vaciar" disable="true" layoutX="252.0" layoutY="362.0" mnemonicParsing="false" onAction="#vaciarFormulario" prefHeight="49.0" prefWidth="164.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VACIAR FORMULARIO" visible="false" />
             <Button fx:id="b_eliminar" disable="true" layoutX="47.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosBorrar" prefHeight="49.0" prefWidth="97.0" styleClass="botones" text="ELIMINAR" visible="false" />
             <Button fx:id="b_guardarCambios" disable="true" layoutX="48.0" layoutY="362.0" mnemonicParsing="false" onAction="#guardarCambiosActualizar" prefHeight="49.0" prefWidth="139.0" styleClass="botones" text="GUARDAR CAMBIOS" visible="false" />
-            <Button fx:id="b_volver" disable="true" layoutX="28.0" layoutY="23.0" mnemonicParsing="false" onAction="#volver" prefHeight="49.0" prefWidth="49.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VOLVER" />
+            <Button fx:id="b_volver" disable="true" layoutX="28.0" layoutY="23.0" mnemonicParsing="false" onAction="#volver" prefHeight="49.0" prefWidth="49.0" styleClass="botones" stylesheets="@estiloClientes.css" text="VOLVER" visible="false" />
          </children>
       </AnchorPane>
       <TableView fx:id="tablaClientes" layoutX="512.0" layoutY="79.0" prefHeight="476.0" prefWidth="591.0" styleClass="fondoTabla">
@@ -58,30 +58,8 @@
           <TableColumn fx:id="col_nombre" prefWidth="75.0" text="NOMBRE" />
             <TableColumn fx:id="col_apellido1" text="APELLIDO 1" />
             <TableColumn fx:id="col_apellido2" prefWidth="79.0" text="APELLIDO 2" />
-            <TableColumn fx:id="col_valoracion" prefWidth="107.0" text="VALORACIÓN" />
-            <TableColumn fx:id="col_descrip" prefWidth="174.0" text="DESCRIPCIÓN" />
+            
         </columns>
       </TableView>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1117.0">
-         <menus>
-            <Menu mnemonicParsing="false" text="Opciones">
-              <items>
-                  <MenuItem mnemonicParsing="false" text="Volver al menu principal" />
-                <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Archivos">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Crear lista de clientes " />
-                  <MenuItem mnemonicParsing="false" text="Lista de clientes con retraso" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Ayuda">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
-            </Menu>
-         </menus>
-      </MenuBar>
    </children>
 </AnchorPane>

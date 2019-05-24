@@ -1,0 +1,12 @@
+ID: 7
+Nombre: TR 200
+Marca: Thomann
+Precio: 149.0
+Tipo de boquilla: Plastico
+Modo de excitación: Tubo
+ID: 8
+Nombre: YTR-3335
+Marca: Yamaha
+Precio: 535.0
+Tipo de boquilla: Bronce
+Modo de excitación: Campana

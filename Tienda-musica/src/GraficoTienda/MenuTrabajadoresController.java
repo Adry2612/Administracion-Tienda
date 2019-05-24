@@ -40,8 +40,6 @@ import tienda.musica.Trabajador;
 public class MenuTrabajadoresController implements Initializable {
 
     @FXML
-    private MenuBar menu;
-    @FXML
     private TextField tf_id;
     @FXML
     private TextField tf_nombre;
@@ -210,7 +208,22 @@ public class MenuTrabajadoresController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
     }
 
@@ -263,7 +276,22 @@ public class MenuTrabajadoresController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
     }
 
@@ -308,8 +336,23 @@ public class MenuTrabajadoresController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
         } 
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
+        }
     }
     
     //Comprobaciones de botones y tableview.
@@ -341,13 +384,13 @@ public class MenuTrabajadoresController implements Initializable {
     public Integer idMaximo()
     {
         Integer idMax = null;
+        Conexion conexion = new Conexion();
+        Connection con = conexion.conectar();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+            
         try
-        {
-            Conexion conexion = new Conexion();
-            Connection con = conexion.conectar();
-            PreparedStatement stmt = null;
-            ResultSet rs = null;
-
+        {           
             stmt = con.prepareStatement ("SELECT MAX(Id) FROM Empleado");
             rs = stmt.executeQuery();
             rs.next();
@@ -357,7 +400,22 @@ public class MenuTrabajadoresController implements Initializable {
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            errorConexion();
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                errorConexion();
+            }
         }
         
         return idMax;
@@ -434,4 +492,13 @@ public class MenuTrabajadoresController implements Initializable {
         but_vaciar.setVisible(false);
         but_vaciar.setDisable(true);
     }
+    
+    public void errorConexion()
+    {
+        Alert alert = new Alert (Alert.AlertType.INFORMATION);
+        alert.setTitle("INFORMACIÓN");
+        alert.setHeaderText(null);
+        alert.setContentText("Parece que ha habido un error de conexión con la base de datos. Intentalo de nuevo más tarde.");
+        alert.showAndWait();
+    } 
 }

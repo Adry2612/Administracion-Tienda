@@ -19,25 +19,6 @@
             <Image url="@../tienda/musica/imagenes/fondoMenu.jpg" />
          </image>
       </ImageView>
-      <MenuBar fx:id="menu" layoutX="2.0" layoutY="2.0" prefHeight="25.0" prefWidth="1115.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
       <AnchorPane layoutX="54.0" layoutY="92.0" prefHeight="456.0" prefWidth="435.0" styleClass="fondo" stylesheets="@estiloTrabajadores.css">
          <children>
             <Label layoutX="154.0" layoutY="14.0" prefHeight="98.0" prefWidth="149.0" text="EMPLEADOS" textAlignment="CENTER" textFill="#c4c956">

@@ -41,9 +41,10 @@ public class Trabajador extends Persona{
         this.contrasenya = contrasenya;
     }
     
-    public Trabajador (int id, String nombre, String apellido1, String apellido2)
+    public Trabajador (int id, String nombre, String apellido1, String apellido2, boolean administrador)
     {
         super (id, nombre, apellido1, apellido2);
+        this.administrador = administrador;
     }
     
     /**
@@ -55,7 +56,7 @@ public class Trabajador extends Persona{
     {
         String info = super.info();
         
-        if (administrador == true)
+        if (this.administrador == true)
         {
             info += "Es administrador. \n";
         }
@@ -77,13 +78,28 @@ public class Trabajador extends Persona{
             
             while (rs.next())
             {
-                tvTrabajadores.add(new Trabajador (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Apellido1"), rs.getString("Apellido2")));
+                tvTrabajadores.add(new Trabajador (rs.getInt("Id"), rs.getString("Nombre"), rs.getString("Apellido1"), rs.getString("Apellido2"), rs.getBoolean("Administrador")));
             }
         }
         
         catch (SQLException ex)
         {
             System.out.println(ex.getMessage());
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
         }
     }
     

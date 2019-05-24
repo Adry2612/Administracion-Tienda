@@ -8,6 +8,7 @@ package tienda.musica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.collections.ObservableList;
 
 /**
@@ -62,9 +63,24 @@ public class Cliente extends Persona{
             
         }
         
-        catch (Exception ex)
+        catch (SQLException ex)
         {
+            System.out.println(ex.getMessage());    
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
             
+            catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
         }
     }
     

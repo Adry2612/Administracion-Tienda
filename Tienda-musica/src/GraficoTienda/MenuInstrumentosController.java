@@ -5,6 +5,7 @@
  */
 package GraficoTienda;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -24,6 +25,8 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -34,29 +37,18 @@ import javafx.stage.Stage;
  */
 public class MenuInstrumentosController implements Initializable {
 
-    private TextField tf_puente;
-    private ComboBox<String> cb_tipo;
-    private TextField tf_calibre;
-    private TextField tf_boquilla;
-    private TextField tf_membrana;
-    private TextField tf_excitacion;
-    private TextField tf_piezas;
-    private TableView<Viento> tableview_viento;
-    private TableView<Cuerda> tableview_cuerda;
-    private TableView<Percusion> tableview_percusion;
-    private TableView<Instrumento> tableview_instrumentos;
-    private ObservableList <Instrumento> instrumento;
-    private ObservableList <Cuerda> cuerda;
-    private ObservableList <Viento> viento;
-    private ObservableList <Percusion> percusion;
-    @FXML
-    private Button b_todos;
     @FXML
     private Button b_cuerda;
     @FXML
     private Button b_percusion;
     @FXML
     private Button b_viento;
+    @FXML
+    private MenuBar menuBar;
+    @FXML
+    private MenuItem mi_menyPrincipal;
+    @FXML
+    private MenuItem mi_cerrarSesion;
    
     
     /**
@@ -65,25 +57,6 @@ public class MenuInstrumentosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    }
-
-    @FXML
-    private void ventanaTodos(ActionEvent event) 
-    {
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("menuTodosInstrumentos.fxml"));
-            Parent root1 = (Parent)fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene (root1));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-        }
-        
-        catch (Exception ex)
-        {
-            System.out.println(ex.getMessage());
-        }
     }
 
     @FXML
@@ -96,7 +69,11 @@ public class MenuInstrumentosController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene (root1));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Instrumentos de cuerda");
             stage.show();
+            Stage stage2 = (Stage)b_viento.getScene().getWindow();
+            stage2.close();
         }
         
         catch (Exception ex)
@@ -115,7 +92,11 @@ public class MenuInstrumentosController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene (root1));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Instrumentos de percusión");
             stage.show();
+            Stage stage2 = (Stage)b_viento.getScene().getWindow();
+            stage2.close();
         }
         
         catch (Exception ex)
@@ -135,12 +116,62 @@ public class MenuInstrumentosController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene (root1));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Instrumentos de viento");
             stage.show();
+            Stage stage2 = (Stage)b_viento.getScene().getWindow();
+            stage2.close();
         }
         
         catch (Exception ex)
         {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void volverMenuPrincipal(ActionEvent event) 
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+            Parent root1 = (Parent)fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Menu Principal");
+            stage.show();
+            Stage stage2 = (Stage)b_cuerda.getScene().getWindow();
+            stage2.close();
+
+        }
+        catch(Exception ex)
+        {
+            ex.getMessage();
+        }
+    }
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) 
+    {
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root1 = (Parent)fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Login");
+            stage.show();
+            Stage stage2 = (Stage)b_cuerda.getScene().getWindow();
+            stage2.close();
+
+        }
+        catch(IOException ex)
+        {
+            ex.getMessage();
         }
     }
 }

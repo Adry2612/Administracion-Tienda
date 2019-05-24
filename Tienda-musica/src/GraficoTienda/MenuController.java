@@ -56,9 +56,9 @@ public class MenuController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene (root1));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Clientes");
             stage.show();
-            Stage stage2 = (Stage)b_clientes.getScene().getWindow();
-            stage2.close();
         }
         
         catch (Exception ex)
@@ -76,9 +76,10 @@ public class MenuController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene (root1));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Trabajadores");
             stage.show();
-            Stage stage2 = (Stage)b_clientes.getScene().getWindow();
-            stage2.close();
+            
         }
         
         catch (Exception ex)
@@ -96,7 +97,11 @@ public class MenuController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene (root1));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Ventas");
             stage.show();
+            Stage stage2 = (Stage)b_ventas.getScene().getWindow();
+            stage2.close();
         }
         
         catch (Exception ex)
@@ -114,6 +119,8 @@ public class MenuController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene (root1));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Instrumentos");
             stage.show();
         }
         

@@ -39,24 +39,15 @@
             <Font name="Calibri" size="21.0" />
          </font>
       </Label>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="943.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
+      <MenuBar fx:id="menuBar" layoutY="2.0" prefHeight="25.0" prefWidth="943.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Opciones">
+               <items>
+                  <MenuItem fx:id="mi_menyPrincipal" mnemonicParsing="false" onAction="#volverMenuPrincipal" text="Volver al menu principal" />
+                  <MenuItem fx:id="mi_cerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesion" />
+               </items>
+            </Menu>
+         </menus>
       </MenuBar>
    </children>
 </AnchorPane>

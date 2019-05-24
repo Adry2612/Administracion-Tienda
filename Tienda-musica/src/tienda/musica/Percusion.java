@@ -70,6 +70,21 @@ public class Percusion extends Instrumento{
             System.out.println(ex.getMessage());
         }
         
+        finally
+        {
+            try
+            {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
+        }
+        
     }
     
     @Override

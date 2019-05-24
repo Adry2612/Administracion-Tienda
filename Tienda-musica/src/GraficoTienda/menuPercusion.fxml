@@ -79,5 +79,20 @@
             <TableColumn fx:id="col_precio" prefWidth="114.0" text="PRECIO" />
          </columns>
       </TableView>
+      <MenuBar fx:id="menuBar" layoutX="3.0" layoutY="2.0" prefHeight="25.0" prefWidth="1117.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Opciones">
+               <items>
+                  <MenuItem fx:id="mi_menyPrincipal" mnemonicParsing="false" onAction="#volverMenuPrincipal" text="Volver al menu principal" />
+                  <MenuItem fx:id="mi_cerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar Sesion" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Archivos">
+               <items>
+                  <MenuItem fx:id="mi_lista" mnemonicParsing="false" onAction="#generarLista" text="Crear lista de instrumentos" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

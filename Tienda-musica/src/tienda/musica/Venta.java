@@ -76,7 +76,9 @@ public class Venta {
         Conexion conexion = new Conexion();
         Connection con = conexion.conectar();
         PreparedStatement stmt = null;
+        PreparedStatement stmt2 = null;
         ResultSet rs = null;
+        ResultSet rs2 = null;
         
         try
         {
@@ -90,13 +92,14 @@ public class Venta {
                 int instrumento = rs.getInt("Instrumento");
                 int cliente = rs.getInt("Cliente");
                 
-                PreparedStatement stmt2 = con.prepareStatement("SELECT * FROM Clientes WHERE Id = ?;");
+                stmt2 = con.prepareStatement("SELECT * FROM Clientes WHERE Id = ?;");
                 stmt2.setInt(1, cliente);
-                ResultSet rs2 = stmt2.executeQuery();
+                rs2 = stmt2.executeQuery();
                 rs2.next();
                 Cliente cli = new Cliente (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Apellido1"), rs2.getString("Apellido2"));
                 
-                stmt2 = con.prepareStatement("SELECT * FROM Cuerda;");
+                stmt2 = con.prepareStatement("SELECT * FROM Cuerda WHERE Id = ?;");
+                stmt2.setInt(1, instrumento);
                 rs2 = stmt2.executeQuery();
             
                     while (rs2.next())                
@@ -105,7 +108,8 @@ public class Venta {
                         ins = new Cuerda (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Fabricante"), rs2.getDouble("Precio"), rs2.getInt("CalibreCuerda"), rs2.getString("TipoPuente"));
                     }
 
-                    stmt2 = con.prepareStatement ("SELECT * FROM Viento;");
+                    stmt2 = con.prepareStatement ("SELECT * FROM Viento WHERE Id = ?;");
+                    stmt2.setInt(1, instrumento);
                     rs2 = stmt2.executeQuery();
 
                     while (rs2.next())
@@ -113,7 +117,8 @@ public class Venta {
                         ins = new Viento (rs2.getInt("Id"), rs2.getString("Nombre"), rs2.getString("Fabricante"), rs2.getDouble("Precio"), rs2.getString("ModoExcitacion"), rs2.getString("TipoBoquilla")); 
                     }
 
-                    stmt2 = con.prepareStatement ("SELECT * FROM Percusion;");
+                    stmt2 = con.prepareStatement ("SELECT * FROM Percusion WHERE Id = ?;");
+                    stmt2.setInt(1, instrumento);
                     rs2 = stmt2.executeQuery();
 
                     while (rs2.next())
@@ -130,6 +135,23 @@ public class Venta {
         catch (SQLException ex)
         {
             System.out.println(ex.getMessage());
+        }
+        
+        finally
+        {
+            try
+            {
+                if (rs2 != null) rs2.close();
+                if (rs != null) rs.close();
+                if (stmt2 != null) stmt2.close();
+                if (stmt != null) stmt.close();
+                if (con != null) con.close();  
+            }
+            
+            catch (SQLException ex)
+            {
+                System.out.println(ex.getMessage());
+            }
         }
         
     }

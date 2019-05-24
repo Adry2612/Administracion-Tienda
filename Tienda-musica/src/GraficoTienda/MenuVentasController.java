@@ -9,6 +9,7 @@ import java.sql.*;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -208,6 +209,7 @@ public class MenuVentasController implements Initializable {
             
             actualizarTableView();
             alertaInsercionCompletada();
+            vaciarFormularioAuto();
         }
         
         catch (SQLException ex)
@@ -267,6 +269,7 @@ public class MenuVentasController implements Initializable {
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 actualizarTableView();
+                vaciarFormularioAuto();
             }
 
             else
@@ -331,12 +334,15 @@ public class MenuVentasController implements Initializable {
             stmt.setInt(4, Integer.parseInt(tf_id.getText()));
             stmt.executeUpdate();
             actualizarTableView();
+            alertaModificacionCompletada();
+            vaciarFormularioAuto();
         }
         
-        catch (Exception ex)
+        catch (SQLException ex)
         {
             errorConexion();
         }
+        
         
         finally
         {
@@ -470,25 +476,6 @@ public class MenuVentasController implements Initializable {
         alert.showAndWait();
     }
     
-    public void confirmacionEliminar()
-    {
-       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmación de eliminación de registros.");
-            alert.setHeaderText("Esta apunto de eliminar el registro seleccionado.");
-            alert.setContentText("¿Desea continuar?");
-            Optional <ButtonType> result = alert.showAndWait();
-
-            if ((result.isPresent())&& result.get() == ButtonType.OK)
-            {
-                System.out.println("Eliminación de registro completada.");
-            }
-
-            else
-            {
-                System.out.println("Eliminación cancelada");
-            } 
-    }
-    
     public void alertaValorNecesario()
     {
         Alert alert = new Alert (Alert.AlertType.ERROR);
@@ -611,5 +598,13 @@ public class MenuVentasController implements Initializable {
         alert.setContentText("Parece que ha habido un error de conexión con la base de datos. Intentalo de nuevo más tarde.");
         alert.showAndWait();
     } 
-    
+
+    public void vaciarFormularioAuto()
+    {
+        String idMax = Integer.toString(idMaximo());
+        tf_id.setText(idMax);
+        cb_producto.setValue(null);
+        cb_cliente.setValue(null);
+        cb_fecha.setValue(null);
+    }  
 }

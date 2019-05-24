@@ -87,16 +87,6 @@ public class MenuClientesController implements Initializable {
             escribirClienteSel();
         }
     };
-    @FXML
-    private TableColumn<?, ?> col_valoracion;
-    @FXML
-    private MenuBar menuBar;
-    @FXML
-    private MenuItem mi_menyPrincipal;
-    @FXML
-    private MenuItem mi_cerrarSesion;
-    @FXML
-    private MenuItem mi_lista;
 
     /**
      * Inicializa la clase controladora.
@@ -196,11 +186,12 @@ public class MenuClientesController implements Initializable {
             stmt.setInt(4, Integer.parseInt(text_id.getText()));
             stmt.executeUpdate();
             actualizarTableView();
+            vaciarFormularioAuto();
         }
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            alertaErrorInsercion();
         }
     }
     
@@ -213,6 +204,8 @@ public class MenuClientesController implements Initializable {
         b_eliminar.setDisable(false);
         b_volver.setVisible(true);
         b_volver.setDisable(false);
+        b_vaciar.setVisible(true);
+        b_vaciar.setDisable(false);
     }
     
     @FXML
@@ -240,6 +233,7 @@ public class MenuClientesController implements Initializable {
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 actualizarTableView();
+                vaciarFormularioAuto(); 
             }
 
             else
@@ -275,6 +269,7 @@ public class MenuClientesController implements Initializable {
             text_nombre.setText(null);
             text_apellido1.setText(null);
             text_apellido2.setText(null);    
+            
         }
         
         catch (Exception ex)
@@ -307,11 +302,12 @@ public class MenuClientesController implements Initializable {
             
             actualizarTableView();
             alertaInsercionCompletada();
+            vaciarFormularioAuto(); 
         }
         
         catch (SQLException ex)
         {
-            System.out.println(ex.getMessage());
+            alertaErrorInsercion();
         }
     }
     
@@ -384,34 +380,6 @@ public class MenuClientesController implements Initializable {
         alert.showAndWait();
     }
     
-    public void confirmacionEliminar()
-    {
-       Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Confirmación de eliminación de registros.");
-            alert.setHeaderText("Esta apunto de eliminar el registro seleccionado.");
-            alert.setContentText("¿Desea continuar?");
-            Optional <ButtonType> result = alert.showAndWait();
-
-            if ((result.isPresent())&& result.get() == ButtonType.OK)
-            {
-                System.out.println("Si");
-            }
-
-            else
-            {
-                System.out.println("Cancelar");
-            } 
-    }
-    
-    public void alertaValorNecesario()
-    {
-        Alert alert = new Alert (AlertType.ERROR);
-        alert.setTitle("ERROR AL INSERTAR DATOS.");
-        alert.setHeaderText(null);
-        alert.setContentText("No se puede insertar un cliente sin nombre o apellido.");
-        alert.showAndWait();
-    }
-
     @FXML
     private void volver(ActionEvent event) {
         botonesPrinVisibles();
@@ -425,6 +393,15 @@ public class MenuClientesController implements Initializable {
         b_volver.setVisible(false);
         b_guardarCambios.setDisable(true);
         b_guardarCambios.setVisible(false);
+    }
+    
+    private void vaciarFormularioAuto() 
+    {        
+        String idMax = Integer.toString(idMaximo());
+        text_id.setText(idMax);
+        text_nombre.setText(null);
+        text_apellido1.setText(null);
+        text_apellido2.setText(null);
     }
 
     

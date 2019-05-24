@@ -204,6 +204,7 @@ public class MenuTrabajadoresController implements Initializable {
             
             actualizarTableView();
             alertaInsercionCompletada();
+            vaciarFormularioAuto(); 
         }
         
         catch (SQLException ex)
@@ -266,6 +267,7 @@ public class MenuTrabajadoresController implements Initializable {
                 stmt.setInt(1, id);
                 stmt.executeUpdate();
                 actualizarTableView();
+                vaciarFormularioAuto(); 
             }
 
             else
@@ -285,7 +287,7 @@ public class MenuTrabajadoresController implements Initializable {
             {
                 if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
-                if (con != null) con.close();  
+                conexion.desconectar(con);
             }
             
             catch (SQLException ex)
@@ -332,6 +334,7 @@ public class MenuTrabajadoresController implements Initializable {
             
             actualizarTableView();
             alertaModificacionCompletada();
+            vaciarFormularioAuto();
         }
         
         catch (SQLException ex)
@@ -501,4 +504,15 @@ public class MenuTrabajadoresController implements Initializable {
         alert.setContentText("Parece que ha habido un error de conexión con la base de datos. Intentalo de nuevo más tarde.");
         alert.showAndWait();
     } 
+    
+    @FXML
+    private void vaciarFormularioAuto() 
+    {
+        String idMax = Integer.toString(idMaximo());
+        tf_id.setText(idMax);
+        tf_nombre.setText(null);
+        tf_apellido1.setText(null);
+        tf_apellido2.setText(null);
+        cb_administrador.setSelected(false);
+    }
 }

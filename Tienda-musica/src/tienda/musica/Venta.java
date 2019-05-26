@@ -71,6 +71,9 @@ public class Venta {
         this.precio = precio;
     }
     
+    /**
+     * Metodo que rellenará el tableview del menu grafico. 
+     */
     public static void rellenarTabla (ObservableList <Venta> tvVenta)
     {
         Conexion conexion = new Conexion();

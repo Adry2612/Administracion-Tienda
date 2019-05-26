@@ -105,6 +105,10 @@ public class MenuTrabajadoresController implements Initializable {
         tvTrabajadores.addListener(selectorTrabajador);
     }
     
+    /**
+     * Obtiene los valores para escribir en el TableView los datos de los trabajadores obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public Trabajador obtenerTabla()
     {
        if (tableview_trabajadores != null)
@@ -121,6 +125,10 @@ public class MenuTrabajadoresController implements Initializable {
         return null; 
     }
     
+    /**
+     * Escribe en el TableView los datos de los trabajadores obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public void escribirTrabajadorSel(){
         
         final Trabajador trabajador = obtenerTabla();
@@ -138,6 +146,10 @@ public class MenuTrabajadoresController implements Initializable {
         }   
     } 
    
+    /**
+     * Asocia los valores obtenidos de la base de datos a las diferentes columnas del TableView.
+     * @since 04/05/2019
+     */
     public void asociarValores()
     {
         col_id.setCellValueFactory(new PropertyValueFactory <Trabajador, Integer>("id"));
@@ -147,6 +159,10 @@ public class MenuTrabajadoresController implements Initializable {
         col_administrador.setCellValueFactory(new PropertyValueFactory <Trabajador, String>("administrador"));
     }
     
+    /**
+     * Metodo que vuelve a llamara al metodo rellenarTabla del cliente para realizar una actualización de la pantalla.
+     * @since 04/05/2019
+     */
     public void actualizarTableView()
     {
        tvTrabajadores = FXCollections.observableArrayList();
@@ -155,7 +171,12 @@ public class MenuTrabajadoresController implements Initializable {
         asociarValores();
     }
 
-    //Añadir Empleados
+    /**
+     * Nos permite añador un trabajador con los valores que indicamos en el formulario. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void anadirEmpleado(ActionEvent event) {
         
@@ -176,6 +197,13 @@ public class MenuTrabajadoresController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Añade el trabajador asignandole un id automatico. 
+     * Realiza un INSERT a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void guardarAnadir(ActionEvent event) 
     {
@@ -228,7 +256,12 @@ public class MenuTrabajadoresController implements Initializable {
         }
     }
 
-    //Eliminar Empleados
+    /**
+     * Nos permite eliminar aquel trabajador seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de eliminar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Eliminar.
+     * @since 04/05/2019
+     */
     @FXML
     private void eliminarEmpleado(ActionEvent event) 
     {
@@ -241,6 +274,13 @@ public class MenuTrabajadoresController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Elimina aquel trabajador seleccionado en el TableView. 
+     * Realiza un DELETE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void guardarEliminar(ActionEvent event) 
     {
@@ -297,6 +337,12 @@ public class MenuTrabajadoresController implements Initializable {
         }
     }
 
+    /**
+     * Nos permite modificar aquel trabajador seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de modificar.
+     * @since 04/05/2019
+     */
     @FXML
     private void modificarEmpleado(ActionEvent event) 
     {
@@ -309,6 +355,13 @@ public class MenuTrabajadoresController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Guarda los cambios de aquel trabajador seleccionado en el TableView. 
+     * Realiza un UPDATE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void guardarModificar(ActionEvent event) 
     {
@@ -358,7 +411,10 @@ public class MenuTrabajadoresController implements Initializable {
         }
     }
     
-    //Comprobaciones de botones y tableview.
+    /**
+     * Convierte en invisibles los botones principales.
+     * @since 04/05/2019
+     */
     public void botonesInvisibles()
     {
         but_anadir.setVisible(false);
@@ -366,6 +422,10 @@ public class MenuTrabajadoresController implements Initializable {
         but_modificar.setVisible(false);
     }
     
+    /**
+     * Muestra los botones principales. 
+     * @since 04/05/2019
+     */
     public void botonesVisibles()
     {
         but_anadir.setVisible(true);
@@ -373,6 +433,11 @@ public class MenuTrabajadoresController implements Initializable {
         but_modificar.setVisible(true);
     }
     
+    /**
+     * Deja en blanco los valores escritos en el formulario.
+     * @param event Cuando se haga click en el botón vaciar formulario se ejecutará el metodo.
+     * @since 04/05/2019
+     */
     @FXML
     private void vaciarFormulario(ActionEvent event) 
     {
@@ -384,6 +449,11 @@ public class MenuTrabajadoresController implements Initializable {
         cb_administrador.setSelected(false);
     }
     
+    /**
+     * Busca en la base de datos el Id más alto y le suma uno para obtener un id automatico.
+     * @return Integer con el valor del Id más alto + 1.
+     * @since 04/05/2019
+     */
     public Integer idMaximo()
     {
         Integer idMax = null;
@@ -424,7 +494,10 @@ public class MenuTrabajadoresController implements Initializable {
         return idMax;
     }
     
-    //Alertas
+    /**
+    * Metodo que muestra una alerta de información indicando que se han insertado los datos correctamente en la base de datos.
+    * @since 02/05/2019
+    */
     public void alertaInsercionCompletada()
     {
         Alert alert = new Alert (Alert.AlertType.INFORMATION);
@@ -434,6 +507,10 @@ public class MenuTrabajadoresController implements Initializable {
         alert.showAndWait();
     }
     
+    /**
+    * Metodo que muestra una alerta de información indicando que se han insertado los datos correctamente en la base de datos.
+    * @since 02/05/2019
+    */
     public void alertaModificacionCompletada()
     {
         Alert alert = new Alert (Alert.AlertType.INFORMATION);
@@ -443,6 +520,10 @@ public class MenuTrabajadoresController implements Initializable {
         alert.showAndWait();
     }
     
+    /**
+    * Metodo que muestra una alerta de información indicando que ha habido un error en al insertar datos en la base de datos.
+    * @since 02/05/2019
+    */
     public void alertaErrorInsercion()
     {
         Alert alert = new Alert (Alert.AlertType.ERROR);
@@ -480,6 +561,10 @@ public class MenuTrabajadoresController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Muestra los botones principales y desabilita y convierte en invisible los demás botones.
+     * @since 04/05/2019
+     */
     @FXML
     private void volver(ActionEvent event) 
     {

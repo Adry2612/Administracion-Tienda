@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GraficoTienda;
 
 import java.io.File;
@@ -42,7 +37,7 @@ import tienda.musica.Cuerda;
 import tienda.musica.Viento;
 
 /**
- * FXML Controller class
+ * Clase controladora de FXML de instrumentos de cuerda.
  *
  * @author Adrián
  */
@@ -84,6 +79,7 @@ public class MenuCuerdaController implements Initializable {
     private TableColumn<Cuerda, Double> col_precio;
     private ObservableList <Cuerda> ol_cuerda;
 
+    
     private final ListChangeListener <Cuerda> selectorInstrumento= new ListChangeListener <Cuerda>()
     {
         @Override
@@ -110,7 +106,7 @@ public class MenuCuerdaController implements Initializable {
     private MenuItem mi_lista;
     
     /**
-     * Initializes the controller class.
+     * Inicializa la clase controladora y se llama a varios metodos para rellenar el TableView y el formulario.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -121,8 +117,12 @@ public class MenuCuerdaController implements Initializable {
         
         ol_cuerda = tv_cuerda.getSelectionModel().getSelectedItems();
         ol_cuerda.addListener(selectorInstrumento);
-    }    
+    } 
     
+    /**
+     * Escribe en el TableView los datos del instrumento de cuerda obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public void escribirInstrumentoSel(){
         
         final Cuerda cuerda = obtenerTabla();
@@ -142,6 +142,10 @@ public class MenuCuerdaController implements Initializable {
         }   
     } 
     
+    /**
+     * Obtiene los valores para escribir en el TableView los datos del instrumento de cuerda obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public Cuerda obtenerTabla()
     {
        if (tv_cuerda != null)
@@ -157,7 +161,11 @@ public class MenuCuerdaController implements Initializable {
 
         return null; 
     }
-            
+     
+    /**
+     * Asocia los valores obtenidos de la base de datos a las diferentes columnas del TableView.
+     * @since 04/05/2019
+     */
     public void asociarValores()
     {
         col_id.setCellValueFactory(new PropertyValueFactory <Cuerda, Integer>("id"));
@@ -168,6 +176,11 @@ public class MenuCuerdaController implements Initializable {
         col_precio.setCellValueFactory(new PropertyValueFactory <Cuerda, Double>("precio"));
     }
     
+    /**
+     * Deja en blanco los valores escritos en el formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de vaciar formulario.
+     * @since 04/05/2019
+     */
     @FXML
     private void vaciarFormulario(ActionEvent event) 
     {
@@ -180,6 +193,11 @@ public class MenuCuerdaController implements Initializable {
         tf_precio.setText(null);
     }
     
+    /**
+     * Deja en blanco los valores escritos en el formulario. A diferencia del anterior, este no necesita la acción del boton para ejecutarse,
+     * ya que se ejecutará cuando se añada, modifique o elimine un instrumento.
+     * @since 04/05/2019
+     */
     public void vaciaCampos()
     {
         String idMax = Integer.toString(idMaximo());
@@ -191,6 +209,12 @@ public class MenuCuerdaController implements Initializable {
         tf_precio.setText(null);
     }
     
+    /**
+     * Nos permite modificar aquel instrumento seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de modificar.
+     * @since 04/05/2019
+     */
     @FXML
     private void modificarInstrumento(ActionEvent event) 
     {
@@ -203,6 +227,13 @@ public class MenuCuerdaController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Guarda los cambios de aquel instrumento seleccionado en el TableView. 
+     * Realiza un UPDATE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void actualizarInstrumento(ActionEvent event) 
     {
@@ -252,6 +283,12 @@ public class MenuCuerdaController implements Initializable {
         }
     }
 
+    /**
+     * Nos permite añador un instrumento con los valores que indicamos en el formulario. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void anadirInstrumento(ActionEvent event) 
     {
@@ -272,6 +309,13 @@ public class MenuCuerdaController implements Initializable {
         tf_precio.setText(null);
     }
 
+    /**
+     * Añade el instrumento asignandole un id automatico. 
+     * Realiza un INSERT a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void agregarInstrumento(ActionEvent event) 
     {
@@ -327,6 +371,12 @@ public class MenuCuerdaController implements Initializable {
                 
     }
     
+    /**
+     * Nos permite eliminar aquel instrumento seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de eliminar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Eliminar.
+     * @since 04/05/2019
+     */
     @FXML
     private void borrarInstrumento(ActionEvent event) 
     {
@@ -339,6 +389,13 @@ public class MenuCuerdaController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Elimina aquel instrumento seleccionado en el TableView. 
+     * Realiza un DELETE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void eliminarInstrumento(ActionEvent event) 
     {
@@ -398,6 +455,10 @@ public class MenuCuerdaController implements Initializable {
         }
     }
     
+    /**
+     * Muestra los botones principales. 
+     * @since 04/05/2019
+     */
     public void botonesPrinVisibles()
     {
         b_modificar.setVisible(true);
@@ -405,6 +466,10 @@ public class MenuCuerdaController implements Initializable {
         b_borrar.setVisible(true);
     }
     
+    /**
+     * Convierte en invisibles los botones principales.
+     * @since 04/05/2019
+     */
     public void botonesPrinInvisibles()
     {
         b_modificar.setVisible(false);
@@ -412,6 +477,10 @@ public class MenuCuerdaController implements Initializable {
         b_borrar.setVisible(false);
     }
     
+    /**
+     * Metodo que vuelve a llamara al metodo rellenarTabla del instrumento para realizar una actualización de la pantalla.
+     * @since 04/05/2019
+     */
     public void actualizarTableView()
     {
         ol_cuerda = FXCollections.observableArrayList(); 
@@ -420,6 +489,11 @@ public class MenuCuerdaController implements Initializable {
         asociarValores();
     }
     
+    /**
+     * Busca en la base de datos el Id más alto y le suma uno para obtener un id automatico.
+     * @return Integer con el valor del Id más alto + 1.
+     * @since 04/05/2019
+     */
     public Integer idMaximo()
     {
         Integer idMax = null;
@@ -460,6 +534,10 @@ public class MenuCuerdaController implements Initializable {
         return idMax;
     }
 
+    /**
+     * Muestra los botones principales y desabilita y convierte en invisible los demás botones.
+     * @since 04/05/2019
+     */
     @FXML
     private void volver(ActionEvent event) 
     {
@@ -476,6 +554,10 @@ public class MenuCuerdaController implements Initializable {
         b_actualizar.setVisible(false);
     }
     
+    /**
+    * Metodo que muestra una alerta de información indicando que ha habido un error en la conexión con la base de datos.
+    * @since 02/05/2019
+    */
     public void errorConexion()
     {
         Alert alert = new Alert (Alert.AlertType.INFORMATION);
@@ -485,6 +567,11 @@ public class MenuCuerdaController implements Initializable {
         alert.showAndWait();
     } 
     
+     /**
+     * Metodo que abre la ventana correspondiente a los menu principal.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón del item de menu del menu principal cerrando la ventana anterior.
+     * @since 04/05/2019
+     */
     @FXML
     private void volverMenuPrincipal(ActionEvent event) 
     {
@@ -508,6 +595,11 @@ public class MenuCuerdaController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente al Login.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón del item de menu del cerrar sesión cerrando la ventana anterior.
+     * @since 04/05/2019
+     */
     @FXML
     private void cerrarSesion(ActionEvent event) 
     {
@@ -531,6 +623,11 @@ public class MenuCuerdaController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que genera un .txt con todos los intrumentos.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón del item de generar lista.
+     * @since 04/05/2019
+     */
     @FXML
     private void generarLista(ActionEvent event) 
     {

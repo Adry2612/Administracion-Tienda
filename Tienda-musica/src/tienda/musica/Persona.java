@@ -59,6 +59,11 @@ public class Persona {
         this.apellido2 = apellido2;
     }
     
+    /**
+     * Se obtiene la información de la persona.
+     * @param info String que dispondrá de toda la información necesaria.
+     * @return Devuelve la información en un String.
+    */
     public String info()
     {
         String info = "Id: " +this.id+ "\n"

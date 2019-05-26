@@ -62,11 +62,22 @@ public class Instrumento {
         this.precio = precio;
     }
 
+    /**
+     * Rellena el combobox con el nombre de los clientes.
+     * @param info String que dispondrá de toda la información necesaria.
+     * @return Devuelve la información en un String.
+    */
     @Override
     public String toString()
     {
         return this.nombre;
     }
+    
+    /**
+     * Se obtiene la información de los clientes.
+     * @param info String que dispondrá de toda la información necesaria.
+     * @return Devuelve la información en un String.
+    */
     public String info()
     {
         String info = "ID: " +this.id+ "\n"

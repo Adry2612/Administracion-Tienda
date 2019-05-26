@@ -47,6 +47,11 @@ public class MenuController implements Initializable {
         
     }    
 
+    /**
+     * Metodo que abre la ventana correspondiente a los clientes.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de clientes.
+     * @since 04/05/2019
+     */
     @FXML
     private void ventanaClientes(ActionEvent event) {
         try
@@ -67,6 +72,11 @@ public class MenuController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente a los empleados.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de empleados.
+     * @since 04/05/2019
+     */
     @FXML
     private void ventanaEmpleados(ActionEvent event) {
         try
@@ -88,6 +98,11 @@ public class MenuController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente a las ventas.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de ventas.
+     * @since 04/05/2019
+     */
     @FXML
     private void ventanaVentas(ActionEvent event) {
         try
@@ -110,6 +125,11 @@ public class MenuController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente a los instrumentos.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de instrumentos.
+     * @since 04/05/2019
+     */
     @FXML
     private void ventanaInstrumentos(ActionEvent event) {
         try

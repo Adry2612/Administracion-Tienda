@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GraficoTienda;
 
 import java.io.File;
@@ -107,7 +102,7 @@ public class MenuVientoController implements Initializable {
     private MenuItem mi_lista;
        
     /**
-     * Initializes the controller class.
+     * Inicializa la clase controladora.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -121,6 +116,10 @@ public class MenuVientoController implements Initializable {
         
     }    
     
+    /**
+     * Escribe en el TableView los datos del instrumento de cuerda obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public void escribirInstrumentoSel(){
         
         final Viento viento = obtenerTabla();
@@ -150,6 +149,10 @@ public class MenuVientoController implements Initializable {
         tf_precio.setText(null);
     }
     
+    /**
+     * Obtiene los valores para escribir en el TableView los datos del instrumento de cuerda obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public Viento obtenerTabla()
     {
        if (ol_viento != null)
@@ -166,6 +169,10 @@ public class MenuVientoController implements Initializable {
         return null; 
     }
             
+    /**
+     * Asocia los valores obtenidos de la base de datos a las diferentes columnas del TableView.
+     * @since 04/05/2019
+     */
     public void asociarValores()
     {
         col_id.setCellValueFactory(new PropertyValueFactory <Viento, Integer>("id"));
@@ -176,6 +183,11 @@ public class MenuVientoController implements Initializable {
         col_precio.setCellValueFactory(new PropertyValueFactory <Viento, Double>("precio"));
     }
     
+    /**
+     * Deja en blanco los valores escritos en el formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de vaciar formulario.
+     * @since 04/05/2019
+     */
     @FXML
     private void vaciarFormulario(ActionEvent event) 
     {
@@ -188,6 +200,12 @@ public class MenuVientoController implements Initializable {
         tf_precio.setText(null);
     }
     
+    /**
+     * Nos permite modificar aquel instrumento seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de modificar.
+     * @since 04/05/2019
+     */
     @FXML
     private void modificarInstrumento(ActionEvent event) 
     {
@@ -200,6 +218,13 @@ public class MenuVientoController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Guarda los cambios de aquel instrumento seleccionado en el TableView. 
+     * Realiza un UPDATE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void actualizarInstrumento(ActionEvent event) 
     {
@@ -250,6 +275,12 @@ public class MenuVientoController implements Initializable {
         }
     }
 
+    /**
+     * Nos permite añador un instrumento con los valores que indicamos en el formulario. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void anadirInstrumento(ActionEvent event) 
     {
@@ -270,6 +301,13 @@ public class MenuVientoController implements Initializable {
         tf_precio.setText(null);
     }
 
+    /**
+     * Añade el instrumento asignandole un id automatico. 
+     * Realiza un INSERT a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void agregarInstrumento(ActionEvent event) 
     {
@@ -326,6 +364,12 @@ public class MenuVientoController implements Initializable {
                 
     }
     
+    /**
+     * Nos permite eliminar aquel instrumento seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de eliminar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Eliminar.
+     * @since 04/05/2019
+     */
     @FXML
     private void borrarInstrumento(ActionEvent event) 
     {
@@ -338,6 +382,13 @@ public class MenuVientoController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Elimina aquel instrumento seleccionado en el TableView. 
+     * Realiza un DELETE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void eliminarInstrumento(ActionEvent event) 
     {
@@ -396,6 +447,10 @@ public class MenuVientoController implements Initializable {
         }
     }
     
+    /**
+     * Muestra los botones principales. 
+     * @since 04/05/2019
+     */
     public void botonesPrinVisibles()
     {
         b_modificar.setVisible(true);
@@ -403,6 +458,10 @@ public class MenuVientoController implements Initializable {
         b_borrar.setVisible(true);
     }
     
+    /**
+     * Convierte en invisibles los botones principales.
+     * @since 04/05/2019
+     */
     public void botonesPrinInvisibles()
     {
         b_modificar.setVisible(false);
@@ -410,6 +469,10 @@ public class MenuVientoController implements Initializable {
         b_borrar.setVisible(false);
     }
     
+    /**
+     * Metodo que vuelve a llamara al metodo rellenarTabla del instrumento para realizar una actualización de la pantalla.
+     * @since 04/05/2019
+     */
     public void actualizarTableView()
     {
         ol_viento = FXCollections.observableArrayList(); 
@@ -418,6 +481,11 @@ public class MenuVientoController implements Initializable {
         asociarValores();
     }
     
+    /**
+     * Busca en la base de datos el Id más alto y le suma uno para obtener un id automatico.
+     * @return Integer con el valor del Id más alto + 1.
+     * @since 04/05/2019
+     */
     public Integer idMaximo()
     {
         Integer idMax = null;
@@ -458,6 +526,10 @@ public class MenuVientoController implements Initializable {
         return idMax;
     }
 
+    /**
+     * Muestra los botones principales y desabilita y convierte en invisible los demás botones.
+     * @since 04/05/2019
+     */
     @FXML
     private void volver(ActionEvent event) 
     {
@@ -474,6 +546,10 @@ public class MenuVientoController implements Initializable {
         b_actualizar.setVisible(false);
     }
     
+    /**
+    * Metodo que muestra una alerta de información indicando que ha habido un error en la conexión con la base de datos.
+    * @since 02/05/2019
+    */
     public void errorConexion()
     {
         Alert alert = new Alert (Alert.AlertType.INFORMATION);
@@ -483,6 +559,11 @@ public class MenuVientoController implements Initializable {
         alert.showAndWait();
     } 
 
+    /**
+     * Metodo que abre la ventana correspondiente a los menu principal.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón del item de menu del menu principal cerrando la ventana anterior.
+     * @since 04/05/2019
+     */
     @FXML
     private void volverMenuPrincipal(ActionEvent event) 
     {
@@ -506,6 +587,11 @@ public class MenuVientoController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente al Login.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón del item de menu del cerrar sesión cerrando la ventana anterior.
+     * @since 04/05/2019
+     */
     @FXML
     private void cerrarSesion(ActionEvent event) 
     {
@@ -529,6 +615,11 @@ public class MenuVientoController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que genera un .txt con todos los intrumentos.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón del item de generar lista.
+     * @since 04/05/2019
+     */
     @FXML
     private void generarLista(ActionEvent event) 
     {

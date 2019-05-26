@@ -105,6 +105,10 @@ public class MenuVentasController implements Initializable {
         olVentas.addListener(selectorVenta);
     }   
 
+    /**
+     * Obtiene los valores para escribir en el TableView los datos de las ventas obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public Venta obtenerTabla()
     {
        if (tv_ventas != null)
@@ -121,6 +125,10 @@ public class MenuVentasController implements Initializable {
         return null; 
     }
     
+    /**
+     * Escribe en el TableView los datos de las ventas obtenidas en la base de datos.
+     * @since 04/05/2019
+     */
     public void escribirVentaSel(){
         
         final Venta venta = obtenerTabla();
@@ -146,6 +154,10 @@ public class MenuVentasController implements Initializable {
         }
     }
     
+    /**
+     * Asocia los valores obtenidos de la base de datos a las diferentes columnas del TableView.
+     * @since 04/05/2019
+     */
     public void asociarValores()
     {
         col_id.setCellValueFactory(new PropertyValueFactory <Venta, Integer>("id"));
@@ -155,6 +167,12 @@ public class MenuVentasController implements Initializable {
         col_precio.setCellValueFactory(new PropertyValueFactory <Venta, Integer> ("precio"));
     }
     
+    /**
+     * Nos permite añadir una venta con los valores que indicamos en el formulario. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void nuevaVenta(ActionEvent event) 
     {
@@ -182,6 +200,13 @@ public class MenuVentasController implements Initializable {
         }
     }
     
+    /**
+     * Añade una venta asignandole un id automatico. 
+     * Realiza un INSERT a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void confirmarGuardar(ActionEvent event) 
     {
@@ -234,6 +259,12 @@ public class MenuVentasController implements Initializable {
         
     }
     
+    /**
+     * Nos permite eliminar aquella venta seleccionada en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de eliminar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Eliminar.
+     * @since 04/05/2019
+     */
     @FXML
     private void eliminarVenta(ActionEvent event) 
     {
@@ -244,6 +275,13 @@ public class MenuVentasController implements Initializable {
         but_vaciar.setDisable(false);
     }
     
+    /**
+     * Elimina aquella venta seleccionada en el TableView. 
+     * Realiza un DELETE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void confirmarEliminar(ActionEvent event) 
     {
@@ -299,6 +337,12 @@ public class MenuVentasController implements Initializable {
         }
     }
 
+    /**
+     * Nos permite modificar aquel trabajador seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de modificar.
+     * @since 04/05/2019
+     */
     @FXML
     private void modificarVenta(ActionEvent event) 
     {
@@ -311,6 +355,13 @@ public class MenuVentasController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Guarda los cambios de aquel trabajador seleccionado en el TableView. 
+     * Realiza un UPDATE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void confirmarActualizar(ActionEvent event) 
     {
@@ -360,6 +411,11 @@ public class MenuVentasController implements Initializable {
         }
     }
 
+    /**
+     * Deja en blanco los valores escritos en el formulario.
+     * @param event Cuando se haga click en el botón vaciar formulario se ejecutará el metodo.
+     * @since 04/05/2019
+     */
     @FXML
     private void vaciarFormulario(ActionEvent event) 
     {
@@ -386,6 +442,10 @@ public class MenuVentasController implements Initializable {
         but_vaciar.setDisable(true);
     }
     
+    /**
+     * Convierte en invisibles los botones principales.
+     * @since 04/05/2019
+     */
     public void botonesInvisibles()
     {
         but_anadir.setVisible(false);
@@ -393,6 +453,10 @@ public class MenuVentasController implements Initializable {
         but_modificar.setVisible(false);
     }
     
+    /**
+     * Muestra los botones principales. 
+     * @since 04/05/2019
+     */
     public void botonesVisibles()
     {
         but_anadir.setVisible(true);
@@ -400,6 +464,10 @@ public class MenuVentasController implements Initializable {
         but_modificar.setVisible(true);
     }
     
+    /**
+     * Metodo que vuelve a llamara al metodo rellenarTabla del cliente para realizar una actualización de la pantalla.
+     * @since 04/05/2019
+     */
     public void actualizarTableView()
     {
         olVentas = FXCollections.observableArrayList();
@@ -408,6 +476,11 @@ public class MenuVentasController implements Initializable {
         asociarValores();
     }
     
+    /**
+     * Busca en la base de datos el Id más alto y le suma uno para obtener un id automatico.
+     * @return Integer con el valor del Id más alto + 1.
+     * @since 04/05/2019
+     */
     public Integer idMaximo()
     {
         Integer idMax = null;

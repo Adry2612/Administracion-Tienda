@@ -44,6 +44,9 @@ public class Cuerda extends Instrumento{
         this.tipoPuente = tipoPuente;
     }
     
+    /**
+     * Metodo que rellenará el tableview del menu grafico. 
+     */
     static public void rellenarTabla (ObservableList <Cuerda> ol_cuerda)
     {
         Conexion conexion = new Conexion();

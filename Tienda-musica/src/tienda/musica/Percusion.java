@@ -47,6 +47,9 @@ public class Percusion extends Instrumento{
         this.numPiezas = numPiezas;
     }
     
+    /**
+     * Metodo que rellenará el tableview del menu grafico. 
+     */
     static public void rellenarTabla (ObservableList <Percusion> ol_percusion)
     {
         Conexion conexion = new Conexion();
@@ -87,6 +90,11 @@ public class Percusion extends Instrumento{
         
     }
     
+    /**
+     * Se obtiene la información de la percusión.
+     * @param info String que dispondrá de toda la información necesaria.
+     * @return Devuelve la información en un String.
+    */
     @Override
     public String info()
     {

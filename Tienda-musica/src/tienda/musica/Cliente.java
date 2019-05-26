@@ -44,6 +44,9 @@ public class Cliente extends Persona{
         super (id, nombre, apellido1, apellido2);
     }
     
+    /**
+     * Metodo que rellenará el tableview del menu grafico. 
+     */
     public static void rellenarTabla(ObservableList <Cliente> tvClientes)
     {
         Conexion conexion = new Conexion();
@@ -84,6 +87,11 @@ public class Cliente extends Persona{
         }
     }
     
+    /**
+     * Se obtiene la información de los clientes.
+     * @param info String que dispondrá de toda la información necesaria.
+     * @return Devuelve la información en un String.
+    */
     @Override
     public String info()
     {
@@ -92,6 +100,11 @@ public class Cliente extends Persona{
         return info;
     }
     
+    /**
+     * Rellena el combobox con el nombre de los clientes.
+     * @param info String que dispondrá de toda la información necesaria.
+     * @return Devuelve la información en un String.
+    */
     @Override
     public String toString()
     {

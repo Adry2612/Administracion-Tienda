@@ -48,8 +48,9 @@ public class Trabajador extends Persona{
     }
     
     /**
-     * Metodo que nos permitirá obtener toda la información (exceptuando la contraseña) del trabajador.
-     * 
+     * Se obtiene la información de los trabajadores.
+     * @param info String que dispondrá de toda la información necesaria.
+     * @return Devuelve la información en un String.
     */
     @Override
     public String info()
@@ -64,6 +65,9 @@ public class Trabajador extends Persona{
         return info;
     }
     
+    /**
+     * Metodo que rellenará el tableview del menu grafico. 
+     */
      public static void rellenarTabla (ObservableList <Trabajador> tvTrabajadores)
     {
         Conexion conexion = new Conexion();

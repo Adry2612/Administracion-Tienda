@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GraficoTienda;
 
 import java.io.IOException;
@@ -31,9 +26,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
- *
+ * Clase controladora del menu de Login del proyecto de Java-FX
  * @author Adrián
+ * @version 1.0
+ * @since 04/05/2019
  */
 public class MenuInstrumentosController implements Initializable {
 
@@ -59,6 +55,12 @@ public class MenuInstrumentosController implements Initializable {
         
     }
 
+     /**
+     * Metodo que abre la ventana correspondiente a los instrumentos de cuerda.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de cuerda.
+     * @since 04/05/2019
+     */
+    
     @FXML
     private void ventanaCuerda(ActionEvent event) 
     {
@@ -82,6 +84,12 @@ public class MenuInstrumentosController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente a los instrumentos de percusión.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de percusión.
+     * @since 04/05/2019
+     */
+    
     @FXML
     private void ventanaPercusion(ActionEvent event) {
         
@@ -106,6 +114,11 @@ public class MenuInstrumentosController implements Initializable {
     
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente a los instrumentos de viento.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de viento.
+     * @since 04/05/2019
+     */
     @FXML
     private void ventanaViento(ActionEvent event) 
     {
@@ -129,6 +142,12 @@ public class MenuInstrumentosController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente a los menu principal.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón del item de menu del menu principal cerrando la ventana anterior.
+     * @since 04/05/2019
+     */
+    
     @FXML
     private void volverMenuPrincipal(ActionEvent event) 
     {
@@ -152,6 +171,11 @@ public class MenuInstrumentosController implements Initializable {
         }
     }
 
+    /**
+     * Metodo que abre la ventana correspondiente al Login.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón del item de menu del cerrar sesión cerrando la ventana anterior.
+     * @since 04/05/2019
+     */
     @FXML
     private void cerrarSesion(ActionEvent event) 
     {

@@ -47,6 +47,9 @@ public class Viento extends Instrumento {
         this.modoExcitacion = modoExcitacion;
     }
     
+    /**
+     * Metodo que rellenará el tableview del menu grafico. 
+     */
     static public void rellenarTabla (ObservableList <Viento> ol_viento)
     {
         Conexion conexion = new Conexion();
@@ -87,6 +90,11 @@ public class Viento extends Instrumento {
         
     }
     
+    /**
+     * Se obtiene la información de los clientes.
+     * @param info String que dispondrá de toda la información necesaria.
+     * @return Devuelve la información en un String.
+    */
     @Override
     public String info()
     {

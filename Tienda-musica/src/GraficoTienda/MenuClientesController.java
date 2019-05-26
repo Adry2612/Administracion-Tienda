@@ -103,6 +103,10 @@ public class MenuClientesController implements Initializable {
         tvClientes.addListener(selectorClientes);
     }
            
+    /**
+     * Escribe en el TableView los datos de los clientes obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public void escribirClienteSel(){
         
         final Cliente cliente = obtenerTabla();
@@ -119,6 +123,10 @@ public class MenuClientesController implements Initializable {
         }   
     }  
     
+    /**
+     * Obtiene los valores para escribir en el TableView los datos de los clientes obtenidos en la base de datos.
+     * @since 04/05/2019
+     */
     public Cliente obtenerTabla()
     {
        if (tablaClientes != null)
@@ -135,6 +143,10 @@ public class MenuClientesController implements Initializable {
         return null; 
     }
             
+    /**
+     * Asocia los valores obtenidos de la base de datos a las diferentes columnas del TableView.
+     * @since 04/05/2019
+     */
     public void asociarValores()
     {
         col_id.setCellValueFactory(new PropertyValueFactory <Cliente, Integer>("id"));
@@ -143,6 +155,10 @@ public class MenuClientesController implements Initializable {
         col_apellido2.setCellValueFactory(new PropertyValueFactory <Cliente, String>("apellido2"));
     }
     
+    /**
+     * Metodo que vuelve a llamara al metodo rellenarTabla del cliente para realizar una actualización de la pantalla.
+     * @since 04/05/2019
+     */
     public void actualizarTableView()
     {
         tvClientes = FXCollections.observableArrayList(); 
@@ -151,7 +167,12 @@ public class MenuClientesController implements Initializable {
         asociarValores();
     }
     
-    //Modificar Clientes.
+    /**
+     * Nos permite modificar aquel cliente seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de modificar.
+     * @since 04/05/2019
+     */
     @FXML
     private void modificar(ActionEvent event) 
     {
@@ -164,6 +185,13 @@ public class MenuClientesController implements Initializable {
         b_volver.setDisable(false);
     }
     
+    /**
+     * Guarda los cambios de aquel cliente seleccionado en el TableView. 
+     * Realiza un UPDATE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void guardarCambiosActualizar(ActionEvent event) 
     {
@@ -195,7 +223,12 @@ public class MenuClientesController implements Initializable {
         }
     }
     
-    //Eliminar Clientes.
+    /**
+     * Nos permite eliminar aquel cliente seleccionado en el TableView. 
+     * Desaparecerán los botones principales y aparecerá el botón de eliminar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Eliminar.
+     * @since 04/05/2019
+     */
     @FXML
     private void eliminarCliente(ActionEvent event) 
     {
@@ -208,6 +241,13 @@ public class MenuClientesController implements Initializable {
         b_vaciar.setDisable(false);
     }
     
+    /**
+     * Elimina aquel cliente seleccionado en el TableView. 
+     * Realiza un DELETE a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y  vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de guardar.
+     * @since 04/05/2019
+     */
     @FXML
     private void guardarCambiosBorrar(ActionEvent event) 
     {
@@ -249,7 +289,12 @@ public class MenuClientesController implements Initializable {
         }
     }
 
-    //Añadir Clientes.
+    /**
+     * Nos permite añador un cliente con los valores que indicamos en el formulario. 
+     * Desaparecerán los botones principales y aparecerá el botón de guardar cambios y vaciar formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void anadirCliente(ActionEvent event) 
     {
@@ -278,6 +323,13 @@ public class MenuClientesController implements Initializable {
         }
     }
     
+    /**
+     * Añade el cliente asignandole un id automatico. 
+     * Realiza un INSERT a la base de datos con todos los valores del formulario.
+     * Actualizará el TableView para ver los cambios y vacia formulario.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de Añadir.
+     * @since 04/05/2019
+     */
     @FXML
     private void guardarCambiosModificar(ActionEvent event) 
     {
@@ -311,7 +363,10 @@ public class MenuClientesController implements Initializable {
         }
     }
     
-    //Botones y formulario.
+    /**
+     * Muestra los botones principales. 
+     * @since 04/05/2019
+     */
     public void botonesPrinVisibles()
     {
         b_modificar.setVisible(true);
@@ -319,6 +374,10 @@ public class MenuClientesController implements Initializable {
         b_borrar.setVisible(true);
     }
     
+    /**
+     * Convierte en invisibles los botones principales.
+     * @since 04/05/2019
+     */
     public void botonesPrinInvisibles()
     {
         b_modificar.setVisible(false);
@@ -326,6 +385,11 @@ public class MenuClientesController implements Initializable {
         b_borrar.setVisible(false);
     }
     
+    /**
+     * Busca en la base de datos el Id más alto y le suma uno para obtener un id automatico.
+     * @return Integer con el valor del Id más alto + 1.
+     * @since 04/05/2019
+     */
     public Integer idMaximo()
     {
         Integer idMax = null;
@@ -351,6 +415,11 @@ public class MenuClientesController implements Initializable {
         return idMax;
     }
 
+    /**
+     * Deja en blanco los valores escritos en el formulario.
+     * @param event Cuando se haga click en el botón vaciar formulario se ejecutará el metodo.
+     * @since 04/05/2019
+     */
     @FXML
     private void vaciarFormulario(ActionEvent event) 
     {        
@@ -361,7 +430,10 @@ public class MenuClientesController implements Initializable {
         text_apellido2.setText(null);
     }
     
-    // ALERTAS
+    /**
+    * Metodo que muestra una alerta de información indicando que se han insertado los datos correctamente en la base de datos.
+    * @since 02/05/2019
+    */
     public void alertaInsercionCompletada()
     {
         Alert alert = new Alert (Alert.AlertType.INFORMATION);
@@ -371,6 +443,10 @@ public class MenuClientesController implements Initializable {
         alert.showAndWait();
     }
     
+    /**
+    * Metodo que muestra una alerta de información indicando que ha habido un error en al insertar datos en la base de datos.
+    * @since 02/05/2019
+    */
     public void alertaErrorInsercion()
     {
         Alert alert = new Alert (Alert.AlertType.ERROR);
@@ -380,6 +456,10 @@ public class MenuClientesController implements Initializable {
         alert.showAndWait();
     }
     
+    /**
+     * Muestra los botones principales y desabilita y convierte en invisible los demás botones.
+     * @since 04/05/2019
+     */
     @FXML
     private void volver(ActionEvent event) {
         botonesPrinVisibles();

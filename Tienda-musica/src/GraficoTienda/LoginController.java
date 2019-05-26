@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GraficoTienda;
 
 import java.net.URL;
@@ -27,9 +22,10 @@ import javafx.stage.Stage;
 import tienda.musica.Conexion;
 
 /**
- * FXML Controller class
- *
+ * Clase controladora del menu de Login del proyecto de Java-FX
  * @author Adrián
+ * @version 1.0
+ * @since 
  */
 public class LoginController implements Initializable {
 
@@ -41,13 +37,18 @@ public class LoginController implements Initializable {
     private Button but_inicioSesion;
 
     /**
-     * Initializes the controller class.
+     * Inicializa la clase controladora del proyecto.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
 
+    /**
+     * Metodo que se conecta a la base de datos y verifica si la contraseña pertenece al empleado introducido.
+     * @param event Se ejecutará cuando el usuario hago click sobre el botón de iniciar sesión.
+     * @since 02/05/2019
+     */
     @FXML
     private void iniciarSesion(ActionEvent event) {
     
@@ -107,6 +108,10 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Abre la ventana del menu principal de la aplicación. 
+     * @since 02/05/2019
+     */
     public void abrirVentana()
     {
         try
@@ -128,6 +133,10 @@ public class LoginController implements Initializable {
         }
     }
     
+    /**
+     * Metodo que muestra una alerta de error indicando que el usuario o la contraseña son erroneas.
+     * @since 02/05/2019
+     */
     public void errorContrasena()
     {
         Alert alert = new Alert (Alert.AlertType.ERROR);
@@ -137,6 +146,10 @@ public class LoginController implements Initializable {
         alert.showAndWait();
     }
     
+    /**
+    * Metodo que muestra una alerta de información indicando que ha habido un error en la conexión con la base de datos.
+    * @since 02/05/2019
+    */
     public void errorConexion()
     {
         Alert alert = new Alert (Alert.AlertType.INFORMATION);
